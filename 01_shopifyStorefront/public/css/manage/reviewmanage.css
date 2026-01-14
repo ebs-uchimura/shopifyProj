@@ -1,0 +1,41 @@
+/*
+/* reviewmanage.css
+*/
+
+@charset "utf-8";
+
+/* tag */
+header {
+  width: 1000px;
+  margin: 0 auto 30px;
+}
+
+table {
+  width: 1000px;
+}
+
+table thead tr th:first-child {
+  width: 40px;
+}
+
+table thead tr th:nth-child(2) {
+  width: 40px;
+}
+
+table thead tr th:nth-child(3) {
+  width: 200px;
+}
+
+table thead tr th:nth-child(4) {
+  width: 50px;
+}
+
+table thead tr th:nth-child(5) {
+  width: 500px;
+}
+
+.copyright {
+  width: 1000px;
+  margin: 20px auto 30px;
+  font-size: 0.8rem;
+}

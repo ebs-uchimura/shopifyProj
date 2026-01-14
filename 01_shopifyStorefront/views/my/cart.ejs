@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>Compassショッピングカート</title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/my/cart.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
+  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script>
+    $(function () {
+      getGlobalRoot("<%= root %>");
+      $("img.lazyload").lazyload();
+    });
+  </script>
+  <script src="/js/cart.js"></script>
+</head>
+<body>
+  <main>
+    <%- include('../partials/microheader.ejs') %>
+    <div class="main-breadcrumb-wrapper">
+      <nav>
+        <ol class="breadcrumb">
+          <li><a href="/">TOP</a></li>
+          <li><a href="/my/cart/">ショッピングカート</a></li>
+        </ol>
+      </nav>
+    </div>
+    <div class="wrap main-cart-wrapper">
+      <h3 class="headline-standard libre-baskerville">
+        Shopping Cart
+        <span class="headline-small noto-sans">ショッピングカート</span>
+      </h3>
+      <div class="cart-row-wrapper">
+        <div class="cart-row-child">
+          <% if (cartitems.length > 0) { %>
+          <form name="cartForm" action="/my/cart" method="post">
+            <table>
+              <thead>
+                <tr>
+                  <th>画像</th>
+                  <th>商品名</th>
+                  <th>数量</th>
+                  <th>小計(円)</th>
+                  <th>削除</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% var totalPrice = 0 %>
+                <% if (cartitems.length > 0) { %>
+                <% cartitems.forEach(function(item, i) { %>
+                <tr>
+                  <td class="imagecell">
+                    <img src="<%= item.imagepath %>" onerror="this.onerror = null; this.src='';">
+                  </td>
+                  <td class="cartdetail">
+                    <%= item.productname %><br><%= item.price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) %>円(税込)
+                  </td>
+                  <td class="">
+                    <div class="cartnum">
+                      <button class="minusbutton" type="button" data-index='<%= i %>'>
+                        <i class="fa-solid fa-minus"></i>
+                      </button>
+                      <input id="pid<%= i %>" class="productid" type="hidden" name="pid" value="<%= item.id %>">
+                      <input id="price<%= i %>" class="price" type="hidden" name="price" value="<%= item.price %>">
+                      <input id="num<%= i %>" class="numarea" type="number"  name="num" value="<%= item.amount %>" min="1">
+                      <button class="plusbutton" type="button" data-index='<%= i %>'>
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="totalprice">
+                    <% totalPrice += (item.price * item.amount) %>
+                    <input id="tmptotal<%= i %>" class="tmptotal" type="hidden" name="tmptotal" value="<%= totalPrice %>">
+                    <span id="total<%= i %>"><%= (item.price * item.amount).toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) %></span>円(税込)
+                  </td>
+                  <td class="cartdelete">
+                    <button id="delete<%= i %>" type="button" class="deletebtn btn-cart btn-blue" data-index='<%= i %>'>削除</button>
+                  </td>
+                </tr>
+                <% }) %>
+                <% } %>
+                <tr>
+                  <td colspan="3" class="grosshead">
+                    合計
+                  </td>
+                  <td colspan="2" class="grossprice">
+                    <span id="grossprice"><%= totalPrice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) %></span>円(税込)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+          <ul class="cart-buttons">
+            <% if (!login) { %>
+            <li>
+              <button id="buybutton" type="button" class="button-g button-7 button-wide">ゲスト購入する</button>
+            </li>
+            <% } else { %>
+            <li>
+              <button id="buybutton" type="button" class="button-g button-7 button-wide">購入する</button>
+            </li>
+            <% } %>
+            <li>
+              <a href="/">
+                <button type="button" class="button-g button-10 button-wide">買い物に戻る</button>
+              </a>
+            </li>
+            <li class="error-msg">
+              <%= message %>
+            </li>
+          </ul>
+        <% } else { %>
+          <ul class="cart-buttons">
+            <li>
+              <p> 買い物かごが空です。</p>
+            </li>
+            <li>
+              <a href="/">
+                <button type="button" class="button-g button-10 button-wide">買い物に戻る</button>
+              </a>
+            </li>
+          </ul>
+        <% } %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('../partials/microfooter.ejs') %>
+</body>
+</html>

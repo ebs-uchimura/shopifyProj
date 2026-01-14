@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/indexmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+  </header>
+  <main>
+    <table class="btntbl">
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/order">注文管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/product">商品管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/category">カテゴリ管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/review">レビュー管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/newsreg">ニュース登録画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/newsedit">ニュース編集画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/manage/good">いいね管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br>
+          <form action="/manage/init" id="initform" method="post">
+            <button type="submit" class="button-g button-standard" value="">DB更新処理</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

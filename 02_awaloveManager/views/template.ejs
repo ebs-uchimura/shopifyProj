@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+
+  <body>
+    <header>
+      <h2><%= title %>画面</h2>
+      <button
+        type="button"
+        class="button-g button-6 gototop"
+        onclick="location.href='/'"
+      >
+        トップへ</button
+      ><br />
+      <span id="search_result">ヒット件数：&ensp;<%= data.length %>件 </span>
+    </header>
+    <table class="maintbl">
+      <tr>
+        <th class="basic">
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/template?item=id&sort=desc'"
+          ></i
+          >ID<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/template?item=id&sort=asc'"
+          ></i>
+        </th>
+        <th>テンプレート名</th>
+        <th>ジャンルID</th>
+        <th>画像URL</th>
+        <th>管理番号</th>
+        <th>更新時間</th>
+      </tr>
+      <% for ( let i=0; i < data.length; i++ ) { %>
+      <tr>
+        <td><%= data[i].id %></td>
+        <td><%= data[i].templatename %></td>
+        <td><%= data[i].genre_id %></td>
+        <td><%= data[i].imageurl %></td>
+        <td><%= data[i].manageno %></td>
+        <td><%= time[i] %></td>
+      </tr>
+      <% } %>
+    </table>
+    <%- include('./partials/footer'); %>
+  </body>
+</html>

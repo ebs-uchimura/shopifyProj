@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/head'); %>
+    <script>
+      $(function () {
+        // on tr clicked
+        $("tr")
+          .has("td")
+          .click(function (event) {
+            // page transition
+            window.location.href = `/user_edit/${
+              $(this).children("td")[0].innerText
+            }`;
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h2><%= title %>画面</h2>
+      <button
+        type="button"
+        id="user_new"
+        class="button-g button-6 mainreg"
+        onclick="location.href='/user_new'"
+      >
+        ユーザ登録
+      </button>
+      <button
+        type="button"
+        class="button-g button-6 gototop"
+        onclick="location.href='/'"
+      >
+        トップへ
+      </button>
+      <button
+        type="button"
+        class="button-g button-8 reset_btn"
+        onclick="location.href='<%= root %>/user?item=id&sort=desc'"
+      >
+        リセット</button
+      ><br /><br />
+      <form action="/user" id="user_form" method="get">
+        <input type="text" id="searchwd" name="searchwd" class="standard" />
+        <button type="button" class="button-g button-6 user_btn">
+          ユーザ名検索
+        </button>
+        <button type="button" class="button-g button-6 clear_btn">
+          クリア
+        </button>
+      </form>
+      <br />
+
+      <span id="search_result">ヒット件数：&ensp;<%= data.length %>件 </span>
+    </header>
+
+    <table class="maintbl">
+      <tr>
+        <th class="narrow">
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/user?item=id&sort=desc'"
+          ></i
+          >ID<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/user?item=id&sort=asc'"
+          ></i>
+        </th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/user?item=shopname&sort=desc'"
+          ></i
+          >店名<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/user?item=shopname&sort=asc'"
+          ></i>
+        </th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/user?item=username&sort=desc'"
+          ></i
+          >ユーザ名<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/user?item=username&sort=asc'"
+          ></i>
+        </th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/user?item=address&sort=desc'"
+          ></i
+          >住所<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/user?item=address&sort=asc'"
+          ></i>
+        </th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+        <th>更新日時</th>
+      </tr>
+      <% for ( let i=0; i < data.length; i++ ) { %>
+        <% if (data[i].active == 1) { %>
+          <% if ( data[i].perchase == '1' ) { %>
+          <tr class="yellowrow">
+          <% } else { %>
+          <tr>
+          <% } %>
+          <td><%= data[i].id %></td>
+          <td><%= data[i].shopname %></td>
+          <td><%= data[i].username %></td>
+          <td><%= address[i] %></td>
+          <td><%= data[i].telephone %></td>
+          <td><%= data[i].mailaddress %></td>
+          <td><%= time[i] %></td>
+        </tr>
+        <% } %>
+      <% } %>
+    </table>
+    <%- include('./partials/footer'); %>
+  </body>
+</html>

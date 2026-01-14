@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <%- include('./partials/head'); %>
+    <script src="https://mao2009.github.io/zipToAddress/zipToAddress.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/validate.js"></script>
+    <script>
+      $(function () {
+        // address enter
+        $('.address_enter').on('click', function (e) {
+          $("#address").val('');
+          e.preventDefault();
+          const zipnumber = $("#zip1").val() + $("#zip2").val();
+          $("#zip").val(zipnumber);
+          $('.popup-box').fadeOut();
+        });
+      });
+    </script>
+</head>
+
+<body>
+  <%- include('./partials/new_top'); %>
+
+    <form action="/order_regist" id="register" class="orderform" method="post"
+      enctype="application/x-www-form-urlencoded">
+      <table class="registertbl">
+        <%- include('./partials/new_form'); %>
+        <tr>
+          <td>店名入力</td>
+          <td>
+            <input type="text" id="shopname" class="standard" name="shopname" placeholder="店名を入力" />
+          </td>
+        </tr>
+        <tr>
+          <td>ユーザ名入力</td>
+          <td>
+            <input type="text" id="username" class="standard" name="username" placeholder="ユーザ名を入力" />
+          </td>
+        </tr>
+        <tr>
+          <td>住所入力</td>
+          <td>
+            <button type="button" class="button-g button-6 js-popup-box-open" data-popup-box-open-id="2">
+              住所入力</button><br />
+            <input type="hidden" id="zip" class="standard" name="zipnumber" />
+            <div id="address-popup" class="popup-box" data-popup-box-id="2">
+              <div class="popup-box__wrap">
+                <div class="popup-box__inner">
+                  <div class="modal__bg js-modal-close">&times;</div>
+                  <span class="p-country-name" style="display: none">Japan</span>
+                  〒　
+                  <input type="text" class="standard" name="zip1" size="3" />
+                  　-　
+                  <input type="text" class="standard" name="zip2" size="4" />
+                  <button type="button" class="button-g button-6 address_enter" onclick='zipToAddress("[name=zip1]", "[name=zip2]", "#prefecture", "#city", "#address", zipFunc)'>住所検索</button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>都道府県</td>
+          <td>
+            <select id='prefecture' class='standard' name='prefecture'>
+              <option value=''>都道府県</option>
+              <% prefs.forEach(function(pref, i) { %>
+                <option value='<%= i+1 %>'><%= pref %></option>
+              <% }) %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>市区町村</td>
+          <td>
+            <input type="text" id="city" class="standard" name="city" placeholder="市区町村を入力" autocomplete="off"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>番地以降</td>
+          <td>
+            <input type="text" id="address" class="standard wide" name="address" placeholder="番地以降を入力" autocomplete="off"></input>
+          </td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td>
+            <input type="text" class="standard telephone" name="telephone" placeholder="電話番号を入力" />
+          </td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td>
+            <input type="text" class="standard mailaddress wide" name="mailaddress" placeholder="メールアドレスを入力" />
+          </td>
+        </tr>
+        <tr>
+          <td>商品ID</td>
+          <td>
+            <input type="search" id="productid" class="standard" name="productid" placeholder="商品IDを入力"
+              autocomplete="off" />
+            <button type="button" class="button-g button-6 js-popup-box-open productidsearch"
+              data-popup-box-open-id="3">
+              商品名で検索
+            </button>
+            <div id="product-popup" class="popup-box" data-popup-box-id="3">
+              <div class="popup-box__wrap">
+                <div class="popup-box__inner">
+                  <div><b>商品名検索</b></div>
+                  <div class="modal__bg js-modal-close">&times;</div>
+                  <label for="productname">商品名:</label>
+                  <input type="text" id="productname" class="standard" />
+                  <button type="button" id="productidsearch" class="button-g button-6">
+                    検索
+                  </button>
+                  <table id="multipleproducts" class="extratable"></table>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>数量</td>
+          <td>
+            <input type="number" class="standard quantity" name="quantity" />
+          </td>
+        </tr>
+          <tr>
+            <td>総額(税込,円)</td>
+            <td>
+              （自動計算）
+            </td>
+          </tr>
+      </table>
+      <%- include('./partials/new_submit'); %>
+    </form>
+    <button type="button" class="button-g button-6 back_btn" onclick="history.back()">
+      戻る
+    </button>
+    <script defer>
+      // zip operation
+      function zipFunc (data) {
+        
+        // 都道府県
+        const prefecture = data.results[0].address1;
+        // ボックス
+        const addressBox = document.getElementById('address-popup');
+        // オプション
+        const option = document.getElementById('prefecture').children;
+        // オプション配列
+        const opArray = Array.from(option);
+
+        // オプションループ
+        opArray.forEach(function(op) {
+          // 都道府県が合致
+          if (op.innerText == prefecture) {
+            // 選択状態に
+            op.selected = true;
+          }
+        });
+        // 閉じる
+        addressBox.style.display ="none";
+      }
+    </script>
+    <%- include('./partials/footer'); %>
+</body>
+
+</html>

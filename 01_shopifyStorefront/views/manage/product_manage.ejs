@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/productmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <script src="/js/manage/pdmanage.js"></script>
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>掲載<br>全<input type="checkbox" id="checksAll"></th>
+          <th>名入れ表示</th>
+          <th>表示順</th>
+          <th>商品名</th>
+          <th>バリアントID</th>
+          <th>ランク</th>
+          <th>おススメ</th>
+          <th>新商品</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/manage/product" id="pdform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+              <tr>
+                <td>
+                  <%= data[i].id %>
+                </td>
+                <td>
+                  <input type="checkbox" class="checkbox" name="check[]" value="<%= data[i].id %>" <%=data[i].display==1
+                    ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox3" class="checkbox3" name="check3[]" value="<%= data[i].id %>"
+                    <%=data[i].printing==1 ? 'checked' : '' %> >
+                </td>
+                 <td>
+                  <input type="number" class="narrow" maxlength="2" name="pdorder[]" value="<%= data[i].pdorder %>">
+                </td>
+                <td>
+                  <%= data[i].productname %>
+                </td>
+                <td>
+                  <input type="text" class="default" maxlength="15" name="variantid[]" value="<%= data[i].variantid %>">
+                </td>
+                <td>
+                  <input type="number" class="narrow" maxlength="2" name="ranking[]" value="<%= data[i].ranking %>">
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox1" class="checkbox1" name="check1[]" value="<%= data[i].id %>"
+                    <%=data[i].recommend==1 ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox2" class="checkbox2" name="check2[]" value="<%= data[i].id %>"
+                    <%=data[i].latest==1 ? 'checked' : '' %> >
+                </td>
+                <input type="hidden" id="id" name="id" value="<%= data[i].id %>">
+              </tr>
+              <% } %>
+                <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <a href="<%= root %>/manage/">前の画面へ戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

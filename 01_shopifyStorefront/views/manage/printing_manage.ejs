@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/printingmanage.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名入れ</th>
+          <th>日時</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <tbody>
+          <% for ( let j=0; j < data.length; j++ ) { %>
+            <tr>
+              <td>
+                <%= data[j].id %>
+              </td>
+              <td>
+                <%= data[j].printing %>
+              </td>
+              <td>
+                <%= data[j].updated_at %>
+              </td>
+            </tr>
+            <% } %>
+              <% } %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">
+              <a href="<%= root %>/manage/">前の画面へ戻る</a>
+            </td>
+          </tr>
+        </tfoot>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

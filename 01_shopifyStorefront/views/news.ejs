@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>Compassギフトサイト商品詳細</title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/imgages/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imgages/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/imgages/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/detail.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script>
+    $(function () {
+      getGlobalRoot("<%= root %>");
+      $("img.lazyload").lazyload();
+      $(".searchbutton").modaal({
+        content_source: '#inline'
+      });
+    });
+  </script>
+  <script src="/js/index.js"></script>
+  <script src="/js/star.js"></script>
+</head>
+
+<body>
+  <main>
+    <%- include('./partials/header.ejs') %>
+    <div class="wrap detail-main-wrapper">
+      <div class="detail-main-img">
+        <img class="detailimg" src="<%= myproduct.imagepath %>" alt="<%= myproduct.productname %>">
+      </div>
+      <div class="wrap information-main-wrapper">
+        <ul class="detail-flex">
+          <li class="detail-list-title">
+            <%= myproduct.productname %>
+          </li>
+          <li class="detail-list-review">
+            <div class="ratebox">
+              <span class="rate<%= averagetext %>"></span>&emsp;
+              <span class="ratestr">
+                <%= review.length %>レビュー
+              </span>
+            </div>
+          </li>
+          <li class="detail-list-price">
+            <div class="price txt-purple noto-sans">
+              <%= myproduct.pricerange %>円<span class="headline-small">&thinsp;(税込)</span>
+            </div>
+          </li>
+          <li class="detail-list-content">
+            <p>※配送料は購入手続き時に計算されます。</p>
+            <p>商品番号:&nbsp;<%= myproduct.padid %>
+            </p>
+          </li>
+          <hr>
+          <form name="cartForm" action="/my/cart" method="post">
+            <li class="detail-number-area">
+              <div class="minusbutton"><i class="fa-solid fa-minus"></i></div>
+              <input class="productid" type="hidden" name="pid" value="<%= myproduct.id %>">
+              <input id="numarea" class="numarea" type="number" name="num" value="1" min="1">
+              <div class="plusbutton"><i class="fa-solid fa-plus"></i></div>
+              <div class="favbutton">
+                <i class="hearton heartbutton fa-solid fa-heart display-none" value="">
+                  <span>
+                    <%= myproduct.id %>
+                  </span>
+                </i>
+                <i class="heartoff heartbutton fa-regular fa-heart" value="">
+                  <span>
+                    <%= myproduct.id %>
+                  </span>
+                </i>
+              </div>
+            </li>
+            <% if (myproduct.printing==1) { %>
+              <li class="detail-list-printing">
+                <h4>名入れ</h4>
+                <textarea class="textarea" rows="4" name="printing" value="" placeholder="名入れ文字を入れてください"></textarea>
+              </li>
+              <% } %>
+                <li class="detail-list-buttons">
+                  <div class="btn">
+                    <button class="btn-cart">
+                      <i class="fa-solid fa-cart-shopping"></i>&ensp;<input class="btn-red" type="submit"
+                        value="カートに入れる">
+                    </button>
+                  </div>
+                </li>
+          </form>
+        </ul>
+        <hr>
+        <div class="information-area">
+          <%- myproduct.detailhtml %>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-main-wrapper">
+      <hr>
+      <h2 class="review-list-title">カスタマーレビュー</h2>
+      <% if (average !='0.0' ) { %>
+        <div class="review-main-child">
+          <div class="review-point">
+            <ul class="review-point-flex">
+              <li class="review-list-head">
+                <div class="ratebox">
+                  <span class="rate<%= averagetext %>"></span>&emsp;5点満点中<%= average %>点
+                </div>
+              </li>
+              <li class="review-list-head">
+                <div class="head">
+                  <%= review.length %>件のレビューに基づいています
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="review-stars">
+            <canvas id="myChart"></canvas>
+          </div>
+          <% } %>
+            <div class="review-stars-button">
+              <button id="review-button">
+                <i class="fa-solid fa-pencil"></i>&emsp;<span class="review-str">レビューを書く</span>
+              </button>
+            </div>
+        </div>
+        <div class="review-list-newest">
+          <% if (average !='0.0' ) { %>
+            <details>
+              <summary>
+                最新
+                <span class="ico"></span>
+                <% } %>
+              </summary>
+              <% for ( let i=0; i < review.length; i++ ) { %>
+                <div class="inner">
+                  <ul class="review-point-flex">
+                    <li class="list-review">
+                      <div class="ratebox"><span class="rate<%= review[i].stars %>"></span></div>
+                    </li>
+                    <li class="list-profile">
+                      <div class="usericon"><i class="fa-solid fa-user"></i></div>
+                      <div class="username">
+                        <%= review[i].reviewername %>
+                      </div>
+                    </li>
+                    <li class="list-content">
+                      <%= review[i].content %>
+                    </li>
+                    <li class="list-date">
+                      <%= review[i].updated_at %>
+                    </li>
+                  </ul>
+                </div>
+            </details>
+            <% } %>
+        </div>
+        <hr>
+    </div>
+
+    <div class="wrap main-recommend-wrapper">
+      <h3 class="detail-standard libre-baskerville">
+        <span class="detail-small noto-sans">おすすめ</span>
+      </h3>
+      <div class="product-row-wrapper">
+        <div id="recommendarea" class="product-row-parent">
+          <% if (typeof recommend !='string' ) { %>
+            <% recommend.forEach(function(rec) { %>
+              <div class="product-row-child">
+                <ul class="product-flex">
+                  <li class="list-image">
+                    <div class="favbutton">
+                      <i class="hearton heartbutton fa-solid fa-heart display-none" value=""><span>
+                          <%= rec.id %>
+                        </span></i>
+                      <i class="heartoff heartbutton fa-regular fa-heart" value=""><span>
+                          <%= rec.id %>
+                        </span></i>
+                    </div>
+                    <a href="/product/<%= rec.id %>">
+                      <img class="recommend1" src="<%= rec.imagepath %>" alt="<%= rec.productname %>">
+                    </a>
+                  </li>
+                  <li class="list-category">
+                    <%= rec.categoryname %>
+                  </li>
+                  <li class="list-title">
+                    <%= rec.productname %>
+                  </li>
+                  <li class="list-content">
+                    <%= rec.description %>
+                  </li>
+                </ul>
+              </div>
+              <% }) %>
+                <% } %>
+        </div>
+      </div>
+    </div>
+    <div id="pid" class="display-none">
+      <%= product.id %>
+    </div>
+  </main>
+  <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
