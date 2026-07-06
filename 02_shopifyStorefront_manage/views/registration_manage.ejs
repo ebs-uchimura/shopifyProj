@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/registmanage.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src='/js/common/crypto.js'></script>
+  <script src='/js/validation/adminregvalidation.js'></script>
+  <script src='/js/common/password.js'></script>
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <div class="wrap main-regist-wrapper">
+      <div class="regist-row-wrapper">
+        <div class="regist-row-parent">
+          <form action="/managereg" id="registForm" method="post">
+            <ul class="regist-row-input-area">
+              <li class="inputarea regist-row-children">
+                <label for="adminname">&ensp;名前</label><br>
+                <input type="text" id="adminname" class="standard" name="adminname" value=""
+                  placeholder="管理 太郎">
+              </li>
+              <li class="inputarea regist-row-children">
+                <label for="adminmail">&ensp;メールアドレス</label><br>
+                <input type="text" id="adminmail" class="standard" name="adminmail" value=""
+                  placeholder="xxx@gmail.com">
+              </li>
+              <li class="inputarea regist-row-children">
+                <label for="passarea">&ensp;パスワード</label><br>
+                <input type="password" id="password" class="standard" name="prepassword" value=""
+                  placeholder="xxxxxxxx">
+              </li>
+            </ul>
+            <ul class="regist-row-check-area">
+              <li class="regist-button-children">
+                <p class="red">
+                  <%= message %>
+                </p>
+              </li>
+              <input type='hidden' id='hashedpassword' name='hashedpassword' value=''>
+              <li class="regist-button-children">
+                <button class="button-g button-7 button-wide" type="submit" value="">管理者登録する</button>
+              </li>
+              <li class="regist-button-children">
+                <a href="/login">
+                  <button type="button" class="button-g button-10 button-wide">戻る</button>
+                </a>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/topimgmanage.css">
+  <script src="/js/catemanage.js"></script>
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>カテゴリ名</th>
+          <th>画像名</th>
+          <th>アップロード</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+      <form action="/cateimg" id="cateimgform" method="post" enctype="multipart/form-data">
+        <tbody>
+          <% for ( let i=0; i < data.length; i++ ) { %>
+          <tr>
+            <td>
+              画像<%= i + 1 %>
+            </td>
+            <td>
+              <%= data[i].categoryname %>
+            </td>
+            <td>
+              <%= data[i].imagepath %>
+            </td>
+            <td>
+              <input type="hidden" class="id" name="id" value="<%= data[i].id %>" />
+              <input type="file" class="imgfile" name="file<%= i + 1 %>">
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <button class="subbutton button-g button-6 button-wide" type="submit">登録</button>
+            </td>
+          </tr>
+        </tfoot>
+      </form>
+      <% } %>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>掲載<input type="checkbox" id="checksAll"></th>
+          <th>順番</th>
+          <th>カテゴリ名</th>
+          <th>英語カテゴリ名</th>
+          <th>説明文</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/category" id="cateform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+            <tr>
+              <td>
+                <%= data[i].id %>
+              </td>
+              <td>
+                <input type="checkbox" class="display" name="display[]" value="<%= data[i].id %>" <%=data[i].display==1
+                  ? 'checked' : '' %> >
+              </td>
+              <td>
+                <input type="number" class="narrow" maxlength="2" name="ranking[]" value="<%= data[i].ranking %>">
+              </td>
+              <td>
+                <%= data[i].categoryname %>
+              </td>
+              <td>
+                <input type="text" class="standard" name="englishname" value="<%= data[i].englishname %>">
+              </td>
+              <td>
+                <textarea class="textarea" rows="5" cols="50" name="context"
+                  value=""><%= data[i].context %></textarea>
+              </td>
+              <input type="hidden" class="id" name="id" value="<%= data[i].id %>" />
+            </tr>
+            <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">
+                <button class="button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <a href="javascript:history.back();">戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+        <% } %>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

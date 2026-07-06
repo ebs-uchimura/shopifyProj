@@ -10,50 +10,26 @@
 // import global interface
 import { } from '../@types/globaljoinsql.d';
 // 名前空間 
-import { myDev } from '../consts/globalinfo';
-import { myConst } from '../consts/globalvariables';
-import { myDevConst } from '../consts/globalvariablesdev';
-import { myLocalDevConst } from '../consts/globalvariableslocal';
+import { myDevConst } from '../consts/globalinfo';
+import globals from '../consts/globalenv';
 
 /// 初期設定
-// 可変要素
-let globalAppName: string; // アプリ名
-let globalEnvfileName: string; // 環境ファイル名
-let globalLogLevel: string; // ログレベル
-
 // モジュール
-import * as path from 'node:path'; // パス用
-import { config as dotenv } from 'dotenv'; // 環境情報
 import Logger from '../class/Logger'; // ログ用
 import SQL from '../class/MySqlJoin0623'; // sql用
 
-// ローカルモード
-if (myDev.LOCAL_DEV_FLG) {
-  globalEnvfileName = '../.localenv';
-  globalAppName = myLocalDevConst.APP_NAME!; // アプリ名
-  globalLogLevel = myLocalDevConst.LOG_LEVEL; // ログレベル
-  // 開発モード
-} else if (myDev.DEV_FLG) {
-  globalEnvfileName = '../.devenv';
-  globalAppName = myDevConst.APP_NAME!; // アプリ名
-  globalLogLevel = myDevConst.LOG_LEVEL; // ログレベル
-  // 本番モード
-} else {
-  globalEnvfileName = '../.env';
-  globalAppName = myConst.APP_NAME!; // アプリ名
-  globalLogLevel = myConst.LOG_LEVEL; // ログレベル
-}
-// 環境変数
-dotenv({ path: path.join(__dirname, globalEnvfileName) });
+// 開発モード
+const globalAppName: string = myDevConst.APP_NAME!; // アプリ名
+const globalLogLevel: string = myDevConst.LOG_LEVEL; // ログレベル
 // ロガー
-const logger: Logger = new Logger(myDev.COMPANY_NAME, globalAppName, globalLogLevel);
+const logger: Logger = new Logger(myDevConst.COMPANY_NAME, globalAppName, globalLogLevel);
 // DB設定
 const myDB: SQL = new SQL(
-  process.env.SQL_HOST!, // ホスト名
-  process.env.SQL_ADMINUSER!, // ユーザ名
-  process.env.SQL_ADMINPASS!, // ユーザパスワード
-  Number(process.env.SQL_PORT), // ポートNO
-  process.env.SQL_KEYDBNAME!, // DB名
+  globals.SQL_HOST!, // ホスト名
+  globals.SQL_ADMINUSER!, // ユーザ名
+  globals.SQL_ADMINPASS!, // ユーザパスワード
+  Number(globals.SQL_PORT), // ポートNO
+  globals.SQL_KEYDBNAME!, // DB名
   logger, // ロガー
 );
 
@@ -133,7 +109,7 @@ export const selectAsset = async (table: string, columns: string[], values: any[
 };
 
 // アセット連結選択
-export const selectJoinAsset = async (table: string, jointable: string, columns: string[], values: any[][], joincolumns: string[], joinvalues: any[][], limit?: number, order?: string, ordertable?: string, fields?: string[], reverse?: boolean): Promise<any> => {
+export const selectJoinAsset = async (table: string, jointable: string, joinkey: string, columns: string[], values: any[][], joincolumns: string[], joinvalues: any[][], fields?: string[], limit?: number, order?: string, ordertable?: string, reverse?: boolean): Promise<any> => {
   return new Promise(async (resolve, reject) => {
     try {
       logger.trace('mysql: selectJoinAsset mode');
@@ -142,7 +118,7 @@ export const selectJoinAsset = async (table: string, jointable: string, columns:
         table: table, // テーブル
         columns: columns, // カラム
         values: values, // 値
-        originid: `${jointable}_id`, // 元テーブルID
+        originid: joinkey, // 元テーブルID
         jointable: jointable, // 連結テーブル
         joincolumns: joincolumns, // 連結カラム
         joinvalues: joinvalues, // 値
@@ -178,7 +154,7 @@ export const selectJoinAsset = async (table: string, jointable: string, columns:
 };
 
 // アセット選択
-export const selectDoubleJoinAsset = async (table: string, jointable1: string, jointable2: string, columns: string[], values: any[][], joincolumns1: string[], joinvalues1: any[][], joincolumns2: string[], joinvalues2: any[][], fields: string[], reverse?: boolean): Promise<any> => {
+export const selectDoubleJoinAsset = async (table: string, jointable1: string, jointable2: string, joinkey1: string, joinkey2: string, columns: string[], values: any[][], joincolumns1: string[], joinvalues1: any[][], joincolumns2: string[], joinvalues2: any[][], fields: string[], reverse?: boolean): Promise<any> => {
   return new Promise(async (resolve, reject) => {
     try {
       logger.trace('mysql: selectDoubleJoinAsset mode');
@@ -187,8 +163,8 @@ export const selectDoubleJoinAsset = async (table: string, jointable1: string, j
         table: table, // テーブル
         columns: columns, // カラム
         values: values, // 値
-        originid1: `${jointable1}_id`,
-        originid2: `${jointable2}_id`,
+        originid1: joinkey1,
+        originid2: joinkey2,
         jointable1: jointable1,  // 連結テーブル1
         jointable2: jointable2,  // 連結テーブル2
         joincolumns1: joincolumns1, // 連結カラム1

@@ -18,7 +18,7 @@
     <h2>
       <%= title %>管理画面
     </h2>
-    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+    <a href="<%= root %>">前の画面へ戻る</a>
   </header>
   <main>
     <table>
@@ -74,16 +74,13 @@
             </tr>
             <tr>
               <td colspan="6">
-                <a href="<%= root %>/manage/">前の画面へ戻る</a>
+                <a href="<%= root %>">前の画面へ戻る</a>
               </td>
             </tr>
           </tfoot>
         </form>
     </table>
   </main>
-  <footer>
-    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
-  </footer>
+  <%- include('../partials/microfooter.ejs') %>
 </body>
-
 </html>

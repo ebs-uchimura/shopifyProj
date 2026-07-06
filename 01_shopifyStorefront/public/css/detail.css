@@ -1,5 +1,5 @@
 /*
-/* index.css
+/* detail.css
 */
 
 @charset "utf-8";
@@ -73,143 +73,17 @@ main .detail-main-wrapper>p {
 
 /* detail area */
 main .detail-main-wrapper {
-  width: 90%;
+  width: 100%;
   text-align: center;
 }
 
 main .detail-main-wrapper .detail-main-img {
-  padding: 2vw;
+  padding: 0;
   border: 1px solid #e4e4e4;
 }
 
 main .detail-main-wrapper .detail-main-img .detailimg {
   width: 100%;
-}
-
-/* detail product title */
-main .detail-main-wrapper .detail-flex {
-  margin: 5vw auto;
-}
-
-/* detail product title */
-main .detail-main-wrapper .detail-flex .detail-list-title {
-  width: 100%;
-  margin: 1vw 0;
-  padding: 0 0 0 4vw;
-  font-size: 4.5vw;
-  font-weight: 600;
-  text-align: left;
-}
-
-/* detail product price */
-main .detail-main-wrapper .detail-flex .detail-list-review {
-  margin: 1vw 4vw;
-  text-align: left;
-}
-
-/* detail product price */
-main .detail-main-wrapper .detail-flex .detail-list-price {
-  margin: 2vw 0;
-  padding: 0 0 0 5vw;
-  font-size: 5vw;
-  font-weight: 500;
-  text-align: left;
-}
-
-/* detail product order button */
-main .detail-main-wrapper .detail-flex .detail-list-content {
-  margin: 3vw auto;
-}
-
-/* detail product order button */
-main .detail-main-wrapper .detail-flex .detail-list-content p {
-  margin: 2vw 0;
-  padding: 0 0 0 5vw;
-  text-align: left;
-  font-size: 3vw;
-}
-
-main .detail-main-wrapper .detail-flex .detail-number-area {
-  display: flex;
-  margin: 2vw 0 2vw 5vw;
-  padding: 1vw 0;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-main .detail-main-wrapper .detail-flex .detail-number-area .numarea {
-  width: 12vw;
-  height: 10vw;
-  margin: 0 1vw;
-  text-align: center;
-  border: 1px solid #373866;
-}
-
-main .detail-main-wrapper .detail-flex .detail-number-area .plusbutton {
-  width: 10vw;
-  height: 10vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #373866;
-  color: #fff;
-}
-
-/* detail product order button */
-main .detail-main-wrapper .detail-flex .detail-number-area .minusbutton {
-  width: 10vw;
-  height: 10vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #696a7e;
-  color: #fff;
-}
-
-/* detail product order button */
-main .detail-main-wrapper .detail-flex .detail-number-area .favbutton {
-  margin: 0 0 0 40%;
-  color: #e40014;
-  font-size: 2.5rem;
-}
-
-main .detail-main-wrapper .detail-flex .detail-number-area .favbutton span {
-  display: none;
-}
-
-main .detail-main-wrapper .detail-flex .detail-list-buttons {
-  margin: 0;
-  color: #eee;
-  font-size: 7vw;
-  cursor: pointer;
-}
-
-main .detail-main-wrapper .detail-flex .detail-list-buttons button {
-  width: 90%;
-  background-color: #e40014;
-  color: #fff;
-  padding: 3.5vw 0;
-  text-decoration: none;
-  font-size: 3.5vw;
-  border-radius: 2px;
-}
-
-main .detail-main-wrapper .detail-flex .detail-list-printing {
-  width: 90%;
-  margin: 0 auto;
-}
-
-main .detail-main-wrapper .detail-flex .detail-list-printing h4 {
-  margin: 1vw 0;
-  font-size: 3vw;
-  text-align: left;
-}
-
-main .detail-main-wrapper .detail-flex .detail-list-printing textarea {
-  width: 100%;
-  padding: 5px;
-  font-size: 2.8vw;
-  border: 1px solid #373866;
 }
 
 /* information */
@@ -224,6 +98,176 @@ main .detail-main-wrapper .information-main-wrapper>hr {
   background-color: #373866;
 }
 
+/* detail product title */
+main .detail-main-wrapper .information-main-wrapper .detail-flex {
+  margin: 5vw auto;
+}
+
+/* detail product title */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title {
+  display: flex;
+  width: 100%;
+  margin: 1vw 0;
+  padding: 0 0 0 4vw;
+  font-size: 4.5vw;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* detail product title */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title .pdname {
+  width: 80%;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title .instock {
+  width: 20%;
+  padding: 0 5vw;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title .instock .circle {
+  display: flex;
+  width: 10vw;
+  height: 10vw;
+  font-size: 1.6vw;
+  border-radius: 50%;
+  color: #fff;
+  background: #373866;
+  justify-content: center;
+  align-items: center;
+}
+
+/* detail product price */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review {
+  margin: 1vw 4vw;
+  text-align: left;
+}
+
+/* detail product price */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price {
+  margin: 2vw 0;
+  padding: 0 0 0 4vw;
+  font-size: 5vw;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* detail product price */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price .variantname {
+  font-size: 5vw;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-content {
+  margin: 3vw auto;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-content p {
+  margin: 2vw 0 4vw;
+  padding: 0 0 0 4vw;
+  text-align: left;
+  font-size: 3vw;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area {
+  display: flex;
+  margin: 2vw 0 2vw 5vw;
+  padding: 1vw 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .numarea {
+  width: 12vw;
+  height: 10vw;
+  margin: 0 1vw;
+  text-align: center;
+  border: 1px solid #373866;
+  border-radius: 1vw;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .plusbutton {
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  border-radius: 1vw;
+  align-items: center;
+  justify-content: center;
+  background-color: #373866;
+  color: #fff;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .minusbutton {
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  border-radius: 1vw;
+  align-items: center;
+  justify-content: center;
+  background-color: #696a7e;
+  color: #fff;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton {
+  margin: 0 0 0 40%;
+  color: #e40014;
+  font-size: 1.8rem;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton span {
+  display: none;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons {
+  margin: 5vw 0 0 0;
+  color: #eee;
+  font-size: 7vw;
+  cursor: pointer;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons button {
+  width: 90%;
+  background-color: #e40014;
+  color: #fff;
+  padding: 3.5vw 0;
+  text-decoration: none;
+  font-size: 3.5vw;
+  border-radius: 1vw;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing {
+  width: 90%;
+  margin: 1vw auto;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h3 {
+  margin: 1vw 0;
+  font-size: 3vw;
+  text-align: left;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h4 {
+  margin: 1vw 0;
+  font-size: 2.8vw;
+  text-align: left;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing label {
+  font-size: 2.8vw;
+  text-align: center;
+}
+
+main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing textarea {
+  width: 100%;
+  padding: 5px;
+  font-size: 2.8vw;
+  border: 1px solid #373866;
+}
+
 main .detail-main-wrapper .information-main-wrapper .information-area {
   width: 90%;
   margin: 0 auto;
@@ -232,24 +276,16 @@ main .detail-main-wrapper .information-main-wrapper .information-area {
   text-align: left;
 }
 
-/* detail product order button */
-main .detail-main-wrapper .information-main-wrapper .information-area .information-flex {
-  margin: 2vw auto;
-}
-
-/* detail product order button */
-main .detail-main-wrapper .information-main-wrapper .information-area .information-flex li {
-  margin: 2vw auto;
+/* information area */
+main .information-area {
+  width: 90%;
+  margin: 0 auto;
   text-align: left;
-}
-
-main .detail-main-wrapper .information-main-wrapper .information-area .information-flex .info-details {
-  margin: 3vw 0 0 0;
 }
 
 /* review area */
 main .review-main-wrapper {
-  margin: 0 auto;
+  margin: 10vw auto;
 }
 
 main .review-main-wrapper .review-list-title {
@@ -313,7 +349,7 @@ main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li
 
 main .review-main-wrapper .review-stars-button {
   width: 100vw;
-  padding: 3.5vw 0 8vw;
+  padding: 0 0 4vw;
 }
 
 main .review-main-wrapper .review-stars-button button {
@@ -328,13 +364,13 @@ main .review-main-wrapper .review-stars-button button {
 
 main .review-main-wrapper .review-list-newest {
   width: 90%;
-  margin: 2vw auto 10vw;
+  margin: 0;
   display: block;
   text-align: left;
 }
 
 main .review-main-wrapper .review-list-newest .inner .review-point-flex {
-  padding: 3vw 0;
+  padding: 3vw 2vw;
   text-align: left;
 }
 
@@ -422,6 +458,28 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     color: #373866;
   }
 
+  .modaal-inner-wrapper {
+    padding: 0 !important;
+  }
+
+  .modaal-content-container {
+    padding: 10px !important;
+  }
+
+  .modaal-wrapper table tr td {
+    font-size: 1rem
+  }
+
+  .modaal-wrapper table input {
+    padding: 10px;
+    border: 1px solid #373866;
+  }
+
+  .modaal-wrapper table textarea {
+    padding: 10px;
+    border: 1px solid #373866;
+  }
+
   /* detail main */
   main .detail-main-wrapper {
     width: 95%;
@@ -473,9 +531,21 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     text-align: left;
   }
 
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title .instock {
+    padding: 0 20px;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title .instock .circle {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+  }
+
   /* detail product price */
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review {
-    margin: 5px 20px;
+    margin: 5px 10px;
     font-size: 1.4rem;
     text-align: left;
   }
@@ -488,8 +558,23 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
   /* detail product price */
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price {
     margin: 10px 0 5px;
-    padding: 0 0 0 20px;
-    font-size: 2rem;
+    padding: 0 0 0 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price .variantname {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price .price {
+    margin: 10px 0;
+    font-size: 1.2rem;
     font-weight: 500;
     text-align: left;
   }
@@ -517,9 +602,10 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .numarea {
     width: 70px;
     height: 60px;
-    margin: 0;
+    margin: 0 5px;
     font-size: 1.4rem;
     text-align: center;
+    border-radius: 5px;
   }
 
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .plusbutton {
@@ -528,6 +614,7 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
     background-color: #373866;
     color: #fff;
   }
@@ -539,6 +626,7 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 8px;
     background-color: #696a7e;
     color: #fff;
   }
@@ -547,7 +635,7 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton {
     margin: 0 0 0 50px;
     color: #e40014;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons {
@@ -567,20 +655,30 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     border-radius: 5px;
   }
 
-  main .detail-main-wrapper .detail-flex .detail-list-printing {
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing {
     width: 100%;
     margin: 0 0 10px;
+    text-align: left;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h3 {
+    margin: 10px 0;
+    font-size: 1rem;
   }
 
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h4 {
-    margin: 10px 0;
-    font-size: 1.1rem;
+    margin: 30px 0 10px;
+    font-size: 0.9rem;
   }
 
-  main .detail-main-wrapper .detail-flex .detail-list-printing textarea {
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing textarea {
     font-size: 0.9rem;
     padding: 10px;
     border: 1px solid #373866;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing label {
+    font-size: 0.9rem;
   }
 
   main .detail-main-wrapper .information-main-wrapper .information-area {
@@ -589,22 +687,6 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     color: #000;
     font-size: 0.8rem;
     text-align: left;
-  }
-
-  /* detail product order button */
-  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex {
-    margin: 10px auto;
-  }
-
-  /* detail product order button */
-  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex li {
-    margin: 10px auto;
-    text-align: left;
-    font-size: 1.2rem;
-  }
-
-  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex .info-details {
-    margin: 30px 0 0 0;
   }
 
   /* review area */
@@ -811,6 +893,10 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
   }
 
   main div.wrap {
+    max-width: 1240px;
+  }
+
+  main div.wrap {
     margin: 20px auto;
   }
 
@@ -824,6 +910,7 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     width: 95%;
     margin: 20px auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -872,7 +959,7 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
 
   /* detail product price */
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review {
-    margin: 5px 20px;
+    margin: 5px 10px;
     font-size: 1.4rem;
     text-align: left;
   }
@@ -889,8 +976,8 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
 
   /* detail product price */
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price {
-    margin: 10px 0 5px;
-    padding: 0 0 0 20px;
+    margin: 5px 0;
+    padding: 0 0 0 10px;
     font-size: 2rem;
     font-weight: 500;
     text-align: left;
@@ -920,10 +1007,12 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .numarea {
     width: 70px;
     height: 50px;
-    margin: 0;
+    margin: 0 5px;
+    padding: 0 0 2px 0;
     font-size: 1.4rem;
     text-align: center;
     border: 1px solid #373866;
+    border-radius: 5px;
   }
 
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .plusbutton {
@@ -951,7 +1040,7 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton {
     margin: 0 0 5px 40%;
     color: #e40014;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton .favbutton i.fa-heart span {
@@ -977,19 +1066,29 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     cursor: pointer;
   }
 
-  main .detail-main-wrapper .detail-flex .detail-list-printing {
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing {
     margin: 0 0 10px;
   }
 
-  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h4 {
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h3 {
     margin: 10px 0;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
-  main .detail-main-wrapper .detail-flex .detail-list-printing textarea {
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h4 {
+    margin: 30px 0 10px;
+    font-size: 0.9rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing textarea {
+    margin: 0 0 10px 0;
     padding: 10px;
     font-size: 0.9rem;
     border: 1px solid #373866;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing label {
+    font-size: 0.9rem;
   }
 
   main .detail-main-wrapper .information-main-wrapper .information-area {
@@ -1000,20 +1099,9 @@ main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-da
     font-size: 0.8rem;
   }
 
-  /* detail product order button */
-  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex {
-    margin: 10px auto;
-  }
-
-  /* detail product order button */
-  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex li {
-    margin: 10px auto;
-    text-align: left;
-    font-size: 1.2rem;
-  }
-
-  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex .info-details {
-    margin: 30px 0 0 0;
+  main .information-area {
+    width: 100%;
+    padding: 0 0 0 10%;
   }
 
   /* review area */

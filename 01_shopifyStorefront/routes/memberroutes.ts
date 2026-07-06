@@ -4,65 +4,36 @@
  * route：会員ルーティング用
 **/
 
-'use strict';
+"use strict";
 
 /// 定数
 // 名前空間
-import { myDev } from '../consts/globalinfo';
-import { myConst } from '../consts/globalvariables';
-import { myDevConst } from '../consts/globalvariablesdev';
-import { myLocalDevConst } from '../consts/globalvariableslocal';
-// 可変要素
-let globalAppName: string; // アプリ名
-let globalEnvfileName: string; // 環境ファイル名
-let globalLogLevel: string; // ログレベル
-let globalDefaultUrl: string; // デフォルトURL
-
+import { myDevConst } from "../consts/globalinfo";
+import globals from "../consts/globalenv";
 // モジュール定義
-import * as path from 'node:path'; // path用
-import { setTimeout } from 'node:timers/promises'; // 待機用
-import { Router } from 'express'; // express用
-import sanitizeHtml from 'sanitize-html'; // サニタイザ
-import { config as dotenv } from 'dotenv'; // 秘匿環境変数用
+import { setTimeout } from "node:timers/promises"; // 待機用
+import { Router } from "express"; // express用
+import sanitizeHtml from "sanitize-html"; // sanitizer
 import NodeCache from "node-cache"; // キャッシュ用
-import Logger from '../class/Logger'; // ログ用
-import Crypto from '../class/Crypto0616'; // 暗号化用
-
+import Logger from "../class/Logger"; // ログ用
+import Crypto from "../class/Crypto0616"; // 暗号化用
 // モジュール読込
-import { selectAsset, selectJoinAsset, updateData, insertData } from '../modules/mysqlModule';
-import { regetCartNum } from '../modules/regetModule';
+import { selectAsset, selectJoinAsset, updateData, insertData } from "../modules/mysqlModule";
+import { regetCartNum } from "../modules/regetModule";
 // Shopify読込
-import { createCartWithItem, getAllCart, accessTokenCreate, associateWithCart } from '../modules/shopifyModule';
+import { createCartWithItem, getAllCart } from "../modules/shopifyConsumerModule";
 // 認証読込
-import { isAuthenticated } from '../modules/passportModule';
-
-// ローカルモード
-if (myDev.LOCAL_DEV_FLG) {
-  globalEnvfileName = '../.localenv'; // 環境変数
-  globalLogLevel = myLocalDevConst.LOG_LEVEL; // ログレベル
-  globalAppName = myLocalDevConst.APP_NAME!; // アプリ名
-  globalDefaultUrl = myLocalDevConst.DEFAULT_URL; // 基本URL
-  // 開発モード
-} if (myDev.DEV_FLG) {
-  globalEnvfileName = '../.devenv'; // 環境変数
-  globalLogLevel = myDevConst.LOG_LEVEL; // ログレベル
-  globalAppName = myDevConst.APP_NAME!; // アプリ名
-  globalDefaultUrl = myDevConst.DEFAULT_URL; // 基本URL
-  // 本番モード
-} else {
-  globalEnvfileName = '../.env'; // 環境変数
-  globalLogLevel = myConst.LOG_LEVEL; // ログレベル
-  globalAppName = myConst.APP_NAME!; // アプリ名
-  globalDefaultUrl = myConst.DEFAULT_URL; // 基本URL
-}
-// 環境変数設定
-dotenv({ path: path.join(__dirname, globalEnvfileName) });
+import { isAuthenticated } from "../modules/passportModule";
+// 変数定義
+const globalLogLevel: string = myDevConst.LOG_LEVEL; // ログレベル
+const globalAppName: string = myDevConst.APP_NAME!; // アプリ名
+const globalDefaultUrl: string = myDevConst.DEFAULT_URL; // 基本URL
 // ロガー設定
-const logger: Logger = new Logger(myDev.COMPANY_NAME, globalAppName, globalLogLevel);
+const logger: Logger = new Logger(myDevConst.COMPANY_NAME, globalAppName, globalLogLevel);
 // キャッシュ設定
 const cacheMaker: NodeCache = new NodeCache();
 // 暗号化用
-const FIXED_PEPEER: string = process.env.CRYPTO_PEPPER!;
+const FIXED_PEPEER: string = globals.CRYPTO_PEPPER!;
 // 暗号化設定
 const cryptoMaker: Crypto = new Crypto(logger, null, FIXED_PEPEER);
 
@@ -73,9 +44,9 @@ export const memberRouter = () => {
 
   /// get
   // 買い物かご
-  router.get('/cart', async (req: any, res: any) => {
+  router.get("/cart", async (req: any, res: any) => {
     try {
-      logger.debug('member: cart started');
+      logger.debug("member: cart started");
       logger.trace(req.session);
       // ログイン状態
       let loggedIn: boolean;
@@ -83,79 +54,82 @@ export const memberRouter = () => {
       let tmpErrMessage: string;
       // 買い物かご
       let tmpUserCart: any;
+      // バリアント
+      let tmpUserVariant: any;
+      // ボトル名入れ
+      let tmpBottlePrinting: any;
+      // グラス名入れ
+      let tmpGlassPrinting: any;
       // セッションなし
       if (!req.session) {
         // エラー
-        throw new Error('cart: no session');
+        throw new Error("cart: no session");
       }
       // エラークエリ
       const errorMsg: any = req.query.error;
       // エラーありならエラーメッセージ表示
-      if (errorMsg == '1') {
-        tmpErrMessage = myDev.ERROR_MESSAGE;
+      if (errorMsg == "1") {
+        tmpErrMessage = myDevConst.ERROR_MESSAGE;
       } else {
-        tmpErrMessage = '';
+        tmpErrMessage = "";
       }
-      // ログイン済み
-      if (req.session.passport) {
-        // ログイン
-        loggedIn = true;
-        // ユーザID
-        const userId: number = Number(req.session.passport.user.id);
-        // データ無し
-        if (req.session.passport.user.role != 'user') {
-          // エラー
-          throw new Error('cart: not num');
-        }
-        // カート
-        tmpUserCart = await selectJoinAsset('tmpcart', 'product', ['user_id', 'usable'], [[userId], [1]], ['usable'], [[1]]);
-      } else {
-        // ログインなし
-        loggedIn = false;
-        // キー登録
-        if (!req.session.key) {
-          // ランダムキー
-          const randomkey: string = await cryptoMaker.random(10);
-          // セッション追加
-          req.session.key = randomkey;
-        }
-        // セッションID
-        const sessionId: any = req.session.key;
-        // データ無し
-        if (!sessionId) {
-          // エラー
-          throw new Error('cart: no session id');
-        }
-        // カート
-        tmpUserCart = await selectJoinAsset('tmpcart', 'product', ['session', 'usable'], [[sessionId], [1]], ['usable'], [[1]]);
+      console.log(!req.session.key);
+      // キー登録
+      if (!req.session.key) {
+        // ランダムキー
+        const randomkey: string = await cryptoMaker.random(10);
+        // セッション追加
+        req.session.key = randomkey;
       }
+      // セッションID
+      const sessionId: any = req.session.key;
+      // データ無し
+      if (!sessionId) {
+        // エラー
+        throw new Error("cart: no session id");
+      }
+      // カート
+      tmpUserCart = await selectJoinAsset("tmpcart", "product", "product_id", ["session", "usable"], [[sessionId], [1]], ["usable"], [[1]], ["tmpcart.price", "tmpcart.amount", "product.id", "product.productname", "product.imagepath1"]);
+      // ボトル名入れ
+      tmpBottlePrinting = await selectJoinAsset("tmpcart", "printing", "bottleprinting_id", ["session", "usable"], [[sessionId], [1]], ["usable"], [[1]], ["printing.font_id", "printing.name"]);
+      // グラス名入れ
+      tmpGlassPrinting = await selectJoinAsset("tmpcart", "printing", "glassprinting_id", ["session", "usable"], [[sessionId], [1]], ["usable"], [[1]], ["printing.font_id", "printing.name"]);
+
+      // フォント一覧
+      const fontIds: any = await selectAsset("font", ["usable"], [[1]]);
+      // フォント名一覧
+      const fontNames: string[] = fontIds.map((font: any) => font.fontname);
       // カート数
-      const myCartNums: any = regetCartNum(loggedIn, req);
+      const myCartNums: any = regetCartNum(false, req);
+      // 0.5秒待機
       await setTimeout(500);
-      logger.debug('member: cart completed');
+      logger.debug("member: cart completed");
       // 買い物かご
-      res.render('my/cart', {
+      res.render("my/cart.ejs", {
         root: globalDefaultUrl, // ルートURL
         cartitems: tmpUserCart, // カート
-        login: loggedIn, // ログイン
+        bottle: tmpBottlePrinting, // ボトル名入れ
+        glass: tmpGlassPrinting, // グラス名入れ
+        login: false, // ログイン
         cartno: myCartNums, // 注文数
+        fonts: fontNames.reverse(), // フォント一覧
         message: tmpErrMessage, // メッセージ
       });
 
     } catch (e) {
       logger.error(e);
-      // 認証エラー
-      res.render('error/error', {
-        title: 'DBエラー',
-        message: 'DB抽出エラー'
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
       });
     }
   });
 
   // マイページ
-  router.get('/mypage', isAuthenticated, async (req: any, res: any) => {
+  router.get("/mypage", isAuthenticated, async (req: any, res: any) => {
     try {
-      logger.debug('member: mypage started');
+      logger.debug("member: mypage started");
       logger.trace(req.session);
       // ログイン状態
       let loggedIn: boolean;
@@ -172,55 +146,48 @@ export const memberRouter = () => {
         // セッション追加
         req.session.key = randomkey;
       }
-      // 注文履歴
-      /*
-      const orderHistory: any = [
-        {
-          id: '#0000',
-          processedAt: '2025年03月18日',
-          financialStatus: 'PAID',
-          fulfillmentStatus: 'FULFILLED',
-          totalPrice: '¥3,500',
-        },
-      */
-
       // カート数
       const myCartNums: any = regetCartNum(loggedIn, req);
+      // 0.5秒待機
       await setTimeout(500);
 
       // マイページ表示
-      res.render('my/mypage', {
+      res.render("my/mypage.ejs", {
         root: globalDefaultUrl, // ルートURL
         myorders: [],
-        myAddress: '',
+        myAddress: "",
         login: true,
         cartno: myCartNums // カート数
       });
-      logger.debug('member: mypage completed');
+      logger.debug("member: mypage completed");
 
     } catch (e) {
       logger.error(e);
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
+      });
     }
   });
 
   /// post
   // 買い物かごイン
-  router.post('/cart', async (req: any, res: any) => {
+  router.post("/cart", async (req: any, res: any) => {
     try {
-      logger.debug('member: cart reg started');
+      logger.debug("member: cart reg started");
       // セッション追加
       logger.trace(req.session);
-      logger.trace(req.body);
       // 最終ID
       let finalId: any;
-      // ログイン状態
-      let loggedIn: boolean;
-      // セッション判定
-      if (req.session.passport) {
-        loggedIn = true;
-      } else {
-        loggedIn = false;
-      }
+      // 最終バリアントID
+      let finalVariantId: any;
+      // 商品価格
+      let pdPrice: number = 0;
+      // ボトル名入れID
+      let bottlePrintingId: any = null;
+      // グラス名入れID
+      let glassPrintingId: any = null;
       // キー登録
       if (!req.session.key) {
         // ランダムキー
@@ -229,115 +196,100 @@ export const memberRouter = () => {
         req.session.key = randomkey;
       }
       // 商品ID
-      const productId: any = req.body.pid ?? '';
+      const productId: any = req.body.pid ?? "";
       // 数量
-      const buyingNum: any = req.body.num ?? '';
+      const buyingNum: any = req.body.num ?? "";
+      // ボトル名入れフォント
+      const pdBottleFont: any = req.body.bottlefont ?? "";
+      // ボトル名入れ文字列
+      const pdBottlePrinting: any = req.body.bottleprinting ?? "";
+      // グラス名入れフォント
+      const pdGlassFont: any = req.body.glassfont ?? "";
+      // グラス名入れ文字列
+      const pdGlassPrinting: any = req.body.glassprinting ?? "";
+      // 単独バリアントID
+      const productVariantId: any = req.body.variantid ?? "";
+      // 複数バリアントID
+      const productVariantIds: any = req.body.variantids ?? "";
+
+      if (productVariantIds) {
+        finalVariantId = productVariantIds;
+      } else {
+        finalVariantId = productVariantId;
+      }
       // データ無し
-      if (buyingNum == '' || productId == '') {
+      if (buyingNum == "" || productId == "") {
         // エラー
-        throw new Error('regcart: no necessary data');
+        throw new Error("regcart: no necessary data");
       }
       // 商品ID
-      const pdNumId: number = Number(productId);
+      const pdNumId: number = Number(sanitizeHtml(productId));
       // 数量
-      const buyingAmount: number = Number(buyingNum);
-      // 商品バリアント
-      const pdVariant = await selectAsset('product', ['id', 'display', 'usable'], [[pdNumId], [1], [1]]);
-      // 商品価格
-      const pdPrice: number = Number(pdVariant[0].pricerange);
-      // 合計額
-      // 成功
-      if (pdVariant.length > 0) {
-        // ログイン済み
-        if (loggedIn) {
-          // ユーザID
-          const userId: number = Number(req.session.passport.user.id);
-          // ユーザ判定
-          if (req.session.passport.user.role != 'user') {
-            throw new Error('regcart: not num');
-          }
-          // カート
-          const tmpUserCart = await selectAsset('tmpcart', ['product_id', 'user_id', 'usable'], [[pdNumId], [userId], [1]]);
-          // 空なら追加
-          if (tmpUserCart.length == 0) {
-            // カート登録
-            finalId = await insertData('tmpcart', ['product_id', 'user_id', 'session', 'price', 'amount', 'usable'], [productId, userId, '', pdPrice, buyingAmount, 1]);
-          } else {
-            // 数量設定
-            const fixedAmout: number = tmpUserCart[0].amount + buyingAmount;
-            // カート更新
-            finalId = await updateData('tmpcart', ['product_id', 'user_id', 'usable'], [pdNumId, userId, 1], ['price', 'amount'], [pdPrice, fixedAmout]);
-          }
+      const buyingAmount: number = Number(sanitizeHtml(buyingNum));
 
-        } else {
-          // セッションID
-          const sessionId: any = req.session.key;
-          // セッションIDなし
-          if (!sessionId) {
-            throw new Error('regcart: no session id');
-          }
-          // カート
-          const tmpSessionCart = await selectAsset('tmpcart', ['product_id', 'session', 'usable'], [[pdNumId], [sessionId], [1]]);
-          // 空なら追加
-          if (tmpSessionCart.length == 0) {
-            // カート登録
-            finalId = await insertData('tmpcart', ['product_id', 'user_id', 'session', 'price', 'amount', 'usable'], [pdNumId, 0, sessionId, pdPrice, buyingAmount, 1]);
-          } else {
-            // 数量設定
-            const fixedAmout: number = tmpSessionCart[0].amount + buyingAmount;
-            // カート更新
-            finalId = await updateData('tmpcart', ['product_id', 'user_id', 'usable'], [pdNumId, 0, 1], ['price', 'amount'], [pdPrice, fixedAmout]);
-          }
-        }
-        // 名入れ文字列
-        const pdPrinting: any = sanitizeHtml(req.body.printing);
-        // 名入れ有り
-        if (pdPrinting != '') {
-          // 名入れ登録
-          await updateData('tmpcart', ['id', 'usable'], [finalId, 1], ['printing'], [pdPrinting]);
-        }
+      // 商品バリアント
+      const pdVariant = await selectAsset("variants", ["id", "usable"], [[Number(finalVariantId)], [1]]);
+      // 結果無し
+      if (pdVariant.length > 0) {
+        // 商品価格
+        pdPrice = Number(pdVariant[0].price);
       } else {
-        // エラー
-        throw new Error('regcart: invalid variant id error');
+        throw new Error("regcart: not num");
       }
-      logger.debug('member: cart reg completed');
+      // ボトル名入れ有り
+      if (pdBottleFont != "" && pdBottlePrinting != "") {
+        // ボトル名入れ登録
+        bottlePrintingId = await insertData("printing", ["font_id", "paperid", "name", "usable"], [Number(sanitizeHtml(pdBottleFont)), 1, sanitizeHtml(pdBottlePrinting), 1]);
+        logger.debug(`regcart: bottle printingID:${bottlePrintingId} reg started`);
+      }
+      // グラス名入れ有り
+      if (pdGlassFont != "" && pdGlassPrinting != "") {
+        // グラス名入れ登録
+        glassPrintingId = await insertData("printing", ["font_id", "paperid", "name", "usable"], [Number(sanitizeHtml(pdGlassFont)), 2, sanitizeHtml(pdGlassPrinting), 1]);
+        logger.debug(`regcart: glass printingID:${glassPrintingId} reg started`);
+      }
+      // セッションID
+      const sessionId: any = req.session.key;
+      // セッションIDなし
+      if (!sessionId) {
+        throw new Error("regcart: no session id");
+      }
+      // カート
+      const tmpSessionCart = await selectAsset("tmpcart", ["product_id", "variant_id", "session", "usable"], [[pdNumId], [sanitizeHtml(productVariantId)], [sessionId], [1]]);
+      // 空なら追加
+      if (tmpSessionCart.length == 0) {
+        // カート登録
+        finalId = await insertData("tmpcart", ["product_id", "variant_id", "session", "bottleprinting_id", "glassprinting_id", "price", "amount", "usable"], [pdNumId, productVariantId, sessionId, bottlePrintingId, glassPrintingId, pdPrice, buyingAmount, 1]);
+      } else {
+        // 数量設定
+        const fixedAmout: number = tmpSessionCart[0].amount + buyingAmount;
+        // カート更新
+        finalId = await updateData("tmpcart", ["product_id", "variant_id", "session", "usable"], [pdNumId, sanitizeHtml(productVariantId), sessionId, 1], ["price", "amount"], [pdPrice, fixedAmout]);
+      }
+      logger.debug("member: cart reg completed");
+      // 2.5秒待機
       await setTimeout(2500);
       // ショッピングカート表示
-      res.redirect('/my/cart');
+      res.redirect("/my/cart");
 
     } catch (e: unknown) {
       logger.error(e);
-      // 認証エラー
-      res.render('error/error', {
-        title: 'エラー',
-        message: 'バリアントIDエラー'
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
       });
     }
   });
 
   // 購入
-  router.post('/buy', async (req: any, res: any) => {
+  router.post("/buy", async (req: any, res: any) => {
     try {
-      logger.debug('member: buy reg started');
+      logger.debug("member: buy reg started");
       logger.trace(req.session);
       logger.trace(req.body);
-      // ログイン状態
-      let loggedIn: boolean;
-      // 国際電話番号
-      let internationalPhoneNumber: string = '';
-      // セッション判定
-      if (req.session.passport) {
-        loggedIn = true;
-      } else {
-        loggedIn = false;
-      }
       // shopify送付用
       let shopifyCart: any[] = [];
-      // セッションなし
-      if (!req.session) {
-        // エラー
-        throw new Error('buy: no session');
-      }
       // キー登録
       if (!req.session.key) {
         // ランダムキー
@@ -350,7 +302,7 @@ export const memberRouter = () => {
       const productId: any = req.body.pid;
       // null判定
       if (buyingNum.length == 0 || productId.length == 0) {
-        throw new Error('buy: not number error');
+        throw new Error("buy: not number error");
       }
       // 商品IDを数値化
       let pidList: number[] = productId.map((pid: any) => {
@@ -366,18 +318,18 @@ export const memberRouter = () => {
       }, 0);
       // 合計が0
       if (totalAmount == 0) {
-        logger.debug('member: total is 0');
+        logger.debug("member: total is 0");
         // ショッピングカート表示
-        res.redirect('/my/cart?error=1');
+        res.redirect("/my/cart?error=1");
       } else {
         // 商品バリアントID
-        const pdVariantIds = await selectAsset('product', ['id', 'display', 'usable'], [pidList, [1], [1]], undefined, 'id', ['variantid']);
+        const pdVariantIds = await selectAsset("product", ["id", "display", "usable"], [pidList, [1], [1]], undefined, "id", ["variantid"]);
         // 成功
         if (pdVariantIds.length > 0) {
           // 数量
           for (let i = 0; i < pdVariantIds.length; i++) {
             // バリアントID
-            const variantID: string = 'gid://shopify/ProductVariant/' + pdVariantIds[i].variantid;
+            const variantID: string = "gid://shopify/ProductVariant/" + pdVariantIds[i].variantid;
             // shopify送付用
             shopifyCart.push({
               merchandiseId: variantID,
@@ -390,234 +342,140 @@ export const memberRouter = () => {
           const cartId = createdCart.cartCreate.cart.id;
           // カートIDなし
           if (!cartId) {
-            throw new Error('buy: cart creation error');
+            throw new Error("buy: cart creation error");
           }
-          // ログイン済み
-          if (loggedIn) {
-            // ユーザID
-            const userId: number = Number(req.session.passport.user.id);
-            // ユーザ判定
-            if (req.session.passport.user.role != 'user') {
-              throw new Error('buy: not num');
-            }
-            // 対象ユーザ
-            const targetUser: any = await selectAsset('user', ['id', 'usable'], [[userId], [1]]);
-            // 空なら追加
-            if (targetUser.length == 0) {
-              throw new Error('buy: no user');
-            }
-            // Shopifyアクセストークン作成
-            const accessToken: any = await accessTokenCreate(targetUser[0].mail, targetUser[0].password);
-            // 国際電話対応
-            if (targetUser[0].telephone.substring(0, 1) === '0') {
-              internationalPhoneNumber = '+81' + targetUser[0].telephone.substring(1);
-            } else {
-              internationalPhoneNumber = targetUser[0].telephone;
-            }
-            // Shopifyアクセストークン
-            const finalAccessToken: string = accessToken.customerAccessTokenCreate.customerAccessToken.accessToken;
-            // 購入者情報
-            const buyerIdentity: any = {
-              customerAccessToken: finalAccessToken,
-              email: targetUser[0].mail,
-              phone: internationalPhoneNumber,
-            }
-            // カート・ユーザ紐づけ
-            const associatedStatus: any = await associateWithCart(buyerIdentity, cartId);
-            // Shopifyアクセストークン
-            const associatedCheckoutUrl: string = associatedStatus.cartBuyerIdentityUpdate.cart.checkoutUrl;
-            console.log(associatedCheckoutUrl);
-            // カート削除
-            await updateData('tmpcart', ['user_id', 'usable'], [userId, 1], ['usable'], [0]);
-            // cache
-            cacheMaker.set('checkoutUrl', associatedCheckoutUrl);
-
-            // ゲスト購入
-          } else {
-            // セッションID
-            const sessionId: any = req.session.key;
-            // カートの中身
-            const cartStatus = await getAllCart(cartId);
-            // カート削除
-            await updateData('tmpcart', ['session', 'usable'], [sessionId, 1], ['usable'], [0]);
-            // cache
-            cacheMaker.set('checkoutUrl', cartStatus.cart.checkoutUrl);
-          }
+          // セッションID
+          const sessionId: any = req.session.key;
+          // カートの中身
+          const cartStatus = await getAllCart(cartId);
+          // カート削除
+          await updateData("tmpcart", ["session", "usable"], [sessionId, 1], ["usable"], [0]);
+          // cache
+          cacheMaker.set("checkoutUrl", cartStatus.cart.checkoutUrl);
 
         } else {
           // エラー
-          throw new Error('buy: invalid variant id error');
+          throw new Error("buy: invalid variant id error");
         }
         // チェックアウトURL
-        const tmpCheckout = cacheMaker.get('checkoutUrl') ?? '';
+        const tmpCheckout = cacheMaker.get("checkoutUrl") ?? "";
+        // 1.5秒待機
         await setTimeout(1500);
         // 商品ページ表示
         res.send(JSON.stringify({ url: tmpCheckout }));
-        logger.debug('member: buy completed');
+        logger.debug("member: buy completed");
       }
 
     } catch (e: unknown) {
       logger.error(e);
-      // 認証エラー
-      res.render('error/error', {
-        title: 'エラー',
-        message: 'バリアントIDエラー'
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
       });
     }
   });
 
   // 買い物かごアウト
-  router.post('/cartdel', async (req: any, res: any) => {
+  router.post("/cartdel", async (req: any, res: any) => {
     try {
-      logger.debug('member: cart delete started');
+      logger.debug("member: cart delete started");
       logger.trace(req.session);
       logger.trace(req.body);
-      // ログイン状態
-      let loggedIn: boolean;
-      // セッション判定
-      if (req.session.passport) {
-        loggedIn = true;
-      } else {
-        loggedIn = false;
-      }
-      // セッションなし
-      if (!req.session) {
-        // エラー
-        throw new Error('cartdel: no session');
-      }
       // セッションID
       const sessionId: any = req.session.key;
       // 商品ID
-      const productId: any = sanitizeHtml(req.body.pid);
+      const productId: any = req.body.pid ?? "";
       // null判定
-      if (productId == '') {
-        throw new Error('cartdel: no necessary data');
+      if (productId == "") {
+        throw new Error("cartdel: no necessary data");
       }
-      // ログイン済み
-      if (loggedIn) {
-        // ユーザID
-        const userId: number = Number(req.session.passport.user.id);
-        // ユーザ判定
-        if (req.session.passport.user.role != 'user') {
-          throw new Error('cartdel: not num');
-        }
-        // カート削除
-        await updateData('tmpcart', ['product_id', 'user_id', 'usable'], [productId, userId, 1], ['usable'], [0]);
-      } else {
-        // カート削除
-        await updateData('tmpcart', ['product_id', 'session', 'usable'], [productId, sessionId, 1], ['usable'], [0]);
-      }
+      // カート削除
+      await updateData("tmpcart", ["product_id", "session", "usable"], [sanitizeHtml(productId), sessionId, 1], ["usable"], [0]);
+
+      // 0.5秒待機
       await setTimeout(500);
-      logger.debug('member: cartdel completed');
-      // 買い物かご
-      res.redirect('/');
+      logger.debug("member: cartdel completed");
+      // トップぺージリダイレクト
+      res.redirect("/");
 
     } catch (e: unknown) {
       logger.error(e);
-      // 認証エラー
-      res.render('error/error', {
-        title: 'エラー',
-        message: 'バリアントIDエラー'
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
       });
     }
   });
 
   // レビュー登録
-  router.post('/review', async (req: any, res: any) => {
+  router.post("/review", async (req: any, res: any) => {
     try {
-      logger.debug('member: review reg started');
+      logger.debug("member: review reg started");
       logger.trace(req.session);
       logger.trace(req.body);
 
       // セッションなし
       if (!req.session) {
         // エラー
-        throw new Error('review: no session');
+        throw new Error("review: no session");
       }
       // キー登録
       if (!req.session.key) {
         // ランダムキー
         const randomkey: string = await cryptoMaker.random(10);
+        // セッション設定
         req.session.key = randomkey;
       }
       // 商品ID
-      const productId: any = sanitizeHtml(req.body.pid);
+      const productId: any = req.body.pid ?? "";
       // レビュー☆数
-      const stars: any = sanitizeHtml(req.body.rating);
+      const stars: any = req.body.rating ?? "";
       // レビュワー名
-      const reviewername: any = sanitizeHtml(req.body.reviewername);
+      const reviewername: any = req.body.reviewername ?? "";
       // レビュー内容
-      const comment: any = sanitizeHtml(req.body.comment);
+      const comment: any = req.body.comment ?? "";
       // データ無し
-      if (productId == '' || stars == '' || reviewername == '' || comment == '') {
+      if (productId == "" || stars == "" || reviewername == "" || comment == "") {
         // エラー
-        throw new Error('review: no necessary data');
+        throw new Error("review: no necessary data");
       }
       // レビュー登録
-      await insertData('review', ['product_id', 'reviewername', 'stars', 'content', 'display', 'usable'], [productId, reviewername, stars, comment, 0, 1]);
-      logger.debug('member: review reg completed');
-      res.redirect('/');
+      await insertData("review", ["product_id", "reviewername", "stars", "content", "display", "usable"], [sanitizeHtml(productId), sanitizeHtml(reviewername), sanitizeHtml(stars), sanitizeHtml(comment), 0, 1]);
+      logger.debug("member: review reg completed");
+      // トップぺージリダイレクト
+      res.redirect(`/product/${productId}`);
 
     } catch (e: unknown) {
       logger.error(e);
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
+      });
     }
   });
 
   // アカウント詳細
-  router.post('/checkaddress', isAuthenticated, async (req: any, res: any) => {
+  router.post("/checkaddress", isAuthenticated, async (req: any, res: any) => {
     try {
-      logger.debug('member: checkaddress started');
+      logger.debug("member: checkaddress started");
       logger.trace(req.session);
-      logger.trace(req.body);
-
-      // ログイン状態
-      let loggedIn: boolean;
-      // セッション判定
-      if (req.session.passport) {
-        loggedIn = true;
-      } else {
-        loggedIn = false;
-      }
       // キー登録
       if (!req.session.key) {
         // ランダムキー
         const randomkey: string = await cryptoMaker.random(10);
+        // セッション設定
         req.session.key = randomkey;
       }
-      // 注文履歴
-      /*
-      const orderHistory: any = [
-        {
-          id: '#0000',
-          processedAt: '2025年03月18日',
-          financialStatus: 'PAID',
-          fulfillmentStatus: 'FULFILLED',
-          totalPrice: '¥3,500',
-        },
-        {
-          id: '#0001',
-          processedAt: '2025年05月21日',
-          financialStatus: 'PENDING',
-          fulfillmentStatus: 'IN_PROGRESS',
-          totalPrice: '¥9,500',
-        }];
-      // 住所
-      const customerInfo: any = [{
-        zip: '890-0073',
-        address1: 'Usuki',
-        address2: '2-23-3',
-        city: 'Kagoshima',
-        firstName: 'Usuki',
-        lastName: 'Kenta',
-        phone: '099-259-5511'
-      }];
-      */
       // カート数キャッシュ
-      const tmpCartNum: number = await regetCartNum(loggedIn, req);
+      const tmpCartNum: number = await regetCartNum(false, req);
+      // 0.5秒待機
       await setTimeout(500);
-      logger.debug('member: checkaddress completed');
+      logger.debug("member: checkaddress completed");
       // マイページ表示
-      res.render('my/mypage', {
+      res.render("my/mypage.ejs", {
         myorders: [],
         myAddress: [],
         login: true,
@@ -626,30 +484,40 @@ export const memberRouter = () => {
 
     } catch (e: unknown) {
       logger.error(e);
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
+      });
     }
   });
 
   // ログアウト
-  router.post('/logout', isAuthenticated, async (req: any, res: any) => {
+  router.post("/logout", isAuthenticated, async (req: any, res: any) => {
     try {
-      logger.debug('member: logout started');
-      logger.trace(req.session);
-      logger.trace(req.body);
-
+      logger.debug("member: logout started");
+      logger.trace(req.session);;
       // セッションなし
-      if (!req.session) {
+      if (!req.session.passport) {
         // エラー
-        throw new Error('logout: no session');
+        throw new Error("logout: no session");
       }
       // メール
       req.logout(async (_: any) => {
-        logger.debug('member: logout completed');
+        logger.debug("member: logout completed");
+        // 0.5秒待機
         await setTimeout(500);
-        res.redirect('/');
+        // トップぺージリダイレクト
+        res.redirect("/");
       });
 
     } catch (e: unknown) {
       logger.error(e);
+      // 500番エラー
+      res.render("error/error.ejs", {
+        title: "500エラー", // タイトル
+        message: "500 Internal Server Error"
+      });
     }
   });
 

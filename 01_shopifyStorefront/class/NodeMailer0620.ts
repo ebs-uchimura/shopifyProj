@@ -24,11 +24,14 @@ class NodeMailer {
       // setting
       NodeMailer.transporter = nodemailer.createTransport({
         host: host,
-        secure: false,
+        secure: true,
         port: port,
         auth: {
           user: username, // your email
           pass: password // the app password you generated, paste without spaces
+        },
+        tls: {
+          ciphers: 'SSLv3'
         }
       });
       NodeMailer.logger.trace('mailer: constructed.');

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/newseditmanage.css">
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <a href="/newsreg">
+      <button class="subbutton button-g button-6 button-wide" type="submit">新規登録</button>
+    </a><br><br>
+    <table id="newsedit">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>掲載</th>
+          <th>日付</th>
+          <th>記事タイトル</th>
+          <th>記事内容</th>
+          <th>画像URL</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/editnews" id="regform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+              <tr>
+                <td>
+                  <%= data[i].id %>
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox" class="checkbox" name="check[]" value="<%= data[i].id %>" <%=data[i].display==1
+                    ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="text" class="standard" name="date[]" value="<%= data[i].date %>">
+                </td>
+                <td>
+                  <input type="text" class="standard" name="title[]" value="<%= data[i].title %>">
+                </td>
+                <td>
+                  <textarea class="textarea" rows="5" cols="50" name="context[]" value=""><%= data[i].context %></textarea>
+                </td>
+                <td>
+                  <input type="text" class="standard" name="image[]" value="<%= data[i].imageurl %>">
+                </td>
+                <td>
+                  <input type="checkbox" class="delete" name="delete[]" value="<%= data[i].id %>">
+                </td>
+                <input type="hidden" id="id" name="id[]" value="<%= data[i].id %>" />
+              </tr>
+              <% } %>
+                <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="7">
+                <a href="javascript:history.back();">戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

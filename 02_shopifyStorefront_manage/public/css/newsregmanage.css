@@ -1,0 +1,45 @@
+/*
+/* newsregmanage.css
+*/
+
+@charset "utf-8";
+
+/* tag */
+header {
+  width: 462px;
+  margin: 0 auto 30px;
+}
+
+#newsreg {
+  width: 462px;
+  margin: 0 auto 30px;
+}
+
+#newsreg caption {
+  font-size: 1.3rem;
+  color: #000;
+  font-weight: 600;
+  text-align: left;
+}
+
+#newsreg input {
+  width: 95%;
+}
+
+#newsreg thead tr th:first-child {
+  width: 50px;
+}
+
+#newsreg thead tr th:nth-child(2) {
+  width: 250px;
+}
+
+#newsreg tbody tr td:first-child {
+  background-color: #50535d;
+  color: #fff;
+}
+
+#newsreg tbody tr td:nth-child(2) {
+  background-color: #fff;
+  color: #000;
+}

@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="/css/button.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
-  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
   <script>
     $(function () {
       getGlobalRoot("<%= root %>");
@@ -40,7 +39,7 @@
 </head>
 <body>
   <main>
-    <%- include('../partials/microheader.ejs') %>
+    <%- include("../partials/microheader.ejs") %>
     <div class="main-breadcrumb-wrapper">
       <nav>
         <ol class="breadcrumb">
@@ -63,7 +62,7 @@
                 <tr>
                   <th>画像</th>
                   <th>商品名</th>
-                  <th>数量</th>
+                  <th>数量/名入れ</th>
                   <th>小計(円)</th>
                   <th>削除</th>
                 </tr>
@@ -74,31 +73,42 @@
                 <% cartitems.forEach(function(item, i) { %>
                 <tr>
                   <td class="imagecell">
-                    <img src="<%= item.imagepath %>" onerror="this.onerror = null; this.src='';">
+                    <img src="<%= item.imagepath1 %>" onerror="this.onerror = null; this.src='';">
                   </td>
                   <td class="cartdetail">
-                    <%= item.productname %><br><%= item.price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) %>円(税込)
+                    <%= item.productname %><br><%= item.price.toLocaleString("ja-JP", { style: "currency", currency: "JPY" }) %>円(税込)
                   </td>
                   <td class="">
                     <div class="cartnum">
-                      <button class="minusbutton" type="button" data-index='<%= i %>'>
+                      <button class="minusbutton" type="button" data-index="<%= i %>">
                         <i class="fa-solid fa-minus"></i>
                       </button>
                       <input id="pid<%= i %>" class="productid" type="hidden" name="pid" value="<%= item.id %>">
                       <input id="price<%= i %>" class="price" type="hidden" name="price" value="<%= item.price %>">
                       <input id="num<%= i %>" class="numarea" type="number"  name="num" value="<%= item.amount %>" min="1">
-                      <button class="plusbutton" type="button" data-index='<%= i %>'>
+                      <button class="plusbutton" type="button" data-index="<%= i %>">
                         <i class="fa-solid fa-plus"></i>
                       </button>
+                    </div>
+                    <div class="cartprinting">
+                      <% if (bottle[i]) { %>
+                        ボトル:<%= bottle[i].printing %><br>
+                        <%= fonts[(bottle[i].font_id - 1)] %>
+                      <% } %>
+                      <br>
+                      <% if (glass[i]) { %>
+                        グラス:<%= glass[i].printing %><br>
+                        <%= fonts[(glass[i].font_id - 1)] %>
+                      <% } %>
                     </div>
                   </td>
                   <td class="totalprice">
                     <% totalPrice += (item.price * item.amount) %>
                     <input id="tmptotal<%= i %>" class="tmptotal" type="hidden" name="tmptotal" value="<%= totalPrice %>">
-                    <span id="total<%= i %>"><%= (item.price * item.amount).toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) %></span>円(税込)
+                    <span id="total<%= i %>"><%= (item.price * item.amount).toLocaleString("ja-JP", { style: "currency", currency: "JPY" }) %></span>円(税込)
                   </td>
                   <td class="cartdelete">
-                    <button id="delete<%= i %>" type="button" class="deletebtn btn-cart btn-blue" data-index='<%= i %>'>削除</button>
+                    <button id="delete<%= i %>" type="button" class="deletebtn btn-cart btn-blue" data-index="<%= i %>">削除</button>
                   </td>
                 </tr>
                 <% }) %>
@@ -108,7 +118,7 @@
                     合計
                   </td>
                   <td colspan="2" class="grossprice">
-                    <span id="grossprice"><%= totalPrice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) %></span>円(税込)
+                    <span id="grossprice"><%= totalPrice.toLocaleString("ja-JP", { style: "currency", currency: "JPY" }) %></span>円(税込)
                   </td>
                 </tr>
               </tbody>
@@ -149,6 +159,6 @@
       </div>
     </div>
   </main>
-  <%- include('../partials/microfooter.ejs') %>
+  <%- include("../partials/microfooter.ejs") %>
 </body>
 </html>

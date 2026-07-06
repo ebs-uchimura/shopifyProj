@@ -7,46 +7,24 @@
 
 // product id
 let globalProductId = '';
-// mode
-let globalDevMode;
 // root url
 let globalRootUrl;
 
 $(function () {
   // load
   console.log('loading finished');
-  // isMobile
-  let isMobile = /iPhone|Android/i.test(navigator.userAgent);
   // counter
   let globalCounter = 1;
 
-  // toggle
-  const toggleClasses = () => {
-    // toggle hamburger
-    $('.hamburger')[0].classList.toggle("open");
-    // toggle menu
-    $('.menu')[0].classList.toggle("open");
-  }
   // hamburger
-  $('.hamburger').on('click', (e) => {
-    // avoid double click
-    e.preventDefault();
-    // toggle
-    toggleClasses();
+  $('#nav-toggle').on('click', function () {
+    $('body').toggleClass('open');
   });
-  // open
-  $(".openbtn4").click((e) => {
-    // avoid double click
-    e.preventDefault();
-    // this element
-    const $this = $(e.currentTarget);
-    // activate
-    $this.toggleClass("active");
-  });
+
   // set product id
   globalProductId = $('#pid').html();
   // search-box
-  $('#search-input').blur(function() {
+  $('#search-input').blur(function () {
     // send form
     $('#search-form').submit();
   });
@@ -80,12 +58,10 @@ $(function () {
     e.preventDefault();
     // this element
     const $this = $(e.currentTarget);
-    // display-none
     $this.next().removeClass('display-none');
     $this.addClass('display-none');
     // product id
     const productId = $this.children('span').html();
-    console.log(productId);
     // set to local storage
     ajaxAccess('goodoff', { id: String(productId) });
   });
@@ -101,64 +77,90 @@ $(function () {
     $this.addClass('display-none');
     // product id
     const productId = $this.children('span').html();
-    console.log(productId);
     // set to local storage
     ajaxAccess('goodon', { id: String(productId) });
   });
 
-  // terminal
-  if (!isMobile) {
-    // PC only
-    // onclick
-    for (let i = 1; i < 17; i++) {
-      // poparea
-      $(`.quick${i}`).on('click', (e) => {
-        // avoid double click
-        e.preventDefault();
-        // init counter
-        globalCounter = 1;
-        // target html elem
-        const targetElement = $('.numarea')[i - 1];
-        // reset element
-        targetElement.value = globalCounter;
-        // display-none
-        $(`.poparea${i}`).removeClass('display-none');
-      });
-    }
-    // onclick
-    for (let j = 1; j < 17; j++) {
-      // poparea
-      $(`.poparea${j} .batsu`).on('click', (e) => {
-        // avoid double click
-        e.preventDefault();
-        // display-none
-        $(`.poparea${j}`).addClass('display-none');
-      });
-    }
+  // onclick
+  for (let i = 1; i < 17; i++) {
+    // poparea
+    $(`.cart${i}`).on('click', (e) => {
+      // avoid double click
+      e.preventDefault();
+      // init counter
+      globalCounter = 1;
+      // target html elem
+      const targetElement = $('.numarea')[i - 1];
+      // reset element
+      targetElement.value = globalCounter;
+      // display-none
+      $(`.poparea${i}`).removeClass('display-none');
+    });
+  }
+  // onclick
+  for (let j = 1; j < 17; j++) {
+    // poparea
+    $(`.poparea${j} .batsu`).on('click', (e) => {
+      // avoid double click
+      e.preventDefault();
+      // display-none
+      $(`.poparea${j}`).addClass('display-none');
+    });
+  }
+
+  // onclick
+  for (let k = 1; k < 17; k++) {
+    // 会員登録フォームの送信イベントを取得
+    $(`.form${k}`).submit((e) => {
+      // 自分自身
+      const $this = $(e.currentTarget);
+      // ボトル名入れDOMを取得
+      const bottlePrintDom = $this.find('.bottleprinting');
+      // グラス名入れDOMを取得
+      const glassPrintDom = $this.find('.glassprinting');
+      // ボトル名入れフィールドの値を取得
+      const bottlePrinting = $this.find('.bottleprinting').val() ?? null;
+      // グラス名入れフィールドの値を取得
+      const glassPrinting = $this.find(".glassprinting").val() ?? null;
+      // 未入力の場合はエラー
+      if (bottlePrintDom.length) {
+        // 未入力の場合はエラー
+        if (!bottlePrinting) {
+          alert("ボトル名入れを正しく入力してください。");
+          e.preventDefault(); // フォームの送信をキャンセル
+          return;
+        }
+      }
+      // 未入力の場合はエラー
+      if (glassPrintDom.length) {
+        // 未入力の場合はエラー
+        if (!glassPrinting) {
+          alert("グラス名入れを正しく入力してください。");
+          e.preventDefault(); // フォームの送信をキャンセル
+          return;
+        }
+      }
+    });
   }
 
   // click others
+  /*
   $(document).click(function (event) {
     if (
       !$(event.target).closest('.view-btn').length &&
       !$(event.target).closest('.pop').length
     ) {
+      console.log("close");
       // hide menu
       $('.pop').addClass('display-none');
     }
   });
-
+  */
 });
 
-// get global mode
-const getGlobalMode = (mode) => {
-  // set global mode
-  globalDevMode = mode;
-}
-
-// get global root
+// get global url
 const getGlobalRoot = (url) => {
-  // set global mode
+  // set global url
   globalRootUrl = url;
 }
 

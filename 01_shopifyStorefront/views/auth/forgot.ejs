@@ -3,7 +3,7 @@
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
   <meta charset="UTF-8">
-  <title>Compassパスワード再発行</title>
+  <title><%= title %></title>
   <meta content="compass" name="description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
@@ -28,42 +28,40 @@
   <link rel="stylesheet" href="/css/auth/forgot.css">
   <link rel="stylesheet" href="/css/button.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src='/js/common/mailvalidation.js'></script>
-  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script src="/js/validation/mailpassvalidation.js"></script>
 </head>
 
 <body>
   <main>
-    <%- include('../partials/microheader.ejs') %>
-      <div class="wrap main-account-wrapper">
-        <h3 class="headline-standard libre-baskerville">
-          Password Reset
-          <span class="headline-small noto-sans">パスワード再設定</span>
-        </h3>
-        <div class="account-row-wrapper">
-          <form id='mailform' method='post' action='/auth/republish'>
-            <div class='account-row-form'>
-              <p class='account-row-label'>登録済みのメールアドレス</p>
-              <input type='text' id='usermail' name='usermail' class='formitem' placeholder='例）xxx@yyy.zzz' required>
-            </div>
-            <div class="account-button-flex">
-              <button class="button-g button-7 button-wide" type="submit" value="">
-                送信
-              </button>
-              <a href="/auth/login">
-                <button type="button" class="button-g button-6 button-wide">戻る</button>
-              </a>
-            </div>
-          </form>
-          <div class="account-button-children">
-            <p class="red">
-              <%= message %>
-            </p>
+    <%- include("../partials/microheader.ejs") %>
+    <div class="wrap main-account-wrapper">
+      <h3 class="headline-standard libre-baskerville">
+        Password Reset
+        <span class="headline-small noto-sans"><%= title %></span>
+      </h3>
+      <div class="account-row-wrapper">
+        <form id="authform" method="post" action="/auth/republish">
+          <div class="account-row-form">
+            <p class="account-row-label">登録済みのメールアドレス</p>
+            <input type="text" id="usermail" name="usermail" class="formitem" placeholder="例）xxx@yyy.zzz" required>
           </div>
+          <div class="account-button-flex">
+            <button class="button-g button-7 button-wide" type="submit" value="">
+              送信
+            </button>
+            <a href="/auth/login">
+              <button type="button" class="button-g button-6 button-wide">戻る</button>
+            </a>
+          </div>
+        </form>
+        <div class="account-button-children">
+          <p class="red">
+            <%= message %>
+          </p>
         </div>
       </div>
+    </div>
   </main>
-  <%- include('../partials/microfooter.ejs') %>
+  <%- include("../partials/microfooter.ejs") %>
 </body>
-
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="/js/manage/topmanage.js"></script>
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>画像</th>
+          <th>差し替え画像</th>
+        </tr>
+      </thead>
+      <form action="/manage/top" id="shopform" method="post" enctype="multipart/form-data">
+        <tbody>
+          <tr>
+            <td>
+              PC画像
+            </td>
+            <td>
+              <%= imageurls.pcimage %>
+            </td>
+            <td>
+              <input class="showpath" type="checkbox">&ensp;ファイル選択&ensp;
+              <input type="text" class="superwide" name="filepath1" value="" placeholder="">
+              <input type="file" class="display-none" name="file1">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              SP画像
+            </td>
+            <td>
+              <%= imageurls.spimage %>
+            </td>
+            <td>
+              <input class="showpath" type="checkbox">&ensp;ファイル選択&ensp;
+              <input type="text" class="superwide" name="filepath2" value="" placeholder="">
+              <input type="file" class="display-none" name="file2">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <button class="button-g button-7 button-wide" type="submit" value="">画像登録する</button><br>
+              <span>※ 上限10MB</span>
+            </td>
+          </tr>
+        </tbody>
+      </form>
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            <br>
+            <a href="<%= root %>/manage/">前の画面へ戻る</a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

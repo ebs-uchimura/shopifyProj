@@ -1,22 +1,42 @@
 <header>
   <div class="header-wrapper">
     <div class="head-btn-dropdown">
-      <nav class="menu forsp">
-        <ul>
-          <% if (allcategories.length > 0) { %>
-          <% allcategories.forEach(function(cat) { %>
-          <li>
-            <a href="/category/<%= cat.id %>">
-              <%= cat.categoryname %>
-            </a>
-          </li>
-          <% }) %>
-          <% } %>
-        </ul>
-      </nav>
-      <button class="hamburger forsp">
-        <div class="openbtn4"><span></span><span></span><span></span></div>
-      </button>
+      <div class="hamburger forsp">
+        <div id="nav-toggle">
+          <div>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div id="gloval-nav">
+          <nav class="menu forsp">
+            <ul>
+              <li>
+                <a href="/">
+                  ホーム
+                </a>
+              </li>
+              <hr>
+              <% if (allcategories.length > 0) { %>
+              <% allcategories.forEach(function(cat) { %>
+              <li>
+                <a href="/category/<%= cat.id %>">
+                  <%= cat.categoryname %>
+                </a>
+              </li>
+              <% }) %>
+              <% } %>
+              <hr>
+              <li class="forsp">
+                <a href="/my/mypage/">
+                  マイページ
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
     <div class="header-logo">
       <a href="/">
@@ -31,7 +51,7 @@
       <div class="header-icon forpc">
         <a href="#inline" class="searchbutton"><img src="/images/icon/search.png"></a>
       </div>
-      <div class="header-icon">
+      <!--<div class="header-icon">
         <% if (login) { %>
         <a href="/my/mypage">
           <i class="fa-solid fa-user"></i>
@@ -41,7 +61,7 @@
           <i class="fa-solid fa-user"></i>
         </a>
         <% } %>
-      </div>
+      </div>-->
        <div class="header-icon">
         <a href="/my/cart">
           <span class="fa-stack fa-lg">
@@ -62,6 +82,9 @@
   </div>
   <nav class="navigation forpc">
     <ul>
+      <li class="forsp">
+        <a href="/my/mypage">マイページ</a>
+      </li>
       <% if (allcategories.length > 0) { %>
       <% allcategories.forEach(function(ct) { %>
       <li>

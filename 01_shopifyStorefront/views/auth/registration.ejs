@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/icon/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/auth/regist.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="/js/validation/registvalidation.js"></script>
+</head>
+
+<body>
+  <main>
+    <%- include("../partials/microheader.ejs") %>
+      <div class="main-breadcrumb-wrapper">
+        <nav>
+          <ol class="breadcrumb">
+            <li><a href="/">TOP</a></li>
+            <li><a href="/auth/memberreg/"><%= title %></a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="wrap main-regist-wrapper">
+        <h3 class="headline-standard libre-baskerville">
+          New regist
+          <span class="headline-small noto-sans"><%= title %></span>
+        </h3>
+        <div class="regist-row-wrapper">
+          <p class="form-header">
+            ご登録完了後、ご入力いただいたメールアドレスに、ご登録の確認メールをお送りします。<br>(ご登録前にメールの受信設定のご確認をお願いします)<br><br>
+            メールが受信できるよう、以下の設定をお願いします。<br>
+            ドメイン指定をされている場合は、メールアドレスの＠以降をご登録ください。
+          </p>
+          <div class="regist-row-parent">
+            <form action="/auth/memberreg/" id="registForm" method="post">
+              <ul class="regist-row-input-area">
+                <li class="alert red">※&ensp;必須項目</li>
+                <li class="inputarea name-row-children">
+                  <label for="firstname">&ensp;姓<span class="red">※</span></label>
+                  <input type="text" id="firstname" class="standard" name="firstname" value="" placeholder="日本">
+                  <label for="lastname">&ensp;名<span class="red">※</span></label>
+                  <input type="text" id="lastname" class="standard" name="lastname" value="" placeholder="太郎">
+                </li>
+                <li class="inputarea name-row-children">
+                  <label for="firstnameruby">&ensp;姓かな</label>
+                  <input type="text" id="firstnameruby" class="standard" name="firstnameruby" value=""
+                    placeholder="にほん">
+                  <label for="lastnameruby">&ensp;名かな</label>
+                  <input type="text" id="lastnameruby" class="standard" name="lastnameruby" value="" placeholder="たろう">
+                </li>
+                <li class="inputarea regist-row-children">
+                  <label for="usermail">&ensp;メールアドレス<span class="red">※</span></label><br>
+                  <input type="text" id="usermail" class="standard" name="usermail" value=""
+                    placeholder="xxx@gmail.com">
+                </li>
+                <li class="inputarea regist-row-children">
+                  <label for="reusermail">&ensp;メールアドレス確認<span class="red">※</span></label><br>
+                  <input type="text" id="reusermail" class="standard" name="reusermail" value=""
+                    placeholder="xxx@gmail.com">
+                </li>
+                <li class="inputarea regist-row-children">
+                  <label for="telephone">&ensp;電話番号<span class="red">※</span></label><br>
+                  <input type="text" id="telephone" class="standard" name="telephone" value=""
+                    placeholder="090-XXXX-YYYY">
+                </li>
+              </ul>
+              <ul class="regist-row-check-area">
+                <li class="regist-check-children">
+                  <input type="checkbox" id="checkbox1" class="checkbox1" name="magazine" value="">
+                  <label for="checkbox1">
+                    &ensp;無料メールマガジンを登録する。お得情報や、おすすめの商品などをメールマガジンでお届けしています。
+                  </label>
+                </li>
+                <li class="regist-check-children">
+                  <input type="checkbox" id="checkbox2" class="checkbox2" name="privacy" value="">
+                  <label for="checkbox2">
+                    <span class="red underline">&ensp;ご利用ガイド</span>と<span
+                      class="red underline">個人情報保護方針</span>に同意します<span class="red">※</span></span>
+                  </label>
+                </li>
+                <li class="regist-button-children">
+                  <p class="red">
+                    <%= message %>
+                  </p>
+                </li>
+                <li class="regist-button-children">
+                  <button class="button-g button-7 button-wide" type="submit" value="">会員登録する</button>
+                </li>
+                <li class="regist-button-children">
+                  <a href="/auth/login">
+                    <button type="button" class="button-g button-10 button-wide">戻る</button>
+                  </a>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  </main>
+  <%- include("../partials/microfooter.ejs") %>
+</body>
+</html>

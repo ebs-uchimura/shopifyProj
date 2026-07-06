@@ -3,43 +3,29 @@
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
   <meta charset="UTF-8">
-  <title>Compass</title>
-  <meta content="compass" name="description">
+  <title><%= title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
-  <meta property="og:url" content="">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:site_name" content="">
-  <meta property="og:image" content="/images/apple-touch-icon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="format-detection" content="telephone=no">
-  <link rel="canonical" href="">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="icon" type="image/png" href="/images/android-touch-icon.png" sizes="192x192">
   <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/complete.css">
-  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
   <script>
     window.onload = function(){
-      location.href='<%= url %>';
+      location.href="<%= url %>";
     }
   </script>
 </head>
 
 <body>
   <main>
-    <%- include('./partials/microheader.ejs') %>
+    <%- include("./partials/microheader.ejs") %>
     <div class="wrap main-complete-wrapper">
       <div class="main-complete-child"><%= message %></div>
     </div>
   </main>
-  <footer>
-    <p class="copyright">Copyright 2025 Compass, Inc.</p>
-  </footer>
+  <%- include("./partials/microfooter.ejs") %>
 </body>
 </html>

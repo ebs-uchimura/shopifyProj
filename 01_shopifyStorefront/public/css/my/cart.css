@@ -169,6 +169,12 @@ main .main-cart-wrapper .cart-row-wrapper .cart-row-child table .cartnum .minusb
   color: #fff;
 }
 
+/* detail printing area */
+main .main-cart-wrapper .cart-row-wrapper .cart-row-child table .cartprinting {
+  margin: 1vw 0 0;
+  font-size: 2vw;
+}
+
 main .main-cart-wrapper .cart-row-wrapper .cart-row-child table .cartdelete button {
   width: 10vw;
   margin: 0;
@@ -208,7 +214,7 @@ main .main-cart-wrapper .cart-row-wrapper .cart-row-child .cart-buttons button {
 /*-------------------------------
  ▼forPC
  --------------------------------*/
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 480px) {
 
   /* cart */
   main {
@@ -360,6 +366,12 @@ main .main-cart-wrapper .cart-row-wrapper .cart-row-child .cart-buttons button {
     justify-content: center;
     background-color: #696a7e;
     color: #fff;
+  }
+
+  /* detail printing area */
+  main .main-cart-wrapper .cart-row-wrapper .cart-row-child table .cartprinting {
+    margin: 10px 0 0;
+    font-size: 0.9rem;
   }
 
   main .main-cart-wrapper .cart-row-wrapper .cart-row-child table .cartdelete button {

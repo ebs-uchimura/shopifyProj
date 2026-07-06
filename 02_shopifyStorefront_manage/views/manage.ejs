@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/indexmanage.css">
+</head>
+
+<body>
+  <header>
+    <h2><%= title %></h2>
+  </header>
+  <main>
+    <table class="btntbl">
+      <tr>
+        <td>
+          <a href="<%= root %>/printing">名入れ管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/product">商品管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/category">カテゴリ管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/review">レビュー管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/news">ニュース管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/top">トップ画像管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= root %>/good">いいね管理画面</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <br>
+          <form action="/init" id="initform" method="post">
+            <button type="submit" class="button-g button-standard" value="">DB更新処理</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

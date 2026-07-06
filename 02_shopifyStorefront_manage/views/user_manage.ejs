@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+</head>
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ユーザ名</th>
+          <th>ユーザ名かな</th>
+          <th>電話番号</th>
+          <th>メール</th>
+          <th>メルマガ購読</th>
+          <th>使用可能</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/user" id="pdform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+            <tr>
+              <td>
+                <%= data[i].id %>
+              </td>
+              <td>
+                <%= data[i].firstname + " " + data[i].lastname %>
+              </td>
+              <td>
+                <%= data[i].firstnameruby + " " + data[i].lastnameruby %>
+              </td>
+              <td>
+                <%= data[i].telephone %>
+              </td>
+              <td>
+                <%= data[i].usermail %>
+              </td>
+              <td>
+                <input type="checkbox" class="magazine" name="magazine[]" value="<%= data[i].id %>" <%=data[i].magazine==1
+                      ? 'checked' : '' %> >
+              </td>
+              <td>
+                <input type="checkbox" class="usable" name="usable[]" value="<%= data[i].id %>" <%=data[i].usable==1
+                      ? 'checked' : '' %> >
+              </td>
+              <td>
+                <%= data[i].updated_at %>
+              </td>
+              <input type="hidden" id="id" name="id" value="<%= data[i].id %>">
+            </tr>
+            <% } %>
+          </tbody>
+        <tfoot>
+          <tr>
+              <td colspan="8">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+          <tr>
+            <td colspan="8">
+              <a href="javascript:history.back();">戻る</a>
+            </td>
+          </tr>
+        </tfoot>
+        </form>
+      <% } %> 
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

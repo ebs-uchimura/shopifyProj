@@ -8,13 +8,7 @@
 
 /// 定数
 // 名前空間
-import { myDev } from '../consts/globalinfo';
-import { myConst } from '../consts/globalvariables';
-import { myDevConst } from '../consts/globalvariablesdev';
-import { myLocalDevConst } from '../consts/globalvariableslocal';
-// 可変要素
-let globalAppName: string; // アプリ名
-let globalLogLevel: string; // ログレベル
+import { myDevConst } from '../consts/globalinfo';
 
 // モジュール定義
 import NodeCache from "node-cache"; // キャッシュ用
@@ -22,21 +16,11 @@ import Logger from '../class/Logger'; // ログ用
 // MYSQL読込
 import { countAssets, selectAsset, selectJoinAsset } from '../modules/mysqlModule';
 
-// ローカルモード
-if (myDev.LOCAL_DEV_FLG) {
-  globalLogLevel = myLocalDevConst.LOG_LEVEL; // ログレベル
-  globalAppName = myLocalDevConst.APP_NAME!; // アプリ名
-  // 開発モード
-} else if (myDev.DEV_FLG) {
-  globalLogLevel = myDevConst.LOG_LEVEL; // ログレベル
-  globalAppName = myDevConst.APP_NAME!; // アプリ名
-  // 本番モード
-} else {
-  globalLogLevel = myConst.LOG_LEVEL; // ログレベル
-  globalAppName = myConst.APP_NAME!; // アプリ名
-}
+// 開発モード
+const globalLogLevel: string = myDevConst.LOG_LEVEL; // ログレベル
+const globalAppName: string = myDevConst.APP_NAME!; // アプリ名
 // ロガー設定
-const logger: Logger = new Logger(myDev.COMPANY_NAME, globalAppName, globalLogLevel);
+const logger: Logger = new Logger(myDevConst.COMPANY_NAME, globalAppName, globalLogLevel);
 // キャッシュ設定
 const cacheMaker: NodeCache = new NodeCache();
 
@@ -52,7 +36,7 @@ export const regetCategory = async (): Promise<any> => {
       if (tmpCategories == null) {
         logger.trace('category: all mode');
         // カテゴリ
-        const allCategories: any = await selectAsset('category', ['display', 'usable'], [[1], [1]], 6, 'ranking', ['id', 'categoryname', 'englishname', 'imagepath', 'context'], true);
+        const allCategories: any = await selectAsset('category', ['display', 'usable'], [[1], [1]], 5, 'ranking', ['id', 'categoryname', 'englishname', 'imagepath', 'context'], true);
         // カテゴリキャッシュ
         cacheMaker.set('defCategories', allCategories);
         // カテゴリ
@@ -125,7 +109,7 @@ export const regetRecommendProduct = async (): Promise<any> => {
       if (tmpRecommendProducts == null) {
         logger.trace('recommend: all mode');
         // おススメ商品
-        const allRecomproducts: any = await selectJoinAsset('product', 'category', ['recommend', 'display', 'usable'], [[1], [1], [1]], ['display', 'usable'], [[1], [1]], 3, 'id', 'product', ['product.id', 'product.imagepath', 'productname', 'categoryname', 'product.description'], true);
+        const allRecomproducts: any = await selectJoinAsset('product', 'category', 'category_id', ['recommend', 'display', 'usable'], [[1], [1], [1]], ['display', 'usable'], [[1], [1]], ['product.id', 'product.imagepath1', 'productname', 'categoryname', 'product.description'], 3, 'id', 'product', true);
         // おススメ商品キャッシュ
         cacheMaker.set('defRecomProduct', allRecomproducts);
         // おススメ商品

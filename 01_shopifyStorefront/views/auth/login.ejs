@@ -3,7 +3,7 @@
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
   <meta charset="UTF-8">
-  <title>Compassログイン</title>
+  <title><%= title %></title>
   <meta content="compass" name="description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
@@ -29,17 +29,17 @@
   <link rel="stylesheet" href="/css/button.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-  <script src='/js/common/crypto.js'></script>
-  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script src="/js/common/crypto.js"></script>
+  <script src="/js/validation/mailpassvalidation.js"></script>
 </head>
 
 <body>
   <main>
-    <%- include('../partials/microheader.ejs') %>
+    <%- include("../partials/microheader.ejs") %>
       <div class="wrap main-login-wrapper">
         <h3 class="headline-standard libre-baskerville">
           Log in
-          <span class="headline-small noto-sans">ログイン</span>
+          <span class="headline-small noto-sans"><%= title %></span>
         </h3>
         <div class="login-row-wrapper">
           <ul class="login-row-parent">
@@ -57,15 +57,19 @@
                 <input type="password" id="password" class="standard" name="pass" value="" placeholder="パスワード">
               </li>
               <li class="login-button-children">
-                <input type='hidden' id='hashedpassword' name='password' value=''>
+                <input type="hidden" id="hashedpassword" name="password" value="">
                 <button class="button-g button-7 button-wide" type="submit" value="">
                   ログイン
                 </button>
               </li>
             </form>
             <li class="login-button-children">
-              <div class="annotation">会員登録がまだの方は、こちらから登録できます。 </div>
+              <div class="annotation">会員登録がまだの方は、こちらから登録できます。</div>
               <a href="/auth/memberreg"><button class="button-g button-9 button-wide">新規会員登録</button></a>
+            </li>
+            <li class="login-button-children">
+              <div class="annotation">パスワードを忘れた方は、こちらから再発行してください。</div>
+              <a href="/auth/forgot"><button class="button-g button-10 button-wide">パスワード再発行</button></a>
             </li>
             <li class="login-button-children">
               <a href="/">
@@ -82,8 +86,6 @@
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
   </main>
-  <%- include('../partials/microfooter.ejs') %>
-    <script src='/js/common/loginvalidation.js'></script>
+  <%- include("../partials/microfooter.ejs") %>  
 </body>
-
 </html>

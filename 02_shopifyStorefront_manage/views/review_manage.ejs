@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/reviewmanage.css">
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>☆数</th>
+          <th>内容</th>
+          <th>掲載</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/review" id="regform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+              <tr>
+                <td>
+                  <%= data[i].id %>
+                </td>
+                <td>
+                  <%= data[i].product_id %>
+                </td>
+                <td>
+                  <%= data[i].productname %>
+                </td>
+                <td>
+                  <%= data[i].stars %>
+                </td>
+                <td>
+                  <%= data[i].content %>
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox" class="checkbox" name="check[]" value="<%= data[i].id %>"
+                    <%=data[i].display==1 ? 'checked' : '' %> >
+                </td>
+                <input type="hidden" id="id" name="id" value="<%= data[i].id %>" />
+              </tr>
+              <% } %>
+                <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <a href="javascript:history.back();">戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

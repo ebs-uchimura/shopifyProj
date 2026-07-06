@@ -1,0 +1,23 @@
+/*
+/* topimgmanage.css
+*/
+
+@charset "utf-8";
+
+table tfoot tr.historyhead {
+  margin: 0 auto 30px;
+  background-color: #50535d;
+  color: #fff;
+}
+
+table tfoot tr.historyhead td {
+  padding: 2em;
+  font-size: .9rem;
+  font-weight: bold;
+  background-color: #50535d;
+  border-right: 2px solid #eee;
+}
+
+.imagecell img {
+  width: 300px;
+}

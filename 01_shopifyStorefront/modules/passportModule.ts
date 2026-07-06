@@ -8,32 +8,16 @@
 
 /// 定数
 // 名前空間 
-import { myDev } from '../consts/globalinfo';
-import { myConst } from '../consts/globalvariables';
-import { myDevConst } from '../consts/globalvariablesdev';
-import { myLocalDevConst } from '../consts/globalvariableslocal';
-// ログレベル
-let globalAppName: string; // アプリ名
-let globalLogLevel: string;
+import { myDevConst } from '../consts/globalinfo';
 
 // モジュール
 import Logger from '../class/Logger'; // ログ用
 
-// ローカルモード
-if (myDev.LOCAL_DEV_FLG) {
-  globalAppName = myLocalDevConst.APP_NAME!; // アプリ名
-  globalLogLevel = myLocalDevConst.LOG_LEVEL; // ログレベル
-  // 開発モード
-} else if (myDev.DEV_FLG) {
-  globalAppName = myDevConst.APP_NAME!; // アプリ名
-  globalLogLevel = myDevConst.LOG_LEVEL; // ログレベル
-  // 本番モード
-} else {
-  globalAppName = myConst.APP_NAME!; // アプリ名
-  globalLogLevel = myConst.LOG_LEVEL; // ログレベル
-}
+// 開発モード
+const globalAppName: string = myDevConst.APP_NAME!; // アプリ名
+const globalLogLevel: string = myDevConst.LOG_LEVEL; // ログレベル
 // ロガー
-const logger: Logger = new Logger(myDev.COMPANY_NAME, globalAppName, globalLogLevel);
+const logger: Logger = new Logger(myDevConst.COMPANY_NAME, globalAppName, globalLogLevel);
 
 // 認証
 export const isAuthenticated = (req: any, res: any, next: any): void => {

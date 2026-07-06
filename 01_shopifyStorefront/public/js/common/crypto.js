@@ -6,16 +6,17 @@
 'use strict';
 
 // windowロード時
-window.addEventListener('load', function () {
-
+$(function () {
   // パスワード入力完了時
-  document.getElementById('password').addEventListener('blur', async function (e) {
+  $('#password').on('blur', async function () {
+    console.log("blured");
     // 入力値取得
-    var input1 = document.getElementById('password').value;
+    var input1 = $('#password').val();
     // ハッシュ化
     const hashedPasswd = await async_digestMessage(input1);
+    console.log(hashedPasswd);
     // ハッシュパスワードセット
-    document.getElementById('hashedpassword').value = hashedPasswd;
+    $('#hashedpassword').val(hashedPasswd);
   });
 
   // ハッシュ生成

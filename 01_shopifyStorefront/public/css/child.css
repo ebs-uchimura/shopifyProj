@@ -1,5 +1,5 @@
 /*
-/* index.css
+/* child.css
 */
 
 @charset "utf-8";
@@ -15,5 +15,4 @@ body {
 /*-------------------------------
  ▼forPC
  --------------------------------*/
-@media screen and (min-width: 769px) {
-}
+@media screen and (min-width: 769px) {}

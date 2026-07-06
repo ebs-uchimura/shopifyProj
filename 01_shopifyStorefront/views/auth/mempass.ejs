@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/icon/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/auth/password.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src="/js/common/crypto.js"></script>
+  <script src="/js/validation/mailpassvalidation.js"></script>
+  <script src="/js/common/password.js"></script>
+</head>
+
+<body>
+  <main>
+    <%- include("../partials/microheader.ejs") %>
+      <div class="wrap main-account-wrapper">
+        <h3 class="headline-standard libre-baskerville">
+          Password
+          <span class="headline-small noto-sans"><%= title %></span>
+        </h3>
+        <div class="account-row-wrapper">
+          <form id="authform" method="post" action="/auth/memberpass">
+            <ul>
+              <li>
+                <p class="Form-Item-Label">新しいパスワード（8文字以上）</p>
+              </li>
+              <li class="passarea">
+                <input type="password" id="password" name="prepassword" class="Form-Item-Input" placeholder="xxxxxxxx"
+                  required>
+                <button class="visible" type="button"><i class="fa fa-eye"></i></button>
+              </li>
+              <li>
+                <p class="Form-Item-Label">新しいパスワード（再入力）</p>
+              </li>
+              <li class="passarea">
+                <input type="password" id="confirm" name="confirm" class="Form-Item-Input" placeholder="xxxxxxxx"
+                  required>
+                <button class="visible" type="button"><i class="fa fa-eye"></i></button>
+              </li>
+            </ul>
+            <input type="hidden" name="usermail" value="<%= mail %>">
+            <input type="hidden" name="userkey" value="<%= key %>">
+            <input type="hidden" id="hashedpassword" name="hashedpassword" value="">
+            <button type="submit" class="button-g button-7 button-standard" value="">送信する</button>
+          </form>
+          <div class="main-account-child"><%= message %></div>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  </main>
+  <%- include("../partials/microfooter.ejs") %>
+</body>
+</html>

@@ -12,17 +12,15 @@ let globalCounter = 1;
 // check limit
 const checkMax = 3;
 
-window.onload = function () {
+$(function () {
   // except for moible terminal
   if (!isMobile) {
-    const cateformDom = document.getElementById("cateform");
     const numareaClasses = document.getElementsByClassName('checkbox');
     const delareaClasses = document.getElementsByClassName('delete');
-    // checkall
-    const checkall = document.getElementById("checksAll");
     const checks = document.querySelectorAll(".checkbox");
 
-    checkall.addEventListener('click', () => {
+    // checkall
+    $("checksAll").on('click', () => {
       for (const check of checks) {
         checkall.checked == true ? check.checked = true : check.checked = false;
       }
@@ -63,13 +61,11 @@ window.onload = function () {
       }
     }
 
-    cateformDom.addEventListener("submit", function (e) {
+    // on submit
+    $("#cateform").on("submit", function (e) {
       e.preventDefault();
-      console.log("clicked");
       const result = checkCount();
       const delresult = deleteCount();
-      console.log(result);
-      console.log(delresult);
       if (result && delresult) {
         cateformDom.submit();
       } else {
@@ -77,4 +73,4 @@ window.onload = function () {
       }
     });
   }
-}
+});

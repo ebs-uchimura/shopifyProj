@@ -1,0 +1,51 @@
+/*
+/* forgot.css
+*/
+
+@charset "utf-8";
+
+/*------------------------------
+ ▼ forSP
+ -------------------------------*/
+.wrap {
+  width: 80vw;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 2.8vw;
+}
+
+.main-contents {
+  margin: 5vw 0;
+}
+
+.main-contents h2 {
+  margin: 5vw 0;
+}
+
+.contract-wrap .contract-item {
+  margin: 5vw 0;
+}
+
+/*-------------------------------
+ ▼forPC
+ --------------------------------*/
+@media screen and (min-width: 769px) {
+  .wrap {
+    width: 1024px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .main-contents {
+    margin: 50px 0;
+  }
+
+  .main-contents h2 {
+    margin: 50px 0;
+  }
+
+  .contract-wrap .contract-item {
+    margin: 20px 0;
+  }
+}

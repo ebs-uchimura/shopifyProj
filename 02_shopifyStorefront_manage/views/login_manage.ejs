@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/manage_head.ejs') %>
+    <link rel="stylesheet" href="/css/loginmanage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src='/js/common/crypto.js'></script>
+    <script src='/js/validation/mailpassvalidation.js'></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h2><%= title %></h2>
+      </header>
+      <div class="wrap main-login-wrapper">
+        <div class="login-row-wrapper">
+          <ul class="login-row-parent">
+            <form action="/login" id="authform" class="left" method="post">
+              <li class="login-row-children">
+                <input type="text" id="usermail" class="standard" name="usermail" value="" placeholder="&emsp;メール">
+              </li>
+              <li class="login-row-children">
+                <input type="password" id="password" class="standard" name="pass" value="" placeholder="&emsp;パスワード">
+              </li>
+              <li class="login-button-children">
+                <input type='hidden' id='hashedpassword' name='password' value=''>
+                <button class="button-g button-7 button-wide" type="submit" value="">
+                  ログイン
+                </button>
+              </li>
+            </form>
+            <li class="account-button-children">
+              <p class="red">
+                <%= message %>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <%- include('./partials/manage_footer.ejs') %>
+  </body>
+</html>

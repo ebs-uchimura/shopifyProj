@@ -1,0 +1,18 @@
+/*
+/* printingmanage.css
+*/
+
+@charset "utf-8";
+
+main {
+  display: flex;
+}
+table {
+  width: 45%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+table caption {
+  font-weight: bold;
+}

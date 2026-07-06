@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/productmanage.css">
+  <script src="/js/pdmanage.js"></script>
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>掲載<br>全<input type="checkbox" id="checksAll1"></th>
+          <th>ボトル名入れ<br>全<input type="checkbox" id="checksAll2"></th>
+          <th>グラス名入れ<br>全<input type="checkbox" id="checksAll3"></th>
+          <th>表示順</th>
+          <th>商品名</th>
+          <th>バリアント名</th>
+          <th>価格(円)</th>
+          <th>ランク</th>
+          <th>おススメ</th>
+          <th>新商品</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/product" id="pdform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+              <tr>
+                <td>
+                  <%= data[i].id %>
+                </td>
+                <td>
+                  <input type="checkbox" class="display" name="display[]" value="<%= data[i].id %>" <%=data[i].display==1
+                    ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="checkbox" id="bottleprinting" class="bottleprinting" name="bottleprinting[]" value="<%= data[i].id %>"
+                    <%=data[i].bottleprinting==1 ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="checkbox" id="glassprinting" class="glassprinting" name="glassprinting[]" value="<%= data[i].id %>"
+                    <%=data[i].glassprinting==1 ? 'checked' : '' %> >
+                </td>
+                 <td>
+                  <input type="number" class="narrow" maxlength="2" name="pdorder[]" value="<%= data[i].pdorder %>">
+                </td>
+                <td>
+                  <%= data[i].productname %>
+                </td>
+                <td>
+                  <%= data[i].variantname %>
+                </td>
+                <td>
+                  <%= data[i].price.toLocaleString() %>
+                </td>
+                <td>
+                  <input type="number" class="narrow" maxlength="2" name="ranking[]" value="<%= data[i].ranking %>">
+                </td>
+                <td>
+                  <input type="checkbox" id="recommend" class="recommend" name="recommend[]" value="<%= data[i].id %>"
+                    <%=data[i].recommend==1 ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="checkbox" id="latest" class="latest" name="latest[]" value="<%= data[i].id %>"
+                    <%=data[i].latest==1 ? 'checked' : '' %> >
+                </td>
+                <input type="hidden" id="id" name="id" value="<%= data[i].id %>">
+              </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="11">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="11">
+                <a href="<%= root %>/">前の画面へ戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

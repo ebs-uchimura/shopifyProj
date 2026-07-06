@@ -1,0 +1,85 @@
+/*
+/* forgot.css
+*/
+
+@charset "utf-8";
+
+/*------------------------------
+ ▼ forSP
+ -------------------------------*/
+.wrap {
+  width: 80vw;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 2.5vw;
+}
+
+.main-contents {
+  margin: 5vw 0;
+}
+
+.main-contents h2 {
+  margin: 5vw 0;
+  font-size: 2.5vw;
+}
+
+.main-contents .contract-content ul li {
+  list-style: inside;
+}
+
+.main-contents .contract-content ul li.head {
+  margin: 5vw 0 0;
+  font-size: 2.3vw;
+  font-weight: bold;
+  list-style: none;
+}
+
+.contract-wrap .contract-item {
+  margin: 5vw 0;
+}
+
+.contract-wrap .contract-item .contract-title {
+  margin: 20px 0;
+  font-size: 3vw;
+}
+
+/*-------------------------------
+ ▼forPC
+ --------------------------------*/
+@media screen and (min-width: 769px) {
+  .wrap {
+    width: 1024px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .main-contents {
+    margin: 10px 0;
+  }
+
+  .main-contents h2 {
+    font-size: 1.1rem;
+    margin: 50px 0;
+  }
+
+  .main-contents .contract-content ul li {
+    font-size: 1rem;
+  }
+
+  .main-contents .contract-content ul li.head {
+    margin: 30px 0 0;
+    font-size: 1rem;
+    font-weight: bold;
+    list-style: none;
+  }
+
+  .contract-wrap .contract-item {
+    margin: 20px 0;
+  }
+
+  .contract-wrap .contract-item .contract-title {
+    margin: 20px 0;
+    font-size: 1.1rem;
+  }
+}

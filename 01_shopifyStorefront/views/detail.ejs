@@ -6,19 +6,19 @@
   <title>Compassギフトサイト商品詳細</title>
   <meta content="compass" name="description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
+  <meta name="description" content="このたび、名入れギフトの専門店「Giftshop Compass（ギフトショップ コンパス）」は、公式オンラインストアをグランドオープンいたしました。“想いを形に”をコンセプトに、受け取った瞬間に心に残る、上質で洗練された贈り物をご提案いたします。">
   <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
-  <meta property="og:url" content="">
+  <meta property="og:url" content="https://compass-linq.com">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:site_name" content="">
+  <meta property="og:title" content="Compassギフトサイト">
+  <meta property="og:description" content="このたび、名入れギフトの専門店「Giftshop Compass（ギフトショップ コンパス）」は、公式オンラインストアをグランドオープンいたしました。“想いを形に”をコンセプトに、受け取った瞬間に心に残る、上質で洗練された贈り物をご提案いたします。">
+  <meta property="og:site_name" content="LINQUEST">
   <meta property="og:image" content="/imgages/apple-touch-icon.png">
   <meta name="twitter:card" content="summary">
   <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://compass-linq.com/tokusho">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="canonical" href="">
   <link rel="apple-touch-icon" sizes="180x180" href="/imgages/apple-touch-icon.png">
   <link rel="shortcut icon" href="/images/favicon.ico">
   <link rel="icon" type="image/png" href="/imgages/android-touch-icon.png" sizes="192x192">
@@ -28,23 +28,27 @@
   <link rel="stylesheet" href="/css/custom.css">
   <link rel="stylesheet" href="/css/detail.css">
   <link rel="stylesheet" href="/css/button.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script src="/js/validation/detailvalidation.js"></script>
   <script>
     $(function () {
-       getGlobalRoot("<%= root %>");
+      getGlobalFlgs("<%= myproduct.bottleprinting %>", "<%= myproduct.glassprinting %>");
       $("img.lazyload").lazyload();
       $(".searchbutton").modaal({
-        content_source: '#inline'
+        content_source: "#inline"
       });
       $("#review-button").modaal({
-        content_source: '#reviewbox'
+        content_source: "#reviewbox"
       });
+      var splide = new Splide(".splide");
+      splide.mount();
     });
   </script>
   <script src="/js/index.js"></script>
@@ -52,21 +56,51 @@
 
 <body>
   <main>
-    <%- include('./partials/header.ejs') %>
-     <div class="main-breadcrumb-wrapper">
-        <nav>
-          <ol class="breadcrumb">
-            <li><a href="/">TOP</a></li>
-            <li><a href="/category/<%= myproduct.category_id %>"><%= myproduct.categoryname %></a></li>
-            <li><a href="/product/<%= myproduct.id %>"><%= myproduct.productname %></a></li>
-          </ol>
-        </nav>
-      </div>
+    <%- include("./partials/header.ejs") %>
+    <div class="main-breadcrumb-wrapper">
+      <nav>
+        <ol class="breadcrumb">
+          <li><a href="/">TOP</a></li>
+          <li><a href="/category/<%= myproduct.category_id %>"><%= myproduct.categoryname %></a></li>
+          <li><a href="/product/<%= myproduct.id %>"><%= myproduct.productname %></a></li>
+        </ol>
+      </nav>
+    </div>
     <div class="wrap detail-main-wrapper">
-      <div class="detail-main-img">
-        <img class="detailimg" src="<%= myproduct.imagepath %>" alt="<%= myproduct.productname %>" onerror="this.onerror = null; this.src='';">
-        <img class="detailimg forpc" src="/images/product/product<%= myproduct.id %>-1.jpg" alt=""  onerror="this.onerror = null; this.src='';">
-      </div>
+      <section class="detail-main-img splide" aria-label="Splideの基本的なHTML">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <img class="detailimg" src="<%= myproduct.imagepath1 %>" alt="<%= myproduct.productname %>" onerror="this.onerror = null; this.src='';">
+            </li>
+            <% if (myproduct.imagepath2) { %>
+            <li class="splide__slide">
+              <img class="detailimg" src="<%= myproduct.imagepath2 %>" alt="<%= myproduct.productname %>"  onerror="this.onerror = null; this.src='';">
+            </li>
+            <% } %>
+            <% if (myproduct.imagepath3) { %>
+            <li class="splide__slide">
+              <img class="detailimg" src="<%= myproduct.imagepath3 %>" alt="<%= myproduct.productname %>"  onerror="this.onerror = null; this.src='';">
+            </li>
+            <% } %>
+            <% if (myproduct.imagepath4) { %>
+            <li class="splide__slide">
+              <img class="detailimg" src="<%= myproduct.imagepath4 %>" alt="<%= myproduct.productname %>"  onerror="this.onerror = null; this.src='';">
+            </li>
+            <% } %>
+            <% if (myproduct.imagepath5) { %>
+            <li class="splide__slide">
+              <img class="detailimg" src="<%= myproduct.imagepath5 %>" alt="<%= myproduct.productname %>"  onerror="this.onerror = null; this.src='';">
+            </li>
+            <% } %>
+            <% if (myproduct.imagepath6) { %>
+            <li class="splide__slide">
+              <img class="detailimg" src="<%= myproduct.imagepath6 %>" alt="<%= myproduct.productname %>"  onerror="this.onerror = null; this.src='';">
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </section>
       <div class="wrap information-main-wrapper">
         <ul class="detail-flex">
           <li class="detail-list-title">
@@ -80,18 +114,39 @@
               </span>
             </div>
           </li>
-          <li class="detail-list-price">
-            <div class="price txt-purple noto-sans">
-              <%= myproduct.pricerange %>円<span class="headline-small">&thinsp;(税込)</span>
-            </div>
-          </li>
-          <li class="detail-list-content">
-            <p>※配送料は購入手続き時に計算されます。</p>
-            <p>商品番号:&nbsp;<%= myproduct.padid %>
-            </p>
-          </li>
-          <hr>
-          <form name="cartForm" action="/my/cart" method="post">
+          <form id="cartForm" name="cartForm" action="/my/cart" method="post">
+            <input type="hidden" name="variantid" value="<%= myVariants[0].id %>">
+            <% if (myVariants.length == 1) { %>
+            <li class="detail-list-price">
+              <div class="price txt-purple noto-sans">
+                <%= myVariants[0].price.toLocaleString() %>円<span class="headline-small">&thinsp;(税込)</span>
+              </div>
+            </li>
+            <% } else { %>
+            <li class="detail-list-price">
+              <% if (myVariants) { %>
+                <% myVariants.forEach(function(variant) { %>
+                <label>
+                  <div class="price txt-purple noto-sans">
+                  <% if (variant.variantname != "Default Title") { %>
+                    <input type="radio" name="variantids" value="<%= variant.id %>">
+                    <span class="variantname"><%= variant.variantname %></span>
+                  <% } else { %>
+                    <span class="variantname"><%= myproduct.productname %></span>
+                  <% } %>
+                  <%= variant.price.toLocaleString() %>円<span class="price-small">&thinsp;(税込)</span>&emsp;<span class="price-small"><%= variant.stock %>個</span>
+                  </div>
+                </label>
+                <% }) %>
+              <% } %>
+            </li>
+            <% } %>
+            <li class="detail-list-content">
+              <p>※配送料は購入手続き時に計算されます。</p>
+              <p>商品番号:&nbsp;<%= myproduct.padid %>
+              </p>
+            </li>
+            <hr>
             <li class="detail-number-area">
               <div class="minusbutton"><i class="fa-solid fa-minus"></i></div>
               <input class="productid" type="hidden" name="pid" value="<%= myproduct.id %>">
@@ -110,12 +165,44 @@
                 </i>
               </div>
             </li>
-            <% if (myproduct.printing==1) { %>
             <li class="detail-list-printing">
-              <h4>名入れ</h4>
-              <textarea class="textarea" rows="4" name="printing" value="" placeholder="名入れ文字を入れてください"></textarea>
+              <% if (myproduct.bottleprinting==1) { %>
+              <h4>ボトル名入れ</h4>
+              <textarea id="bottleprinting" class="textarea" rows="1" name="bottleprinting" value="" placeholder="ボトルの名入れ文字を入れてください"></textarea>
+              <label class="selectbox1">
+                <span><b>フォント</b></span>
+                <select id="bottlefont" name="bottlefont" >
+                  <option value="">--選択してください--</option>
+                  <option value="1">筆記体①(英数字のみ)</option>
+                  <option value="2">筆記体②(英数字のみ)</option>
+                  <option value="3">筆記体③(英数字のみ)</option>
+                  <option value="4">ゴシック</option>
+                  <option value="5">丸ゴシック</option>
+                  <option value="6">筆文字①</option>
+                  <option value="7">筆文字②</option>
+                  <option value="8">明朝</option>
+                </select>
+              </label>
+              <% } %>
+              <% if (myproduct.glassprinting==1) { %>
+              <h4>グラス名入れ</h4>
+              <textarea id="glassprinting" class="textarea" rows="1" name="glassprinting" value="" placeholder="グラスの名入れ文字を入れてください"></textarea>
+              <label class="selectbox2">
+                <span><b>フォント</b></span>
+                <select id="glassfont" name="glassfont" >
+                  <option value="">--選択してください--</option>
+                  <option value="1">筆記体①(英数字のみ)</option>
+                  <option value="2">筆記体②(英数字のみ)</option>
+                  <option value="3">筆記体③(英数字のみ)</option>
+                  <option value="4">ゴシック</option>
+                  <option value="5">丸ゴシック</option>
+                  <option value="6">筆文字①</option>
+                  <option value="7">筆文字②</option>
+                  <option value="8">明朝</option>
+                </select>
+              </label>
+              <% } %>
             </li>
-            <% } %>
             <li class="detail-list-buttons">
               <div class="btn">
                 <button class="btn-cart">
@@ -127,17 +214,18 @@
           </form>
         </ul>
         <hr>
-        <div class="information-area">
-          <%- myproduct.detailhtml %>
-        </div>
       </div>
+    </div>
+    
+    <div class="information-area">
+      <%- myproduct.detailhtml %>
     </div>
 
     <div class="review-main-wrapper">
       <hr>
       <h2 class="review-list-title">カスタマーレビュー</h2>
-      <% if (average !='0.0' ) { %>
       <div class="review-main-child">
+        <% if (average !="0.0" ) { %>
         <div class="review-point">
           <ul class="review-point-flex">
             <li class="review-list-head">
@@ -155,7 +243,7 @@
         <div class="review-stars">
           <canvas id="myChart"></canvas>
         </div>
-      <% } %>
+        <% } %>
         <div class="review-stars-button">
           <button id="review-button">
             <i class="fa-solid fa-pencil"></i>&emsp;<span class="review-str">レビューを書く</span>
@@ -163,11 +251,10 @@
         </div>
       </div>
       <div class="review-list-newest">
-        <% if (average !='0.0' ) { %>
+        <% if (average !="0.0" ) { %>
         <details>
           <summary>
-            さらに表示
-            <span class="ico"></span>
+            さらに表示<span class="ico"></span>
           </summary>
           <% for ( let i=0; i < review.length; i++ ) { %>
           <div class="inner">
@@ -189,8 +276,8 @@
               </li>
             </ul>
           </div>
+          <% } %>
         </details>
-        <% } %>
         <% } %>
       </div>
       <hr>
@@ -202,7 +289,7 @@
       </h3>
       <div class="product-row-wrapper">
         <div id="recommendarea" class="product-row-parent">
-          <% if (typeof recommend !='string' ) { %>
+          <% if (typeof recommend !="string" ) { %>
           <% recommend.forEach(function(rec) { %>
           <div class="product-row-child">
             <ul class="product-flex">
@@ -216,7 +303,7 @@
                   </span></i>
                 </div>
                 <a href="/product/<%= rec.id %>">
-                  <img class="recommend1" src="<%= rec.imagepath %>" alt="<%= rec.productname %>" onerror="this.onerror = null; this.src='';">
+                  <img class="recommend1" src="<%= rec.imagepath1 %>" alt="<%= rec.productname %>" onerror="this.onerror = null; this.src='';">
                 </a>
               </li>
               <li class="list-category">
@@ -283,14 +370,10 @@
         </table>
       </form>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
   </main>
-  
   <script src="/js/star.js"></script>
   <script src="/js/child.js"></script>
   <script>makeChartJs("<%= stars %>");</script>
-  <%- include('./partials/footer.ejs') %>
+  <%- include("./partials/footer.ejs") %>
 </body>
-
 </html>

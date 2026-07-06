@@ -6,15 +6,12 @@
 'use strict';
 
 $(function () {
-
-  // visible 
   // visible buttons
   const visiblebuttons = document.querySelectorAll('.visible');
   // visible click
   visiblebuttons.forEach((button) => {
     // visible click
     button.addEventListener('click', (e) => {
-      console.log('delete clicked');
       // avoid double click
       e.preventDefault();
       // this element

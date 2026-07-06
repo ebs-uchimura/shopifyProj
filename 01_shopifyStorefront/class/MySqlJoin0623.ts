@@ -1036,6 +1036,7 @@ class SQL {
               // do query
               await this.doInquiry(queryString, placeholder)
                 .then((result: any) => {
+                  console.log(result);
                   // result exists
                   if (result == 'error' || result == 'empty') {
                     SQL.logger.trace(`updateDB: ${result}`);

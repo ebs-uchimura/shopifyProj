@@ -1,5 +1,5 @@
 /*
-/* index.css
+/* mypage.css
 */
 
 @charset "utf-8";
@@ -195,7 +195,7 @@ main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-child .mypage-button-c
 /*-------------------------------
  ▼forTablet
  --------------------------------*/
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 480px) {
   main .main-mypage-wrapper .mypage-row-wrapper #detail button {
     width: 80%;
     margin: 2vw 0;
@@ -210,7 +210,7 @@ main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-child .mypage-button-c
 /*-------------------------------
  ▼forPC
  --------------------------------*/
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 961px) {
   main {
     max-width: 1200px;
   }
@@ -323,12 +323,12 @@ main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-child .mypage-button-c
   }
 
   main .main-mypage-wrapper .mypage-row-wrapper #detail button {
-    width: 200px;
+    width: 150px;
     height: 50px;
     margin: 5px 0;
     padding: 3px 0;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #fff;
     border: none;
   }

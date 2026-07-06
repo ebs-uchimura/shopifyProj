@@ -1,0 +1,110 @@
+/*
+/* registmanage.css
+*/
+
+@charset "utf-8";
+
+/* login */
+main {
+  max-width: 1240px;
+}
+
+/* login wrapper */
+main .main-regist-wrapper .regist-row-wrapper {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 0;
+}
+
+/* login wrapper */
+main .main-regist-wrapper .regist-row-wrapper .form-header {
+  margin: 10px auto;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1.2em;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent {
+  width: 1024px;
+  margin: 0 0 0 50px;
+  text-align: left;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-child-area .regist-row-children {
+  width: 100%;
+  margin: 15px 0;
+  padding: 5px 0;
+  text-align: left;
+  font-size: 1rem;
+  color: #373866;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-child-area .alert {
+  margin: 35px 0 0;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-child-area .regist-row-children div {
+  font-size: 0.9rem;
+  color: #373866;
+}
+
+/* product content */
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-child-area .regist-row-children input {
+  width: 50%;
+  height: 50px;
+  margin: 5px 0 0;
+  padding: 8px;
+  color: #000;
+  font-size: 1rem;
+  text-align: left;
+  border: 1px solid #373866;
+}
+
+/* product content */
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-child-area .regist-row-children input::placeholder {
+  font-size: 0.8rem;
+  color: #f0f0f1;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-child-area .regist-button-children {
+  text-align: left;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-check-area {
+  margin: 20px 0 0;
+  text-align: center;
+  border: none;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-check-area .regist-check-children {
+  margin: 0;
+  padding: 0 0 0 10px;
+  font-size: 2rem;
+  text-align: left;
+  border: none;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-check-area .regist-check-children label {
+  padding: 0;
+  line-height: .1rem;
+  font-size: 1rem;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-check-area .regist-button-children {
+  margin: 20px 0 0;
+  text-align: left;
+  border: none;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-check-area .regist-button-children button {
+  margin: 20px 0 0;
+  text-align: left;
+  border: none;
+}
+
+main .main-regist-wrapper .regist-row-wrapper .regist-row-parent .regist-row-check-area .regist-button-children a button {
+  margin: 0;
+}

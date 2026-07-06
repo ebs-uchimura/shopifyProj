@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/topimgmanage.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/js/topmanage.js"></script>
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>画像タイトル</th>
+          <th>アップロード</th>
+        </tr>
+      </thead>
+      
+      <form action="/topimage" id="topimgform" method="post" enctype="multipart/form-data">
+        <tbody>
+          <tr>
+            <td>画像1</td>
+            <td>
+              <input type="text" class="default" maxlength="255" name="imagename1" value="">
+            </td>
+            <td>
+              <input type="file" class="" name="file1">
+            </td>
+          </tr>
+          <tr>
+            <td>画像2</td>
+            <td>
+              <input type="text" class="default" maxlength="255" name="imagename2" value="">
+            </td>
+            <td>
+              <input type="file" class="" name="file2">
+            </td>
+          </tr>
+          <tr>
+            <td>画像3</td>
+            <td>
+              <input type="text" class="default" maxlength="255" name="imagename3" value="">
+            </td>
+            <td>
+              <input type="file" class="" name="file3">
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">
+              <button class="subbutton button-g button-6 button-wide" type="submit">登録</button>
+            </td>
+          </tr>
+        </tfoot>
+      </form>
+    </table>
+
+    <% if (history.length > 0) { %>
+    <table>
+      <thead>
+        <tr class="historyhead">
+          <th>表示</th>
+          <th>画像タイトル</th>
+          <th>画像</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <form action="/regimage" id="topimgselform" method="post">
+          <% for ( let i=0; i < history.length; i++ ) { %>
+          <tr>
+            <td>
+              <input type="checkbox" class="display" name="display[]" value="<%= history[i].id %>" <%=history[i].display==1
+                  ? 'checked' : '' %> >
+            </td>
+            <td><%= history[i].topimgname %></td>
+            <td class="imagecell">
+              <img src="/images/top/<%= history[i].topimgurl %>" onerror="this.style.display='none'">
+            </td>
+            <td colspan="4">
+              <button id="<%= history[i].id %>" class="delete subbutton button-g button-8 button-standard" type="button">削除</button>
+            </td>
+            <input type="hidden" id="id" name="id" value="<%= history[i].id %>">
+          </tr>
+          <% } %>
+          <tr>
+            <td colspan="4">
+              <button class="subbutton button-g button-6 button-wide" type="submit">登録</button>
+            </td>
+          </tr>
+        </form>
+          <tr>
+            <td colspan="4">
+              <a href="javascript:history.back();">戻る</a>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <% } %>
+  </main>
+   <%- include('./partials/manage_footer.ejs') %>
+</body>
+
+</html>

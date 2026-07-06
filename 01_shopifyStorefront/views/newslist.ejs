@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>Compassギフトサイトニュース一覧画面</title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="このたび、名入れギフトの専門店「Giftshop Compass（ギフトショップ コンパス）」は、公式オンラインストアをグランドオープンいたしました。“想いを形に”をコンセプトに、受け取った瞬間に心に残る、上質で洗練された贈り物をご提案いたします。">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="https://compass-linq.com">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Compassギフトサイト">
+  <meta property="og:description" content="このたび、名入れギフトの専門店「Giftshop Compass（ギフトショップ コンパス）」は、公式オンラインストアをグランドオープンいたしました。“想いを形に”をコンセプトに、受け取った瞬間に心に残る、上質で洗練された贈り物をご提案いたします。">
+  <meta property="og:site_name" content="LINQUEST">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://compass-linq.com/newslist">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/newslist.css">
+  <link rel="stylesheet" href="/css/button.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <main>
+    <%- include("./partials/header.ejs") %>
+    <div class="main-breadcrumb-wrapper">
+      <nav>
+        <ol class="breadcrumb">
+          <li><a href="/">TOP</a></li>
+          <li><a href="/newslist"></a>NEWS</li>
+        </ol>
+      </nav>
+    </div>
+    <ul class="news-flex">
+      <% if (news.length> 0) { %>
+      <% news.forEach(function(nw) { %>
+      <li class="list-image">
+        <img class="new1 lazyload" src="" alt="">
+      </li>
+      <li class="list-title">
+        <h4>
+          <%= nw.title %>
+        </h4>
+      </li>
+      <li class="list-content three-trimming">
+        <%= nw.context %>
+      </li>
+      <li class="list-date">
+        <%= nw.date %>
+      </li>
+    </ul>
+    <% }) %>
+    <% } %>
+  </main>
+  <%- include("../partials/footer.ejs") %>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/printingmanage.css">
+</head>
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <caption>ボトル名入れ</caption>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ユーザID</th>
+          <th>商品ID</th>
+          <th>バリアントID</th>
+          <th>名入れ</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+        <% if (bottle.length> 0) { %>
+        <tbody>
+          <% for ( let i=0; i < bottle.length; i++ ) { %>
+          <tr>
+            <td>
+              <%= bottle[i].id %>
+            </td>
+            <td>
+              <%= bottle[i].user_id ?? 'なし' %>
+            </td>
+            <td>
+              <%= bottle[i].product_id %>
+            </td>
+            <td>
+              <%= bottle[i].variant_id %>
+            </td>
+            <td>
+              <%= bottle[i].name %>
+            </td>
+            <td>
+              <%= bottle[i].updated_at %>
+            </td>
+          </tr>
+          <% } %>
+        <% } %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">
+              <a href="javascript:history.back();">戻る</a>
+            </td>
+          </tr>
+        </tfoot>
+    </table>
+    <table>
+      <caption>グラス名入れ</caption>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>ユーザID</th>
+          <th>商品ID</th>
+          <th>バリアントID</th>
+          <th>名入れ</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+        <% if (glass.length> 0) { %>
+        <tbody>
+          <% for ( let i=0; i < glass.length; i++ ) { %>
+          <tr>
+            <td>
+              <%= glass[i].id %>
+            </td>
+            <td>
+              <%= glass[i].user_id ?? 'なし' %>
+            </td>
+            <td>
+              <%= glass[i].product_id %>
+            </td>
+            <td>
+              <%= glass[i].variant_id %>
+            </td>
+            <td>
+              <%= glass[i].name %>
+            </td>
+            <td>
+              <%= glass[i].updated_at %>
+            </td>
+          </tr>
+          <% } %>
+        <% } %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">
+              <a href="javascript:history.back();">戻る</a>
+            </td>
+          </tr>
+        </tfoot>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

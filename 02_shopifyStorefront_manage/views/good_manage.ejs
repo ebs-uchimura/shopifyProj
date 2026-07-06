@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <%- include('./partials/manage_head.ejs') %>
+  <link rel="stylesheet" href="/css/goodmanage.css">
+</head>
+
+<body>
+  <%- include('./partials/manage_header.ejs') %>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>商品名</th>
+          <th>いいね数</th>
+        </tr>
+      </thead>
+      <% if (infos.length> 0) { %>
+        <tbody>
+          <% for ( let j=0; j < infos.length; j++ ) { %>
+            <tr>
+              <td>
+                <%= infos[j].id %>
+              </td>
+              <td>
+                <%= infos[j].name %>
+              </td>
+              <td>
+                <%= count[j] %>
+              </td>
+            </tr>
+            <% } %>
+              <% } %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">
+              <a href="javascript:history.back();">戻る</a>
+            </td>
+          </tr>
+        </tfoot>
+    </table>
+  </main>
+  <%- include('./partials/manage_footer.ejs') %>
+</body>
+</html>

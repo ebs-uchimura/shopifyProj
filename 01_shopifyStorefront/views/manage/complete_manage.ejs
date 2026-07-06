@@ -4,15 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="refresh" content="1;URL=<%= root %>/manage">
-  <title>完了ページ</title>
+  <meta http-equiv="refresh" content="1;URL=<%= root %>">
+  <title><%= title %></title>
 </head>
 
 <body>
-  <main>完了しました</main>
-  <footer>
-    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
-  </footer>
+  <main><%= message %></main>
+  <%- include('../partials/microfooter.ejs') %>
 </body>
-
 </html>

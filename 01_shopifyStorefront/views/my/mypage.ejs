@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/my/mypage.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
   <script>
     $(function () {
       getGlobalRoot("<%= root %>");
@@ -38,7 +37,7 @@
 
 <body>
   <main>
-    <%- include('../partials/miniheader.ejs') %>
+    <%- include("../partials/miniheader.ejs") %>
     <div class="main-breadcrumb-wrapper">
       <nav>
         <ol class="breadcrumb">
@@ -93,18 +92,17 @@
             </tbody>
           </table>
         </div>
-        <!--<div id="detail" class="mypage-row-child">
+        <div id="detail" class="mypage-row-child">
           <h3>アカウントの詳細</h3>
           <form method="post" action="/my/checkaddress">
             <button type="submit" class="btn-cart btn-blue">住所を確認する
             </button>
           </form>
-          <%= myAddress %>-->
+          <%= myAddress %>
         </div>
       </div>
     </div>
   </main>
-  <%- include('../partials/microfooter.ejs') %>
+  <%- include("../partials/microfooter.ejs") %>
 </body>
-
 </html>
