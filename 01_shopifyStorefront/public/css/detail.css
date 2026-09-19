@@ -1,0 +1,1208 @@
+/*
+/* index.css
+*/
+
+@charset "utf-8";
+
+/*------------------------------
+ ▼ forSP
+ -------------------------------*/
+/* general */
+h1 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+ol {
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* display */
+.display-none {
+  display: none !important;
+}
+
+.modaal-inner-wrapper {
+  padding: 0 !important;
+}
+
+.modaal-content-container {
+  padding: 3vw !important;
+}
+
+.modaal-wrapper table tr td {
+  font-size: 3vw;
+}
+
+.modaal-wrapper table input {
+  padding: 1vw;
+  border: 1px solid #373866;
+}
+
+.modaal-wrapper table textarea {
+  padding: 1vw;
+  border: 1px solid #373866;
+}
+
+main {
+  text-align: center;
+}
+
+main div.wrap {
+  margin: 3vw auto;
+}
+
+/* detail main */
+main .detail-main-wrapper {
+  width: 100vw;
+}
+
+/* main p */
+main .detail-main-wrapper>p {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 3.2vw;
+  color: #373866;
+  text-align: left;
+}
+
+/* detail area */
+main .detail-main-wrapper {
+  width: 90%;
+  text-align: center;
+}
+
+main .detail-main-wrapper .detail-main-img {
+  padding: 2vw;
+  border: 1px solid #e4e4e4;
+}
+
+main .detail-main-wrapper .detail-main-img .detailimg {
+  width: 100%;
+}
+
+/* detail product title */
+main .detail-main-wrapper .detail-flex {
+  margin: 5vw auto;
+}
+
+/* detail product title */
+main .detail-main-wrapper .detail-flex .detail-list-title {
+  width: 100%;
+  margin: 1vw 0;
+  padding: 0 0 0 4vw;
+  font-size: 4.5vw;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* detail product price */
+main .detail-main-wrapper .detail-flex .detail-list-review {
+  margin: 1vw 4vw;
+  text-align: left;
+}
+
+/* detail product price */
+main .detail-main-wrapper .detail-flex .detail-list-price {
+  margin: 2vw 0;
+  padding: 0 0 0 5vw;
+  font-size: 5vw;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .detail-flex .detail-list-content {
+  margin: 3vw auto;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .detail-flex .detail-list-content p {
+  margin: 2vw 0;
+  padding: 0 0 0 5vw;
+  text-align: left;
+  font-size: 3vw;
+}
+
+main .detail-main-wrapper .detail-flex .detail-number-area {
+  display: flex;
+  margin: 2vw 0 2vw 5vw;
+  padding: 1vw 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+main .detail-main-wrapper .detail-flex .detail-number-area .numarea {
+  width: 12vw;
+  height: 10vw;
+  margin: 0 1vw;
+  text-align: center;
+  border: 1px solid #373866;
+}
+
+main .detail-main-wrapper .detail-flex .detail-number-area .plusbutton {
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #373866;
+  color: #fff;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .detail-flex .detail-number-area .minusbutton {
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #696a7e;
+  color: #fff;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .detail-flex .detail-number-area .favbutton {
+  margin: 0 0 0 40%;
+  color: #e40014;
+  font-size: 2.5rem;
+}
+
+main .detail-main-wrapper .detail-flex .detail-number-area .favbutton span {
+  display: none;
+}
+
+main .detail-main-wrapper .detail-flex .detail-list-buttons {
+  margin: 0;
+  color: #eee;
+  font-size: 7vw;
+  cursor: pointer;
+}
+
+main .detail-main-wrapper .detail-flex .detail-list-buttons button {
+  width: 90%;
+  background-color: #e40014;
+  color: #fff;
+  padding: 3.5vw 0;
+  text-decoration: none;
+  font-size: 3.5vw;
+  border-radius: 2px;
+}
+
+main .detail-main-wrapper .detail-flex .detail-list-printing {
+  width: 90%;
+  margin: 0 auto;
+}
+
+main .detail-main-wrapper .detail-flex .detail-list-printing h4 {
+  margin: 1vw 0;
+  font-size: 3vw;
+  text-align: left;
+}
+
+main .detail-main-wrapper .detail-flex .detail-list-printing textarea {
+  width: 100%;
+  padding: 5px;
+  font-size: 2.8vw;
+  border: 1px solid #373866;
+}
+
+/* information */
+main .detail-main-wrapper .information-main-wrapper {
+  margin: 5vw auto;
+}
+
+main .detail-main-wrapper .information-main-wrapper>hr {
+  width: 90%;
+  height: 1px;
+  margin: 5vw auto 5vw;
+  background-color: #373866;
+}
+
+main .detail-main-wrapper .information-main-wrapper .information-area {
+  width: 90%;
+  margin: 0 auto;
+  color: #000;
+  font-size: 3.2vw;
+  text-align: left;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .information-main-wrapper .information-area .information-flex {
+  margin: 2vw auto;
+}
+
+/* detail product order button */
+main .detail-main-wrapper .information-main-wrapper .information-area .information-flex li {
+  margin: 2vw auto;
+  text-align: left;
+}
+
+main .detail-main-wrapper .information-main-wrapper .information-area .information-flex .info-details {
+  margin: 3vw 0 0 0;
+}
+
+/* review area */
+main .review-main-wrapper {
+  margin: 0 auto;
+}
+
+main .review-main-wrapper .review-list-title {
+  margin: 4vw auto;
+  color: #373866;
+  font-size: 4vw;
+  font-weight: 600;
+  text-align: center;
+}
+
+main .review-main-wrapper .review-main-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+main .review-main-wrapper .review-main-child .review-point {
+  width: 100%;
+}
+
+main .review-main-wrapper .review-main-child .review-point .review-point-flex {
+  margin: 5vw auto;
+  text-align: center;
+}
+
+main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head {
+  text-align: center;
+  font-size: 3vw;
+}
+
+main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head .head {
+  font-size: 2vw;
+}
+
+main .review-main-wrapper .review-main-child .review-stars .review-stars-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 2vw;
+  color: #e40014;
+}
+
+main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li div {
+  padding: 0 2vw;
+  color: #e40014;
+}
+
+main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li .number {
+  font-size: 3vw;
+  color: #373866;
+}
+
+main .review-main-wrapper .review-stars-button {
+  width: 100vw;
+  padding: 3.5vw 0 8vw;
+}
+
+main .review-main-wrapper .review-stars-button button {
+  width: 90%;
+  background-color: #e40014;
+  color: #fff;
+  padding: 3.5vw 0;
+  text-decoration: none;
+  font-size: 3.5vw;
+  border-radius: 2px;
+}
+
+main .review-main-wrapper .review-list-newest {
+  width: 90%;
+  margin: 2vw auto 10vw;
+  display: block;
+  text-align: left;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex {
+  padding: 3vw 0;
+  text-align: left;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-review {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vw 0;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-review .date {
+  color: #a9a9a9;
+  font-size: 3vw;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 2vw;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile .usericon {
+  width: 6vw;
+  color: #e40014;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile .username {
+  font-size: 3.5vw;
+  color: #e40014;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-title {
+  margin: 2vw 0;
+  color: #000;
+  font-size: 3.5vw;
+  font-weight: bold;
+  text-align: left;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-content {
+  color: #000;
+  font-size: 3vw;
+  margin: 0 0 2vw;
+}
+
+main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-date {
+  color: #888;
+  font-size: 2vw;
+}
+
+/*-------------------------------
+ ▼forTablet
+ --------------------------------*/
+@media screen and (min-width: 769px) {
+
+  /* general */
+  h2 {
+    font-size: 2rem;
+  }
+
+  ol {
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .detail-standard {
+    font-size: 6.2vw;
+    color: #373866;
+  }
+
+  main {
+    text-align: center;
+  }
+
+  main div.wrap {
+    width: 100%;
+    margin: 40px auto 10px;
+  }
+
+  main div.wrap h3 {
+    font-size: 1.5rem;
+    color: #373866;
+  }
+
+  /* detail main */
+  main .detail-main-wrapper {
+    width: 95%;
+    margin: 20px auto;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* main  */
+  main .detail-main-wrapper .detail-main-img {
+    width: 55%;
+    height: 50%;
+    margin: 20px 15px;
+    padding: 5px;
+    border: 1px solid #e4e4e4;
+  }
+
+  main .detail-main-wrapper .detail-main-img .detailimg {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  /* information */
+  main .detail-main-wrapper .information-main-wrapper {
+    width: 45%;
+    margin: 0 auto;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper>hr {
+    width: 100%;
+    height: 1px;
+    margin: 20px auto 20px;
+    background-color: #373866;
+  }
+
+  /* detail product title */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex {
+    margin: 0 auto;
+  }
+
+  /* detail product title */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title {
+    width: 95%;
+    margin: 5px 0;
+    padding: 0 0 0 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review {
+    margin: 5px 20px;
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review .ratebox {
+    font-size: 0.9rem;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price {
+    margin: 10px 0 5px;
+    padding: 0 0 0 20px;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-content {
+    margin: 0 auto 10px;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-content p {
+    margin: 0;
+    padding: 0 0 0 10px;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .numarea {
+    width: 70px;
+    height: 60px;
+    margin: 0;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .plusbutton {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #373866;
+    color: #fff;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .minusbutton {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #696a7e;
+    color: #fff;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton {
+    margin: 0 0 0 50px;
+    color: #e40014;
+    font-size: 2rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons {
+    margin: 0;
+    font-size: 3rem;
+    color: #eee;
+    cursor: pointer;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons button {
+    width: 100%;
+    background-color: #e40014;
+    color: #fff;
+    padding: 20px 0;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border-radius: 5px;
+  }
+
+  main .detail-main-wrapper .detail-flex .detail-list-printing {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h4 {
+    margin: 10px 0;
+    font-size: 1.1rem;
+  }
+
+  main .detail-main-wrapper .detail-flex .detail-list-printing textarea {
+    font-size: 0.9rem;
+    padding: 10px;
+    border: 1px solid #373866;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .information-area {
+    width: 100%;
+    margin: 0 auto;
+    color: #000;
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex {
+    margin: 10px auto;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex li {
+    margin: 10px auto;
+    text-align: left;
+    font-size: 1.2rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex .info-details {
+    margin: 30px 0 0 0;
+  }
+
+  /* review area */
+  main .review-main-wrapper {
+    margin: 30px auto;
+  }
+
+  main .review-main-wrapper>hr {
+    width: 90%;
+    height: 1px;
+    margin: 5vw auto;
+    background-color: #373866;
+  }
+
+  main .review-main-wrapper .review-list-title {
+    margin: 20px auto 0;
+    color: #373866;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  main .review-main-wrapper .review-main-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point {
+    width: 33%;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex {
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head .head {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head .ratebox {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 10px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li div {
+    padding: 0 10px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li #fuel {
+    width: 200px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li .number {
+    font-size: 1rem;
+    color: #373866;
+  }
+
+  main .review-main-wrapper .review-stars-button {
+    width: 33%;
+    margin: 10px auto 20px;
+    color: #373866;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  main .review-main-wrapper .review-stars-button button {
+    width: 300px;
+    background-color: #e40014;
+    color: #fff;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 2px;
+  }
+
+  main .review-main-wrapper .review-stars-button button .review-str {
+    padding: 0;
+  }
+
+  main .review-main-wrapper .review-list-newest {
+    width: 90%;
+    display: block;
+    margin: 10px auto 40px;
+    text-align: left;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex {
+    padding: 10px 0;
+    text-align: left;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-review {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-review .date {
+    color: #a9a9a9;
+    font-size: 1.2rem;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 10px;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile .usericon {
+    width: 40px;
+    padding: 0 0 0 5px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile .username {
+    color: #e40014;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-title {
+    margin: 5px 0;
+    color: #000;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-content {
+    margin: 0;
+    color: #000;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-date {
+    color: #888;
+    font-size: 0.8rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars {
+    width: 33%;
+  }
+
+  main .review-main-wrapper .review-main-child .review-button {
+    width: 33%;
+  }
+
+  main .review-main-wrapper hr {
+    width: 100%;
+    height: 1px;
+    margin: 10px auto;
+    background-color: #373866;
+  }
+
+  .modaal-container {
+    width: 500px !important;
+  }
+
+  ;
+
+  .modaal-container .table-body {
+    border: 1px solid #373866;
+  }
+
+  #revierFormbox table textarea {
+    border: 1px solid #373866;
+  }
+}
+
+
+/*-------------------------------
+ ▼forPC
+ --------------------------------*/
+@media screen and (min-width: 1200px) {
+
+  .detail-standard {
+    font-size: 6.2vw;
+    color: #373866;
+  }
+
+  main div.wrap {
+    margin: 20px auto;
+  }
+
+  main div.wrap h3 {
+    font-size: 1.5rem;
+    color: #373866;
+  }
+
+  /* detail main */
+  main .detail-main-wrapper {
+    width: 95%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* main  */
+  main .detail-main-wrapper .detail-main-img {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 50%;
+    margin: 0 15px;
+    padding: 5px;
+    border: 1px solid #e4e4e4;
+  }
+
+  main .detail-main-wrapper .detail-main-img .detailimg {
+    width: 100%;
+  }
+
+  /* information */
+  main .detail-main-wrapper .information-main-wrapper {
+    width: 40%;
+    margin: 10px auto;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper>hr {
+    width: 100%;
+    height: 1px;
+    margin: 20px auto 20px;
+    background-color: #373866;
+  }
+
+  /* detail product title */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex {
+    margin: 0 auto;
+  }
+
+  /* detail product title */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-title {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0 0 0 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review {
+    margin: 5px 20px;
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review .ratebox {
+    font-size: 1.2rem;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-review .ratebox .ratestr {
+    font-size: 1rem;
+  }
+
+  /* detail product price */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-price {
+    margin: 10px 0 5px;
+    padding: 0 0 0 20px;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-content {
+    margin: 0 auto 20px;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-content p {
+    margin: 0;
+    padding: 0 0 0 10px;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area {
+    display: flex;
+    margin: 20px 0 5px;
+    padding: 0;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .numarea {
+    width: 70px;
+    height: 50px;
+    margin: 0;
+    font-size: 1.4rem;
+    text-align: center;
+    border: 1px solid #373866;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .plusbutton {
+    width: 60px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #373866;
+    color: #fff;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .minusbutton {
+    width: 60px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #696a7e;
+    color: #fff;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton {
+    margin: 0 0 5px 40%;
+    color: #e40014;
+    font-size: 2rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-number-area .favbutton .favbutton i.fa-heart span {
+    display: none;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons {
+    margin: 0;
+    padding: 0;
+    font-size: 3rem;
+    color: #eee;
+    cursor: pointer;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-buttons button {
+    width: 100%;
+    background-color: #e40014;
+    color: #fff;
+    padding: 20px 0;
+    text-decoration: none;
+    font-size: 1.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  main .detail-main-wrapper .detail-flex .detail-list-printing {
+    margin: 0 0 10px;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .detail-flex .detail-list-printing h4 {
+    margin: 10px 0;
+    font-size: 1.1rem;
+  }
+
+  main .detail-main-wrapper .detail-flex .detail-list-printing textarea {
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #373866;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .information-area {
+    width: 100%;
+    margin: 0 auto;
+    color: #000;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex {
+    margin: 10px auto;
+  }
+
+  /* detail product order button */
+  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex li {
+    margin: 10px auto;
+    text-align: left;
+    font-size: 1.2rem;
+  }
+
+  main .detail-main-wrapper .information-main-wrapper .information-area .information-flex .info-details {
+    margin: 30px 0 0 0;
+  }
+
+  /* review area */
+  main .review-main-wrapper {
+    margin: 30px auto;
+  }
+
+  main .review-main-wrapper>hr {
+    width: 90%;
+    height: 1px;
+    margin: 5vw auto;
+    background-color: #373866;
+  }
+
+  main .review-main-wrapper .init {
+    margin: 60%;
+  }
+
+  main .review-main-wrapper .review-list-title {
+    margin: 40px auto 0;
+    color: #373866;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  main .review-main-wrapper .review-main-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point {
+    width: 33%;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex {
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head .ratebox {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-point .review-point-flex .review-list-head .head {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 10px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li div {
+    padding: 0 10px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li #fuel {
+    width: 200px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars .review-stars-flex li .number {
+    font-size: 1.2rem;
+    color: #373866;
+  }
+
+  main .review-main-wrapper .review-stars-button {
+    width: 33%;
+    margin: 10px auto 20px;
+    padding: 20px 50px;
+    color: #373866;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  main .review-main-wrapper .review-stars-button button {
+    width: 250px;
+    background-color: #e40014;
+    color: #fff;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  main .review-main-wrapper .review-list-newest {
+    width: 60%;
+    display: block;
+    margin: 10px auto 40px;
+    text-align: left;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex {
+    padding: 20px 0;
+    text-align: left;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-review {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-review .date {
+    color: #a9a9a9;
+    font-size: 1.2rem;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 15px 0;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile .usericon {
+    width: 40px;
+    padding: 0 0 0 5px;
+    color: #e40014;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-profile .username {
+    color: #e40014;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-title {
+    margin: 5px 0;
+    color: #000;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  main .review-main-wrapper .review-list-newest .inner .review-point-flex .list-content {
+    margin: 0;
+    color: #000;
+    font-size: 1rem;
+  }
+
+  main .review-main-wrapper .review-main-child .review-stars {
+    width: 28%;
+    margin: 30px 0 0;
+  }
+
+  main .review-main-wrapper .review-main-child .review-button {
+    width: 33%;
+  }
+
+  main .review-main-wrapper hr {
+    width: 100%;
+    height: 1px;
+    margin: 10px auto;
+    background-color: #373866;
+  }
+
+  .modaal-container {
+    width: 500px !important;
+  }
+
+  ;
+
+  .modaal-container .table-body {
+    border: 1px solid #373866;
+  }
+
+  #revierFormbox table textarea {
+    padding: 5px;
+    border: 1px solid #373866;
+  }
+}

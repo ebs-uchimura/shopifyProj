@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/newsregmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <table id="newsreg">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>入力</th>
+        </tr>
+      </thead>
+
+      <form action="/manage/registnews" id="regform" method="post">
+        <tbody>
+          <tr>
+            <td>
+              ID
+            </td>
+            <td>
+              自動発番
+            </td>
+          </tr>
+          <tr>
+            <td>
+              日付
+            </td>
+            <td>
+              <input type="text" class="standard" name="date" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              記事タイトル
+            </td>
+            <td>
+              <input type="text" class="standard" name="title" value="">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              記事内容
+            </td>
+            <td>
+              <textarea class="textarea" rows="5" cols="50" name="context" value=""></textarea>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <button class="subbutton button-g button-6 button-wide" type="submit">新規登録</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <a href="<%= root %>/manage/">前の画面へ戻る</a>
+            </td>
+          </tr>
+        </tfoot>
+      </form>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/reviewmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>☆数</th>
+          <th>内容</th>
+          <th>掲載</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/manage/review" id="regform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+              <tr>
+                <td>
+                  <%= data[i].id %>
+                </td>
+                <td>
+                  <%= data[i].product_id %>
+                </td>
+                <td>
+                  <%= data[i].productname %>
+                </td>
+                <td>
+                  <%= data[i].stars %>
+                </td>
+                <td>
+                  <%= data[i].content %>
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox" class="checkbox" name="check[]" value="<%= data[i].id %>"
+                    <%=data[i].display==1 ? 'checked' : '' %> >
+                </td>
+                <input type="hidden" id="id" name="id" value="<%= data[i].id %>" />
+              </tr>
+              <% } %>
+                <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <a href="<%= root %>/manage/">前の画面へ戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

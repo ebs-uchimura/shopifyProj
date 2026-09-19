@@ -1,0 +1,41 @@
+<header>
+  <div class="header-wrapper">
+    <div class="header-logo">
+      <a href="/">
+        <div class="gallery-cell">
+          <img class="forpc header-image" src="/images/logo/LOGO.png" alt="">
+          <img class="forsp header-image" src="/images/logo/LOGO.png"
+            srcset="/images/logo/LOGO.png 1x,/images/logo/LOGO@2x.png 2x,/images/logo/LOGO@3x.png 3x" alt="">
+        </div>
+      </a>
+    </div>
+    <div class="header-iconarea">
+      <div class="header-icon forpc">
+        <a href="#inline" class="inline"><img src="/images/icon/search.png"></a>
+      </div>
+      <div class="header-icon">
+        <% if (login) { %>
+        <a href="/my/mypage">
+          <i class="fa-solid fa-user"></i>
+        </a>
+        <% } else { %>
+          <a href="/auth/login?flg=0">
+            <i class="fa-solid fa-user"></i>
+          </a>
+        <% } %>
+      </div>
+      <div class="header-icon">
+        <a href="/my/cart">
+          <span class="fa-stack fa-lg">
+          <% if (cartno > 0) { %>
+            <i class="fa-solid fa-cart-arrow-down"></i>
+          <% } else { %>
+            <i class="fa-solid fa-cart-shopping"></i>
+          <% } %>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</header>

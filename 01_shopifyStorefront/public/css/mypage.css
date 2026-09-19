@@ -1,0 +1,281 @@
+/*
+/* index.css
+*/
+
+@charset "utf-8";
+
+/*------------------------------
+ ▼ forSP
+ -------------------------------*/
+/* display */
+.display-none {
+  display: none !important;
+}
+
+.btn-red {
+  background-color: #e40014;
+}
+
+.btn-blue {
+  background-color: #373866;
+}
+
+main {
+  max-width: 100vw;
+}
+
+/* headline */
+main .main-mypage-wrapper .headline-standard {
+  width: 90%;
+  margin: 1vw auto;
+  padding: 15px 30px;
+  font-size: 2.7rem;
+  color: #373866;
+  text-align: left;
+  border-top: solid 1px #373866;
+  border-bottom: solid 1px #373866;
+}
+
+/* mypage wrapper */
+main .main-mypage-wrapper .mypage-row-wrapper {
+  width: 90%;
+  margin: 10px auto;
+  padding: 0;
+}
+
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  flex-direction: column;
+}
+
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-children {
+  width: 100%;
+  margin: 5px 0;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #373866;
+}
+
+/* product content */
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-children input {
+  width: 100%;
+  padding: 8px;
+  color: #000;
+  font-size: 1rem;
+  text-align: left;
+  border: 1px solid #373866;
+}
+
+/* product content */
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-children input::placeholder {
+  font-size: 0.8rem;
+  color: #373866;
+}
+
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-button-children {
+  margin: 0 0 30px;
+  padding: 3px 0;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-button-children button {
+  width: 200px;
+  margin: 5px 0;
+  padding: 3px 0;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-button-children div {
+  font-size: 0.8rem;
+  color: #373866;
+}
+
+main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-button-children button input {
+  padding: 2px 0 5px;
+  color: #fff;
+  text-align: center;
+  border: none;
+}
+
+/*-------------------------------
+ ▼forPC
+ --------------------------------*/
+@media screen and (min-width: 769px) {
+
+  /* mypage */
+  main {
+    max-width: 1240px;
+  }
+
+  /* headline */
+  main .main-mypage-wrapper .headline-standard {
+    width: 90%;
+    margin: 10px auto 20px;
+    padding: 15px 30px;
+    font-size: 2.7rem;
+    color: #373866;
+    text-align: left;
+    border-top: solid 1px #373866;
+    border-bottom: solid 1px #373866;
+  }
+
+  /* mypage wrapper */
+  main .main-mypage-wrapper .mypage-row-wrapper {
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    padding: 0 0 0 60px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent div {
+    margin: 10px 0;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #373866;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-logout {
+    width: 800px;
+    text-align: left;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-logout button {
+    width: 200px;
+    padding: 5px 0;
+    text-align: center;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history {
+    width: 800px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history h3 {
+    font-size: 1.5rem;
+    padding: 5px 0 10px;
+    text-align: left;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table {
+    width: 800px;
+    border-collapse: collapse;
+    font-size: 1.1rem;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr {
+    width: 100%;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr th {
+    padding: 10px 0;
+    border: 1px solid #373866;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr th:first-child {
+    width: 120px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr th:nth-child(2) {
+    width: 180px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr th:nth-child(3) {
+    width: 100px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr th:nth-child(4) {
+    width: 100px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr th:nth-child(5) {
+    width: 100px;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history table tr td {
+    padding: 10px 0;
+    border: 1px solid #373866;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history div {
+    font-size: 0.9rem;
+    color: #373866;
+  }
+
+  /* product content */
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history input {
+    width: 100%;
+    padding: 8px;
+    color: #000;
+    font-size: 1rem;
+    text-align: left;
+    border: 3px solid #373866;
+  }
+
+  /* product content */
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-row-child-history input::placeholder {
+    font-size: 0.8rem;
+    color: #373866;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-button-children button {
+    width: 200px;
+    margin: 5px 0;
+    padding: 3px 0;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-left .mypage-button-child button input {
+    color: #fff;
+    text-align: center;
+    border: none;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-right {
+    width: 400px;
+    padding: 0;
+    text-align: left;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-right h3 {
+    font-size: 1.5rem;
+    padding: 5px 0 10px;
+    text-align: left;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-right button {
+    width: 200px;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+
+  main .main-mypage-wrapper .mypage-row-wrapper .mypage-row-parent .mypage-row-child-right button input {
+    margin: 5px 0;
+    padding: 3px 0;
+    color: #fff;
+    text-align: center;
+    border: none;
+  }
+}

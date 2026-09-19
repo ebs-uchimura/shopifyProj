@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <%- include('./partials/head'); %>
+    <script src="https://mao2009.github.io/zipToAddress/zipToAddress.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/validate.js"></script>
+</head>
+
+<body>
+  <%- include('./partials/edit_top'); %>
+    <form action="/user_update" id="update" method="post" enctype="application/x-www-form-urlencoded">
+      <input type="hidden" name="id" value="<%= data.id %>">
+      <input type='hidden' name='pref' value='<%= data.prefecture_id %>' />
+      <table class="registertbl">
+        <%- include('./partials/edit_form'); %>
+        <tr>
+          <td>店名</td>
+          <td>
+            <input type="text" class="standard" name="shopname" value="<%= data.shopname %>"
+              placeholder="店名を入力">
+          </td>
+        </tr>
+        <tr>
+          <td>ユーザ名</td>
+          <td>
+            <input type="text" class="standard" name="username" value="<%= data.username %>"
+              placeholder="ユーザ名を入力">
+          </td>
+        </tr>
+        <tr>
+          <td>都道府県</td>
+          <td>
+            <select id="prefecture" class="standard" name="prefecture">
+              <option value="">都道府県</option>
+              <% prefs.forEach(function(pref, i) { %>
+                <% if (i+1 == data.prefecture_id) { %>
+                  <option value="<%= i+1 %>" selected><%= pref %></option>
+                <% } else { %>
+                  <option value="<%= i+1 %>"><%= pref %></option>
+                <% } %>  
+              <% }) %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>市区町村</td>
+          <td>
+            <input type="text" id="city" class="standard" name="city" value="<%= data.city %>"
+            placeholder="市区町村を入力" autocomplete="off">
+          </td>
+        </tr>
+        <tr>
+          <td>番地以降</td>
+          <td>
+            <input type="text" id="address" class="standard wide" name="address" value="<%= data.address %>"
+            placeholder="番地以降を入力" autocomplete="off">
+          </td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td>
+            <input type="text" class="standard" name="telephone" value="<%= data.telephone %>"
+              placeholder="電話番号を入力">
+          </td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td>
+            <input type="text" class="standard wide" name="mailaddress" value="<%= data.mailaddress %>"
+              placeholder="メールアドレスを入力">
+          </td>
+        </tr>
+        <tr>
+          <td>購入</td>
+          <td>
+            <% if (data.perchase == 1) { %>
+              <input type="checkbox" id="perchase" class="perchase" name="perchase" checked>
+            <% } else if (data.perchase == 0) { %>
+              <input type="checkbox" id="perchase" class="perchase" name="perchase">
+            <% } %>
+            <label for="perchase">購入あり</label>
+          </td>
+        </tr>
+        <tr>
+          <td>有効</td>
+          <td>
+            <% if (data.active == 1) { %>
+              <input type="checkbox" id="active" class="active" name="active" checked>
+            <% } else if (data.active == 0) { %>
+              <input type="checkbox" id="active" class="active" name="active">
+            <% } %>
+              <label for="active">有効</label>
+            </td>
+        </tr>
+      </table>
+      <%- include('./partials/edit_submit'); %>
+    </form>
+    <button type="button" class="button-g button-6 back_btn" onclick="history.back()">
+      戻る
+    </button>
+    <script>
+       function pref_selector(data) {
+        const zip = document.querySelector("[name=zip1]").value + "-" +document.querySelector("[name=zip2]").value;
+        const massage = document.querySelector("#address");
+        const prefecture = data.results[0].address1;
+        const city = data.results[0].address2;
+        const street = data.results[0].address3;
+
+        massage.value = zip + "\n" + prefecture + city + street;
+
+        // close box
+        $('.popup-box').fadeOut();
+    }
+    </script>
+    <%- include('./partials/footer'); %>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/newsmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <table class="btntbl">
+    <caption>ニュース編集</caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>掲載</th>
+        <th>日付</th>
+        <th>記事タイトル</th>
+        <th>記事内容</th>
+        <th>画像URL</th>
+      </tr>
+    </thead>
+    <% if (data.length > 0) { %>
+    <form action="/manage/editnews" id="regform" method="post">
+      <tbody>
+        <% for ( let i=0; i < data.length; i++ ) { %>
+        <tr>
+          <td>
+            <%= data[i].id %>
+          </td>
+          <td>
+            <input type="checkbox" id="checkbox" class="checkbox" name="check[]" value="1" <%= data[i].display == 1 ? 'checked' : '' %> >
+          </td>
+          <td>
+            <input type="text" class="standard" name="date[]" value="<%= data[i].date %>">
+          </td>
+          <td>
+            <input type="text" class="standard" name="title[]" value="<%= data[i].title %>">
+          </td>
+          <td>
+            <textarea class="textarea" rows="5" cols="50" name="context[]" value=""><%= data[i].context %></textarea>
+          </td>
+          <td>
+            <input type="text" class="standard" name="image[]" value="<%= data[i].imageurl %>">
+          </td>
+          <input type="hidden" id="id" name="id[]" value="<%= data[i].id %>" />
+        </tr>
+      <% } %>
+      <% } %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6">
+            <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <a href="<%= root %>/manage/">前の画面へ戻る</a>
+          </td>
+        </tr>
+      </tfoot>
+    </form>
+  </table>
+
+  <table class="btntbl">
+    <caption>ニュース新規登録</caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>日付</th>
+        <th>記事タイトル</th>
+        <th>記事内容</th>
+        <th>画像URL</th>
+      </tr>
+    </thead>
+
+    <form action="/manage/registnews" id="regform" method="post">
+      <tbody>
+        <tr>
+          <td>
+            自動発番
+          </td>
+          <td>
+            <input type="text" class="standard" name="date" value="">
+          </td>
+          <td>
+            <input type="text" class="standard" name="title" value="">
+          </td>
+          <td>
+            <textarea class="textarea" rows="5" cols="50" name="context" value=""></textarea>
+          </td>
+          <td>
+            <input type="text" class="standard" name="image" value="">
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5">
+            <button class="subbutton button-g button-6 button-wide" type="submit">新規登録</button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a href="<%= root %>/manage/">前の画面へ戻る</a>
+          </td>
+        </tr>
+      </tfoot>
+    </form>
+  </table>
+  <p class="copyright">Copyright 2025 Compass, Inc.</p>
+</body>
+
+</html>

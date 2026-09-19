@@ -1,0 +1,33 @@
+/*
+/* goodmanage.css
+*/
+
+@charset "utf-8";
+
+/* tag */
+header {
+  width: 520px;
+  margin: 0 auto 30px;
+}
+
+table {
+  width: 520px;
+}
+
+table thead th:first-child {
+  width: 30px;
+}
+
+table thead th:nth-child(2) {
+  width: 450px;
+}
+
+table thead th:nth-child(3) {
+  width: 40px;
+}
+
+.copyright {
+  width: 520px;
+  margin: 20px auto 30px;
+  font-size: 0.8rem;
+}

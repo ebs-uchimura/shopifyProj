@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>Compassログイン</title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/icon/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/auth/login.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script src='/js/common/crypto.js'></script>
+  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+</head>
+
+<body>
+  <main>
+    <%- include('../partials/microheader.ejs') %>
+      <div class="wrap main-login-wrapper">
+        <h3 class="headline-standard libre-baskerville">
+          Log in
+          <span class="headline-small noto-sans">ログイン</span>
+        </h3>
+        <div class="login-row-wrapper">
+          <ul class="login-row-parent">
+            <% if (flg) { %>
+              <form action="/auth/cartlogin/" id="authform" class="left" method="post">
+            <% } else  { %>  
+              <form action="/auth/login/" id="authform" class="left" method="post">
+            <% } %>
+              <li class="login-row-children">
+                <label for="usermail">メール</label>
+                <input type="text" id="usermail" class="standard" name="usermail" value="" placeholder="メール">
+              </li>
+              <li class="login-row-children">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" class="standard" name="pass" value="" placeholder="パスワード">
+              </li>
+              <li class="login-button-children">
+                <input type='hidden' id='hashedpassword' name='password' value=''>
+                <button class="button-g button-7 button-wide" type="submit" value="">
+                  ログイン
+                </button>
+              </li>
+            </form>
+            <li class="login-button-children">
+              <div class="annotation">会員登録がまだの方は、こちらから登録できます。 </div>
+              <a href="/auth/memberreg"><button class="button-g button-9 button-wide">新規会員登録</button></a>
+            </li>
+            <li class="login-button-children">
+              <a href="/">
+                <button type="button" class="button-g button-10 button-wide">戻る</button>
+              </a>
+            </li>
+            <li class="account-button-children">
+              <p class="red">
+                <%= message %>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  </main>
+  <%- include('../partials/microfooter.ejs') %>
+    <script src='/js/common/loginvalidation.js'></script>
+</body>
+
+</html>

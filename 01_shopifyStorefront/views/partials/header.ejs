@@ -1,0 +1,83 @@
+<header>
+  <div class="header-wrapper">
+    <div class="head-btn-dropdown">
+      <nav class="menu forsp">
+        <ul>
+          <% if (allcategories.length > 0) { %>
+          <% allcategories.forEach(function(cat) { %>
+          <li>
+            <a href="/category/<%= cat.id %>">
+              <%= cat.categoryname %>
+            </a>
+          </li>
+          <% }) %>
+          <% } %>
+        </ul>
+      </nav>
+      <button class="hamburger forsp">
+        <div class="openbtn4"><span></span><span></span><span></span></div>
+      </button>
+    </div>
+    <div class="header-logo">
+      <a href="/">
+        <div class="gallery-cell">
+          <img class="forpc header-image" src="/images/logo/LOGO.png" alt="">
+          <img class="forsp header-image" src="/images/logo/LOGO.png"
+            srcset="/images/logo/LOGO.png 1x,/images/logo/LOGO@2x.png 2x,/images/logo/LOGO@3x.png 3x" alt="">
+        </div>
+      </a>
+    </div>
+    <div class="header-iconarea">
+      <div class="header-icon forpc">
+        <a href="#inline" class="searchbutton"><img src="/images/icon/search.png"></a>
+      </div>
+      <div class="header-icon">
+        <% if (login) { %>
+        <a href="/my/mypage">
+          <i class="fa-solid fa-user"></i>
+        </a>
+        <% } else { %>
+        <a href="/auth/login?flg=0">
+          <i class="fa-solid fa-user"></i>
+        </a>
+        <% } %>
+      </div>
+       <div class="header-icon">
+        <a href="/my/cart">
+          <span class="fa-stack fa-lg">
+          <% if (cartno > 0) { %>
+            <i class="fa-solid fa-cart-arrow-down"></i>
+          <% } else { %>
+            <i class="fa-solid fa-cart-shopping"></i>
+          <% } %>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+   <div id="search-box" class="search-box forsp">
+    <form action="/search" id="search-form" method="post">
+      <input type="text" id="search-input" name="search" placeholder="検索" class="textbox">
+    </form>    
+  </div>
+  <nav class="navigation forpc">
+    <ul>
+      <% if (allcategories.length > 0) { %>
+      <% allcategories.forEach(function(ct) { %>
+      <li>
+        <a href="/category/<%= ct.id %>">
+          <%= ct.categoryname %>
+        </a>
+      </li>
+      <% }) %>
+      <% } %>
+    </ul>
+  </nav>
+  
+  <div id="inline" class="forpc" style="display:none;">
+    <form action="/search" id="searchform" method="post">
+      <input type="text" id="search" class="standard" name="search" value="" placeholder="検索するワードを入れてください。">
+      <button class="button-g button-standard" type="submit">検索</button>
+    </form>
+  </div>
+</header>

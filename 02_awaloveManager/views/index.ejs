@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+
+  <body>
+    <header>
+      <h2><%= title %>画面</h2>
+    </header>
+
+    <table class="btntbl">
+      <tr>
+        <td>
+          <button
+            class="button-g button-standard button-6"
+            role="button"
+            onclick="location.href='<%= root %>/order?item=id&sort=desc'"
+          >
+            注文管理
+          </button>
+        </td>
+        <td>
+          <button
+            class="button-g button-standard button-6"
+            role="button"
+            onclick="location.href='<%= root %>/user?item=id&sort=desc'"
+          >
+            ユーザ管理
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="button-g button-standard button-4"
+            role="button"
+            onclick="location.href='<%= root %>/template?item=id&sort=desc'"
+          >
+            テンプレートマスタ
+          </button>
+        </td>
+        <td>
+          <button
+            class="button-g button-standard button-4"
+            role="button"
+            onclick="location.href='<%= root %>/product?item=id&sort=desc'"
+          >
+            商品マスタ
+          </button>
+        </td>
+        <td>
+          <button
+            class="button-g button-standard button-4"
+            role="button"
+            onclick="location.href='<%= root %>/type?item=id&sort=desc'"
+          >
+            種別マスタ
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="button-g button-standard button-4"
+            role="button"
+            onclick="location.href='<%= root %>/contact?item=id&sort=desc'"
+          >
+            問い合わせマスタ
+          </button>
+        </td>
+        <td>
+          <button
+            class="button-g button-standard button-4"
+            role="button"
+            onclick="location.href='<%= root %>/genre?item=id&sort=desc'"
+          >
+            ラベルジャンルマスタ
+          </button>
+        </td>
+        <td>
+          <button
+            class="button-g button-standard button-8"
+            role="button"
+            onclick="logout()"
+          >
+            ログアウト
+          </button>
+        </td>
+      </tr>
+    </table>
+    <script>
+      function logout () {
+        $.get('https://logout@manage.suijinclub.com/').always(function() {
+          location.href = 'https://manage.suijinclub.com/';
+        });
+      }
+      </script>
+    <%- include('./partials/footer'); %>
+  </body>
+</html>

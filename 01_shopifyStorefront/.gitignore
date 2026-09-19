@@ -1,0 +1,6 @@
+package-lock.json
+node_modules/
+dist/
+.vscode
+public/images/
+public/text/

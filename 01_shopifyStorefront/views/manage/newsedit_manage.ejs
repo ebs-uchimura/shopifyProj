@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/newseditmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <table id="newsedit">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>掲載</th>
+          <th>日付</th>
+          <th>記事タイトル</th>
+          <th>記事内容</th>
+          <th>画像URL</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <% if (data.length> 0) { %>
+        <form action="/manage/editnews" id="regform" method="post">
+          <tbody>
+            <% for ( let i=0; i < data.length; i++ ) { %>
+              <tr>
+                <td>
+                  <%= data[i].id %>
+                </td>
+                <td>
+                  <input type="checkbox" id="checkbox" class="checkbox" name="check[]" value="1" <%=data[i].display==1
+                    ? 'checked' : '' %> >
+                </td>
+                <td>
+                  <input type="text" class="standard" name="date[]" value="<%= data[i].date %>">
+                </td>
+                <td>
+                  <input type="text" class="standard" name="title[]" value="<%= data[i].title %>">
+                </td>
+                <td>
+                  <textarea class="textarea" rows="5" cols="50" name="context[]" value="">
+                  <%= data[i].context %>
+                </textarea>
+                </td>
+                <td>
+                  <input type="text" class="standard" name="image[]" value="<%= data[i].imageurl %>">
+                </td>
+                <td>
+                  <input type="checkbox" class="delete" name="delete[]" value="<%= data[i].id %>">
+                </td>
+                <input type="hidden" id="id" name="id[]" value="<%= data[i].id %>" />
+              </tr>
+              <% } %>
+                <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">
+                <button class="subbutton button-g button-6 button-wide" type="submit">編集</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <a href="<%= root %>/manage/">前の画面へ戻る</a>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+    </table>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

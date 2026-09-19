@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>Compassマイページ会員登録</title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/my/mypage.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script>
+    $(function () {
+      getGlobalRoot("<%= root %>");
+    });
+  </script>
+  <script src="/js/mypage.js"></script>
+</head>
+
+<body>
+  <main>
+    <%- include('../partials/miniheader.ejs') %>
+    <div class="main-breadcrumb-wrapper">
+      <nav>
+        <ol class="breadcrumb">
+          <li><a href="/">TOP</a></li>
+          <li><a href="/my/mypage/">マイページ</a></li>
+        </ol>
+      </nav>
+    </div>
+    <div class="wrap main-mypage-wrapper">
+      <h3 class="headline-standard libre-baskerville">
+        My page
+        <span class="headline-small noto-sans">マイページ</span>
+      </h3>
+      <div class="mypage-button-wrapper">
+        <form method="post" action="/my/logout">
+           <button id="logout" class="btn-cart btn-blue">ログアウト</button>
+        </form>
+      </div>
+      <div class="mypage-row-wrapper">
+        <div id="history" class="mypage-row-child">
+          <h3>注文履歴</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>注文</th>
+                <th>日付</th>
+                <th>お支払状況</th>
+                <th>配送状況</th>
+                <th>合計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% myorders.forEach(function(order) { %>
+              <tr>
+                <td>
+                  <%= order.id %>
+                </td>
+                <td>
+                  <%= order.processedAt %>
+                </td>
+                <td>
+                  <%= order.financialStatus %>
+                </td>
+                <td>
+                  <%= order.fulfillmentStatus %>
+                </td>
+                <td>
+                  <%= order.totalPrice %>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <!--<div id="detail" class="mypage-row-child">
+          <h3>アカウントの詳細</h3>
+          <form method="post" action="/my/checkaddress">
+            <button type="submit" class="btn-cart btn-blue">住所を確認する
+            </button>
+          </form>
+          <%= myAddress %>-->
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('../partials/microfooter.ejs') %>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+/*
+/* categorymanage.css
+*/
+
+@charset "utf-8";
+
+/* tag */
+header {
+  max-width: 1050px;
+  margin: 0 auto 30px;
+}
+
+table {
+  max-width: 1050px;
+}
+
+table thead tr th:first-child {
+  width: 30px;
+}
+
+table thead tr th:nth-child(2) {
+  width: 30px;
+}
+
+table thead tr th:nth-child(3) {
+  width: 80px;
+}
+
+table thead tr th:nth-child(4) {
+  width: 80px;
+}
+
+table thead tr th:nth-child(5) {
+  width: 130px;
+}
+
+table thead tr th:nth-child(6) {
+  width: 400px;
+}
+
+table thead tr th:nth-child(7) {
+  width: 40px;
+}
+
+.copyright {
+  width: 1050px;
+  margin: 20px auto 30px;
+  font-size: 0.8rem;
+}

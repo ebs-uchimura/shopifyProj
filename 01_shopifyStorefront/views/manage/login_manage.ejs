@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <title>
+    <%= title %>管理者ログイン
+  </title>
+  <link rel="stylesheet" href="/css/manage/manage.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <div class="wrap main-login-wrapper">
+      <h3 class="headline-standard libre-baskerville">
+        Log in
+        <span class="headline-small noto-sans">ログイン</span>
+      </h3>
+      <div class="login-row-wrapper">
+        <ul class="login-row-parent">
+          <form action="/manage/login/" id="authform" class="left" method="post">
+            <li class="login-row-children">
+              <label for="usermail">メール</label>
+              <input type="text" id="usermail" class="standard" name="adminmail" value="" placeholder="メール">
+            </li>
+            <li class="login-row-children">
+              <label for="password">パスワード</label>
+              <input type="password" id="password" class="standard" name="pass" value="" placeholder="パスワード">
+            </li>
+            <li class="login-button-children">
+              <input type='hidden' id='hashedpassword' name='password' value=''>
+              <button class="button-g button-7 button-wide" type="submit" value="">
+                ログイン
+              </button>
+            </li>
+          </form>
+          <li class="account-button-children">
+            <p class="red">
+              <%= message %>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

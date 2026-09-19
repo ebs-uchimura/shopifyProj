@@ -1,0 +1,42 @@
+/*
+/* indexmanage.css
+*/
+
+@charset "utf-8";
+
+/* tag */
+header {
+  width: 500px;
+  margin: 0 auto 30px;
+}
+
+table {
+  width: 500px;
+  border: none;
+}
+
+table tr {
+  border: none !important;
+}
+
+table tr td {
+  border: none !important;
+}
+
+table thead tr th:first-child {
+  width: 30px;
+}
+
+table thead tr th:nth-child(2) {
+  width: 30px;
+}
+
+table thead tr th:nth-child(3) {
+  width: 40px;
+}
+
+.copyright {
+  width: 500px;
+  margin: 20px auto 30px;
+  font-size: 0.8rem;
+}

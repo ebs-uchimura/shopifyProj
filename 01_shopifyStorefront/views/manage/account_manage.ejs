@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= title %>管理画面
+  </title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/manage/manage.css">
+  <link rel="stylesheet" href="/css/manage/reviewmanage.css">
+  <link rel="stylesheet" href="/css/button.css">
+</head>
+
+<body>
+  <header>
+    <h2>
+      <%= title %>管理画面
+    </h2>
+    <a href="<%= root %>/manage/">前の画面へ戻る</a>
+  </header>
+  <main>
+    <div class="account-row-wrapper">
+      <div class="account-row-parent">
+        <form action="/auth/memberreg/" id="accountform" method="post">
+          <ul class="account-row-input-area">
+            <li class="alert red">※&ensp;必須項目</li>
+            <li class="inputarea account-row-children">
+              <label for="usermail">&ensp;メールアドレス<span class="red">※</span></label><br>
+              <input type="text" id="usermail" class="standard" name="usermail" value="" placeholder="xxx@gmail.com">
+            </li>
+            <li class="inputarea account-row-children">
+              <label for="re-usermail">&ensp;メールアドレス確認<span class="red">※</span></label><br>
+              <input type="text" id="re-usermail" class="standard" name="re-usermail" value=""
+                placeholder="xxx@gmail.com">
+            </li>
+          </ul>
+          <ul class="account-row-check-area">
+            <li class="account-button-children">
+              <p class="red">
+                <%= message %>
+              </p>
+            </li>
+            <li class="account-button-children">
+              <button class="button-g button-7 button-wide" type="submit" value="">会員登録する</button>
+            </li>
+            <li class="account-button-children">
+              <a href="/manage/login">
+                <button type="button" class="button-g button-10 button-wide">戻る</button>
+              </a>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+  </footer>
+</body>
+
+</html>

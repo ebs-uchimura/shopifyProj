@@ -1,0 +1,207 @@
+/*
+/* account.css
+*/
+
+@charset "utf-8";
+
+/*------------------------------
+ ▼ forSP
+ -------------------------------*/
+/* main */
+main {
+  max-width: 100vw;
+}
+
+/* login */
+main .main-account-wrapper {
+  max-width: 100vw;
+}
+
+/* headline */
+/* account wrapper */
+main .main-account-wrapper .account-row-wrapper {
+  width: 90%;
+  margin: 1vw auto;
+  padding: 0;
+}
+
+/* account header */
+main .main-account-wrapper .account-row-wrapper .form-header {
+  width: 90%;
+  margin: 5vw auto;
+  padding: 0;
+  font-size: 2.5vw;
+  text-align: left;
+}
+
+/* account rows */
+main .main-account-wrapper .account-row-wrapper .account-row-parent {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2.5vw;
+}
+
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children {
+  width: 100%;
+  margin: 1vw 0;
+  padding: 1vw 0;
+  text-align: left;
+  color: #373866;
+}
+
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children input {
+  width: 100%;
+  height: 9vw;
+  padding: 1vw;
+  color: #000;
+  font-size: 3vw;
+  text-align: left;
+  border: 1px solid #373866;
+}
+
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children input::placeholder {
+  font-size: 2.5vw;
+  color: #f0f0f1;
+}
+
+/* account check */
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area {
+  margin: 5vw 0 0;
+  text-align: center;
+  border: none;
+}
+
+
+
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-check-children {
+  margin: 2vw 0;
+  padding: 0 0 0 3vw;
+  font-size: 2.5vw;
+  text-align: left;
+  border: none;
+}
+
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-check-children label {
+  padding: 0 0 0 1vw;
+  line-height: 1.8em;
+}
+
+main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-button-children button {
+ margin: 5vw 0 0;
+  padding: 2vw 4vw;
+  color: #fff;
+  text-align: center;
+  border: none;
+}
+
+/*-------------------------------
+ ▼forPC
+ --------------------------------*/
+@media screen and (min-width: 769px) {
+
+  /* login */
+  main {
+    max-width: 1240px;
+  }
+
+  /* login wrapper */
+  main .main-account-wrapper .account-row-wrapper {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 0;
+  }
+
+  /* login wrapper */
+  main .main-account-wrapper .account-row-wrapper .form-header {
+    margin: 10px auto;
+    padding: 0;
+    font-size: 1.1rem;
+    line-height: 1.2em;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent {
+    width: 1024px;
+    margin: 0 0 0 50px;
+    text-align: left;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children {
+    width: 100%;
+    margin: 15px 0;
+    padding: 5px 0;
+    text-align: left;
+    font-size: 1rem;
+    color: #373866;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .alert {
+    margin: 35px 0 0;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children div {
+    font-size: 0.9rem;
+    color: #373866;
+  }
+
+  /* product content */
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children input {
+    width: 50%;
+    height: 50px;
+    margin: 5px 0 0;
+    padding: 8px;
+    color: #000;
+    font-size: 1rem;
+    text-align: left;
+    border: 1px solid #373866;
+  }
+
+  /* product content */
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-row-children input::placeholder {
+    font-size: 0.8rem;
+    color: #f0f0f1;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-child-area .account-button-children {
+    text-align: left;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area {
+    margin: 20px 0 0;
+    text-align: center;
+    border: none;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-check-children {
+    margin: 0;
+    padding: 0 0 0 10px;
+    font-size: 2rem;
+    text-align: left;
+    border: none;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-check-children label {
+    padding: 0;
+    line-height: .1rem;
+    font-size: 1rem;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-button-children {
+    margin: 20px 0 0;
+    text-align: left;
+    border: none;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-button-children button {
+    margin: 20px 0 0;
+    text-align: left;
+    border: none;
+  }
+
+  main .main-account-wrapper .account-row-wrapper .account-row-parent .account-row-check-area .account-button-children a button {
+    margin: 0;
+  }
+}

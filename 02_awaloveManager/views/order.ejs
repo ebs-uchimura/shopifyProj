@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/head'); %>
+    <script src="/js/validate.js"></script>
+    <script>
+      $(function () {
+        // select radio
+        $('input[value="<%= mode %>"]').prop("checked", true);
+        // on tr clicked
+        $("tr")
+          .has("td")
+          .click(function (event) {
+            // page transition
+            window.location.href = `/order_edit/${
+              $(this).children("td")[0].innerText
+            }`;
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h2><%= title %>画面</h2>
+      <button
+        type="button"
+        class="button-g button-6"
+        onclick="location.href='/order_new'"
+      >
+        注文登録
+      </button>
+      <button
+        type="button"
+        class="button-g button-6 gototop"
+        onclick="location.href='/'"
+      >
+        トップへ</button
+      >
+      <button
+        type="button"
+        class="button-g button-8 reset_btn"
+        onclick="location.href='<%= root %>/order?item=id&sort=desc'"
+      >
+        リセット</button
+      ><br /><br />
+      <form action="/order" id="order_form" method="get">
+        <input type="text" id="searchwd" class="standard" name="searchwd" />
+        <button type="button" class="button-g button-6 order_btn">
+          注文検索
+        </button>
+        <input
+          type="radio"
+          id="radio01-1"
+          class="radio01"
+          name="radio01"
+          value="1"
+          checked
+        />
+        <label for="radio01-1">電話番号</label>
+        <input
+          type="radio"
+          id="radio01-2"
+          class="radio01"
+          name="radio01"
+          value="2"
+        />
+        <label for="radio01-2">ユーザ名</label>
+        <button type="button" class="button-g button-6 clear_btn">
+          クリア
+        </button>
+      </form>
+
+      <span id="search_result">ヒット件数：&ensp;<%= data.length %>件 </span>
+    </header>
+
+    <table class="maintbl">
+      <tr>
+        <th class="narrow">
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/order?item=id&sort=desc'"
+          ></i>
+          注文ID
+          <i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/order?item=id&sort=asc'"
+          ></i>
+        </th>
+        <th class="narrow">
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/order?item=manage_no&sort=desc'"
+          ></i>
+          販売管理ID
+          <i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/order?item=manage_no&sort=asc'"
+          ></i>
+        </th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/order?item=shopname&sort=desc'"
+          ></i>
+          店名
+          <i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/order?item=shopname&sort=asc'"
+          ></i>
+        </th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/order?item=usename&sort=desc'"
+          ></i>
+          ユーザ名
+          <i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/order?item=username&sort=asc'"
+          ></i>
+        </th>
+        <th class="wide">
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/order?item=address&sort=desc'"
+          ></i>
+          住所
+          <i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/order?item=address&sort=asc'"
+          ></i>
+        </th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+        <th>ラベルID</th>
+        <th>商品ID</th>
+        <th>数量</th>
+        <th>総額(税込,円)</th>
+        <th>決済ID</th>
+        <th>連絡ID</th>
+        <th>更新日時</th>
+      </tr>
+      <% for ( let i=0; i < data.length; i++ ) { %>
+      <% if ( data[i].shipped == '1' ) { %>
+      <tr class="grayrow">
+      <% } else if ( data[i].paid == '1' ) { %>
+      <tr class="yellowrow">
+      <% } else { %>
+      <tr>
+      <% } %>
+        <td><%= data[i].id %></td>
+        <td><%= data[i].manage_no %></td>
+        <td><%= data[i].shopname %></td>
+        <td><%= data[i].username %></td>
+        <td><%= address[i] %></td>
+        <td><%= data[i].telephone %></td>
+        <td><%= data[i].mailaddress %></td>
+        <td><%= data[i].template_id %></td>
+        <td><%= data[i].product_id %></td>
+        <td><%= data[i].quantity %></td>
+        <td><%= data[i].totalprice.toLocaleString() %></td>
+        <td>
+          <% if (data[i].payment_id == '1') { %>
+            代引
+          <% } else if(data[i].payment_id == '2') { %>
+            カード
+          <% } else { %>
+            その他
+          <% } %>
+        </td>
+        <td><%= data[i].contact_id %></td>
+        <td><%= time[i] %></td>
+      </tr>
+      <% } %>
+    </table>
+    <%- include('./partials/footer'); %>
+  </body>
+</html>

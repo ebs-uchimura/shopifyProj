@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+  <meta charset="UTF-8">
+  <title>
+    <% if (search) { %>
+      Compassギフトサイトカテゴリ
+    <% } else { %>
+      Compassギフトサイト検索結果
+    <% } %>
+  </title>
+  <meta content="compass" name="description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="ギフト,酒,タンブラー,ワイン,グラス">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" href="/images/android-touch-icon.png" sizes="192x192">
+  <link rel="stylesheet" href="https://unpkg.com/ress@4.0.0/dist/ress.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/category.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script><script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script><script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('214f4f86694ea61cd6760b4a00f9372d', {"autocapture":{"elementInteractions":true}});</script>
+  <script>
+    $(function () {
+      $("img.lazyload").lazyload();
+      getGlobalRoot("<%= root %>");
+      $(".searchbutton").modaal({
+        content_source: '#inline'
+      });
+    });
+  </script>
+  <script src="/js/index.js"></script>
+</head>
+
+<body>
+  <main>
+    <%- include('./partials/header.ejs') %>
+    <div class="main-breadcrumb-wrapper">
+      <nav>
+        <ol class="breadcrumb">
+          <li><a href="/">TOP</a></li>
+          <li><a href="/category/<%= myproducts[0].category_id %>"><%= myproducts[0].categoryname %></a></li>
+        </ol>
+      </nav>
+    </div>
+    <div class="wrap category-main-wrapper">
+      <h3 id="categoryname-en" class="category-standard libre-baskerville">
+        <% if (search) { %>
+          RESULT
+          <span class="headline-small">検索結果</span>
+        <% } else { %>
+          <%= myproducts[0].englishname %>&nbsp;
+          <span class="headline-small">
+            <%= myproducts[0].categoryname %>
+          </span>
+        <% } %>
+      </h3>
+      <% if (!search) { %>
+      <p>
+        <%= myproducts[0].context %>
+      </p>
+      <% } %>
+      <div class="category-head-wrapper">
+        <div class="category-head-items">
+          <%= myproducts.length %>件
+        </div>
+      </div>
+    </div>
+    <div class="category-row-wrapper">
+      <% if (myproducts.length > 0) { %>
+      <% myproducts.forEach(function(pd, i) { %>
+      <div class="category-row-child">
+        <ul class="category-flex">
+          <li class="list-image">
+            <div class="favbutton">
+              <i class="hearton heartbutton fa-solid fa-heart display-none" value="">
+                <span><%= pd.id %></span>
+              </i>
+              <i class="heartoff heartbutton fa-regular fa-heart" value="">
+                <span><%= pd.id %></span>
+              </i>
+            </div>
+            <a href="/product/<%= pd.id %>">
+              <img class="recommend1" src="<%= pd.imagepath %>" alt="<%= pd.productname %>" onerror="this.onerror = null; this.src='';">
+            </a>
+          </li>
+          <li class="list-title single-trimming">
+            <%= pd.productname %>
+          </li>
+          <li class="list-price">
+            <div class="price txt-purple noto-sans">
+              <%= pd.pricerange %>
+              <span class="price-small">(税込)</span>
+            </div>
+          </li>
+          <li class="list-buttons">
+            <form name="cartForm2" action="/my/cart" method="post">
+              <input class="productid" type="hidden" name="pid" value="<%= pd.id %>">
+              <input id="numarea" class="numarea" name="num" type="hidden" value="1">
+              <div class="btn">
+                <input class="btn-red" type="submit" value="カートに入れる">
+              </div>
+            </form>
+            <div class="btn forpc">
+              <button class="view-btn quick<%= i+1 %> btn-gray">クイックビュー</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <% }) %>
+      <% } %>
+    </div>
+
+    <% if (myproducts.length > 0) { %>
+    <% myproducts.forEach(function(prod,i) { %>
+    <section class="forpc poparea<%= i+1 %> pop display-none">
+      <div class="pop-flex">
+        <div class="pop-main-img">
+          <a href="/product/<%= prod.id %>"><img class="popimg" src="<%= prod.imagepath %>" alt="<%= prod.categoryname %>" onerror="this.onerror = null; this.src='';"></a>
+        </div>
+        <div class=" pop-head">
+          <div class="batsu">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+        <ul class=" pop-detail-flex">
+          <li class="pop-detail-list-title">
+            <%= prod.productname %>
+          </li>
+          <li class="pop-detail-list-review">
+            <div class="rate">
+              <span class="rate5"></span>
+            </div>
+          </li>
+          <li class="pop-detail-list-price">
+            <div class="price txt-purple noto-sans">
+              <%= prod.pricerange %>円<span class="price-small">&thinsp;(税込)</span>
+            </div>
+          </li>
+          <li class="pop-detail-list-content">
+            <p>※配送料は購入手続き時に計算されます。</p>
+            <p>商品番号:&nbsp;<%= prod.padid %></p>
+          </li>
+          <hr>
+          <form name="cartForm" action="/my/cart" method="post">
+            <li class="pop-detail-number-area">
+              <div class="minusbutton"><i class="fa-solid fa-minus"></i></div>
+              <input class="productid" type="hidden" name="pid" value="<%= prod.id %>">
+              <input class="numarea" type="number" name="num" value="1" min="1">
+              <div class="plusbutton"><i class="fa-solid fa-plus"></i></div>
+            </li>
+            <li class="pop-detail-list-buttons">
+              <div class="btn">
+                <button class="btn-cart">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <input type="submit" value="カートに入れる" />
+                </button>
+              </div>
+            </li>
+          </form>
+          <li class="pop-detail-list-detail">
+            <a href="/product/<%= prod.id %>">詳細を見る</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <% }) %>
+    <% } %>
+  </main>
+ 
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

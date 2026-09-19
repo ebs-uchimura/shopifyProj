@@ -1,0 +1,51 @@
+<footer>
+  <hr>
+  <div class="footer-area">
+    <div class="content-area">
+      <a href="/"><img class="appeal" src="/images/logo/LOGO.png"></a>
+      <div class="category">
+      <% if (allcategories.length > 0) { %>
+      <% allcategories.forEach(function(cat) { %>
+        <div>
+          <a href="/category/<%= cat.id %>">
+            <%= cat.categoryname %>
+          </a>
+        </div>
+      <% }) %>
+      <% } %>
+      </div>
+      <div class="content">
+        <% if (allproducts.length > 0) { %>
+        <% allproducts.forEach(function(pd) { %>
+        <span>
+          <a href="<%= root %>/product/<%= pd.id %>"><%= pd.productname %></a>&nbsp;/&nbsp;
+        </span>
+        <% }) %>
+        <% } %>
+      </div>
+    </div>
+    <div class="icon-area">
+      <div>
+        <a href="https://www.instagram.com/compass_linq.shop/"  target="_blank"><img src="/images/logo/instagram.png" alt="instagramロゴ"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-column">
+    <ul>
+      <li class="company_link">
+        <a href="https://linqgroup.jp/" target="_blank">会社概要</a>
+      </li>
+      <li class="commercial_link">
+        <a href="https://suijinclub.jp/view/contract" target="_blank">特定商取引法に基づく表記</a>
+      </li>
+      <li class="privacy_link">
+        <a href="https://ebisu-do.jp/policy.html" target="_blank">プライバシーポリシー</a>
+      </li>
+    </ul>
+    <div class="footer-logo">
+      <p class="madein">Produced by</p>
+      <a href="https://linqgroup.jp/"><img src="/images/logo/linquest.png" alt="compass logo"></a>
+      <p class="copyright">Copyright 2025 LinQuest, Inc.</p>
+    </div>
+  </div>
+</footer>

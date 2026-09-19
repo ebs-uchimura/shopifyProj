@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/head'); %>
+    <script src="/js/validate.js"></script>
+  </head>
+
+  <body>
+    <%- include('./partials/edit_top'); %>
+
+    <form
+      action="/order_update"
+      id="update"
+      class="orderform"
+      method="post"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <input type="hidden" name="id" value="<%= data.id %>" />
+      <input type="hidden" name="pref" value="<%= data.prefecture_id %>" />
+      <table class="registertbl">
+        <%- include('./partials/edit_form'); %>
+        <tr>
+          <td>販売管理ID</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="manage_no"
+              value="<%= data.manage_no %>"
+              placeholder="販売管理IDを入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>ラベルID</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="labelid"
+              value="<%= data.template_id %>"
+              placeholder="ラベルIDを入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>ラベル文字</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="labeltxt"
+              value="<%= data.label_text %>"
+              placeholder="ラベル文字を入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>店名</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="shopname"
+              value="<%= data.shopname %>"
+              placeholder="店名を入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>ユーザ名</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="username"
+              value="<%= data.username %>"
+              placeholder="ユーザ名を入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>都道府県</td>
+          <td>
+            <select id="prefecture" class="standard" name="prefecture">
+              <option value="">都道府県</option>
+              <% prefs.forEach(function(pref, i) { %>
+                <% if (i+1 == data.prefecture_id) { %>
+                  <option value="<%= i+1 %>" selected><%= pref %></option>
+                <% } else { %>
+                  <option value="<%= i+1 %>"><%= pref %></option>
+                <% } %>  
+              <% }) %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>市区町村</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="city"
+              value="<%= data.city %>"
+              placeholder="市区町村を入力"
+              autocomplete="off"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>番地以降</td>
+          <td>
+            <input
+              type="text"
+              class="standard wide"
+              name="address"
+              value="<%= data.address %>"
+              placeholder="番地以降を入力"
+              autocomplete="off"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td>
+            <input
+              type="text"
+              class="standard"
+              name="telephone"
+              value="<%= data.telephone %>"
+              placeholder="電話番号を入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td>
+            <input
+              type="text"
+              class="standard wide"
+              name="mailaddress"
+              value="<%= data.mailaddress %>"
+              placeholder="メールアドレスを入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>決済ID</td>
+          <td>
+            <input
+              type="text"
+              class="standard narrow"
+              name="payment_id"
+              value="<%= data.payment_id %>"
+              placeholder="決済IDを入力"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>コンタクトID</td>
+          <td><%= data.contact_id %></td>
+        </tr>
+        <tr>
+          <td>ロゴ</td>
+          <td>
+            <% if (data.uselogo == 1) { %>
+              <input type="checkbox" id="uselogo" class="uselogo" name="uselogo" checked>
+            <% } else if (data.uselogo == 0) { %>
+              <input type="checkbox" id="uselogo" class="uselogo" name="uselogo">
+            <% } %>
+              <label for="uselogo">ロゴ使用</label>
+            </td>
+        </tr>
+        <tr>
+          <td>チャット</td>
+          <td>
+            <% if (data.fromchat == 1) { %>
+              <input type="checkbox" id="fromchat" class="fromchat" name="fromchat" checked disabled>
+            <% } else if (data.fromchat == 0) { %>
+              <input type="checkbox" id="fromchat" class="fromchat" name="fromchat" disabled>
+            <% } %>
+              <label for="fromchat">チャット経由</label>
+            </td>
+        </tr>
+        <tr>
+          <td>決済</td>
+          <td>
+            <% if (data.paid == 1) { %>
+              <input type="checkbox" id="paid" class="paid" name="paid" checked>
+            <% } else if (data.paid == 0) { %>
+              <input type="checkbox" id="paid" class="paid" name="paid">
+            <% } %>
+              <label for="paid">決済完了</label>
+            </td>
+        </tr>
+        <tr>
+          <td>受注</td>
+          <td>
+            <% if (data.completed == 1) { %>
+              <input type="checkbox" id="completed" class="completed" name="completed" checked>
+            <% } else if (data.completed == 0) { %>
+              <input type="checkbox" id="completed" class="completed" name="completed">
+            <% } %>
+              <label for="completed">受注完了</label>
+            </td>
+        </tr>
+        <tr>
+          <td>発送</td>
+          <td>
+            <% if (data.shipped == 1) { %>
+              <input type="checkbox" id="shipped" class="shipped" name="shipped" checked>
+            <% } else if (data.shipped == 0) { %>
+              <input type="checkbox" id="shipped" class="shipped" name="shipped">
+            <% } %>
+              <label for="shipped">発送済み</label>
+            </td>
+        </tr>
+        <tr>
+          <td>商品ID</td>
+          <td><%= data.product_id %></td>
+        </tr>
+        <tr>
+          <td>数量</td>
+          <td><%= data.quantity %></td>
+        </tr>
+        <tr>
+          <td>総額(税込,円)</td>
+          <td><%= data.totalprice.toLocaleString() %></td>
+        </tr>
+        <tr>
+          <td>備考</td>
+          <td>
+            <textarea id="reason" name="reason" rows="5" cols="33"><%= data.reason %></textarea>
+          </td>
+        </tr>
+      </table>
+      <%- include('./partials/edit_submit'); %>
+    </form>
+    <button
+      type="button"
+      class="button-g button-6 back_btn"
+      onclick="history.back()"
+    >
+      戻る
+    </button>
+    <%- include('./partials/footer'); %>
+  </body>
+</html>

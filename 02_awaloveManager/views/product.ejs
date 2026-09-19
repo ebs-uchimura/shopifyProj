@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+
+  <body>
+    <header>
+      <h2><%= title %>画面</h2>
+      <button
+        type="button"
+        class="button-g button-6 gototop"
+        onclick="location.href='/'"
+      >
+        トップへ</button
+      ><br />
+      <span id="search_result">ヒット件数：&ensp;<%= data.length %>件 </span>
+    </header>
+    <table class="maintbl">
+      <tr>
+        <th class="narrow">
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/product?item=id&sort=desc'"
+          ></i
+          >ID<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/product?item=id&sort=asc'"
+          ></i>
+        </th>
+        <th class="wide">商品名</th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/product?item=price&sort=desc'"
+          ></i
+          >価格<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/product?item=price&sort=asc'"
+          ></i>
+        </th>
+        <th>
+          <i
+            class="fa-solid fa-circle-down"
+            onclick="location.href='/product?item=fixprice&sort=desc'"
+          ></i
+          >定価<i
+            class="fa-solid fa-circle-up"
+            onclick="location.href='/product?item=fixprice&sort=asc'"
+          ></i>
+        </th>
+        <th class="narrow">数量</th>
+        <th>種別ID</th>
+        <th>税率</th>
+        <th>バリアントID</th>
+        <th>更新時間</th>
+      </tr>
+      <% for ( let i=0; i < data.length; i++ ) { %>
+      <tr>
+        <td><%= data[i].id %></td>
+        <td><%= data[i].productname %></td>
+        <td><%= data[i].price.toLocaleString() %></td>
+        <td><%= data[i].fixprice.toLocaleString() %></td>
+        <td><%= data[i].amount %></td>
+        <td><%= data[i].type_id %></td>
+        <td><%= data[i].taxrate %></td>
+        <td><%= data[i].variant_id %></td>
+        <td><%= time[i] %></td>
+      </tr>
+      <% } %>
+    </table>
+    <%- include('./partials/footer'); %>
+  </body>
+</html>

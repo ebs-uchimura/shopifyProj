@@ -1,0 +1,51 @@
+/*
+/* newsmanage.css
+*/
+
+@charset "utf-8";
+
+/* tag */
+header {
+  width: 462px;
+  margin: 0 auto 30px;
+}
+
+table {
+  width: 462px;
+  margin: 0 auto 30px;
+}
+
+table caption {
+  font-size: 1.3rem;
+  color: #000;
+  font-weight: 600;
+  text-align: left;
+}
+
+table input {
+  width: 95%;
+}
+
+table thead tr th:first-child {
+  width: 50px;
+}
+
+table thead tr th:nth-child(2) {
+  width: 250px;
+}
+
+table tbody tr td:first-child {
+  background-color: #50535d;
+  color: #fff;
+}
+
+table tbody tr td:nth-child(2) {
+  background-color: #fff;
+  color: #000;
+}
+
+.copyright {
+  width: 462px;
+  margin: 20px auto 30px;
+  font-size: 0.8rem;
+}
